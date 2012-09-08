@@ -1,0 +1,18 @@
+/* 
+    Document   : style
+    Created on : 20 Aug 2012, 8:04:18 AM
+    Author     : boniface
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#header{
+    width: 960px;
+    height: 90px;
+    
+}
+
