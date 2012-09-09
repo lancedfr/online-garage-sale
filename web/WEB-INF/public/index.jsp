@@ -12,7 +12,7 @@
         <link type="image/ico" rel="icon" href="<c:url value="/resources/images/favicon.ico" />" />
         <link type="text/css" rel="stylesheet" href="<c:url value="/resources/styles/style.css" />" />
         <script type="text/javascript" src="<c:url value="/resources/javascript/script.js"/>"> </script>
-        
+
     </head>
     <body>
         <h1>Sample Application</h1><br>
