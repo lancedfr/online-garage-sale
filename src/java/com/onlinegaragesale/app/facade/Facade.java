@@ -2,6 +2,7 @@ package com.onlinegaragesale.app.facade;
 
 import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.services.crud.StudentCrudService;
+import com.onlinegaragesale.services.crud.UseraccountCrudService;
 import java.io.Serializable;
 import org.springframework.context.ApplicationContext;
 
@@ -19,10 +20,17 @@ public class Facade implements Serializable
 
     private final static ApplicationContext ctx = GetContext.getApplicationContext();
     private StudentCrudService studentCrudService;
+    private UseraccountCrudService useraccountCrudService;
 
     public StudentCrudService getSampleCrudService()
     {
         studentCrudService = (StudentCrudService) ctx.getBean("studentCrudService");
         return studentCrudService;
+    }
+
+    public UseraccountCrudService getUseraccountCrudService()
+    {
+        useraccountCrudService = (UseraccountCrudService) ctx.getBean("useraccountCrudService");
+        return useraccountCrudService;
     }
 }
