@@ -37,7 +37,7 @@ public class StudentCrudServiceImplTest
     @BeforeClass
     public static void setUpClass()
     {
-        ctx = new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml");
+//        ctx = new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml");
         facade = new Facade();
     }
 
