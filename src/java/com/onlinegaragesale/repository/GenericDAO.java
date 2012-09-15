@@ -11,8 +11,8 @@ import java.io.Serializable;
  * Date: 08 Sep 2012
  * Edited: 08 Sep 2012
  */
-public interface GenericDAO< T extends Serializable> extends DAO< T, Long>
+public interface GenericDAO<T extends Serializable> extends DAO<T, Long>
 {
 
-    void setClazz(final Class< T> clazzToSet);
+    void setClazz(final Class<T> clazzToSet);
 }

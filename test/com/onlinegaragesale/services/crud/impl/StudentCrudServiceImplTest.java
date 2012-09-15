@@ -1,5 +1,6 @@
 package com.onlinegaragesale.services.crud.impl;
 
+import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.app.facade.Facade;
 import com.onlinegaragesale.app.factories.AppFactory;
 import com.onlinegaragesale.model.Student;
@@ -38,7 +39,7 @@ public class StudentCrudServiceImplTest
     public static void setUpClass()
     {
 //        ctx = new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml");
-        facade = new Facade();
+        
     }
 
     @AfterClass
@@ -60,7 +61,9 @@ public class StudentCrudServiceImplTest
     public void testStudentCrud()
     {
         Student createStudent = AppFactory.createSampleStudent(null);
-
+        GetContext.setApplicationContext(new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml"));
+                
+        facade = new Facade();
         studentCrudService = facade.getSampleCrudService();
         studentCrudService.persist(createStudent);
         studentID = createStudent.getId();

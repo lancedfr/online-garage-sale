@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="OracleModel" id="33D3BABE-F7B4-D729-4B3B-368290981F67" version="3.5">
+<createdBy>Lance</createdBy>
+<createdTime>2012-09-15 20:02:29 UTC</createdTime>
+<ownerDesignName>OracleModel</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>33D3BABE-F7B4-D729-4B3B-368290981F67</designId>
+</OSDM_Design>
