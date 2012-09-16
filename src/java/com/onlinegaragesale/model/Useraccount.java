@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Date: 16 Sep 2012
  * Edited: 16 Sep 2012
  */
-@Entity 
+@Entity
 @Table(name = "USERACCOUNT")
 @XmlRootElement
 @NamedQueries(
@@ -47,8 +47,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Useraccount.findByLastname", query = "SELECT u FROM Useraccount u WHERE u.lastname = :lastname"),
     @NamedQuery(name = "Useraccount.findByMiddlename", query = "SELECT u FROM Useraccount u WHERE u.middlename = :middlename")
 })
-public class Useraccount implements Serializable 
+public class Useraccount implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -95,7 +96,12 @@ public class Useraccount implements Serializable
 
     public Useraccount()
     {
-        this.userid = Long.valueOf(1);
+        this.userid = Long.valueOf(0);
+    }
+
+    public Useraccount(Long userid)
+    {
+        this.userid = userid;
     }
 
     public Long getUserid()
@@ -297,5 +303,4 @@ public class Useraccount implements Serializable
     {
         return "com.onlinegaragesale.model.Useraccount[ userid=" + userid + " ]";
     }
-
 }

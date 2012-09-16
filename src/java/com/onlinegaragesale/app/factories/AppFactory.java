@@ -2,6 +2,7 @@ package com.onlinegaragesale.app.factories;
 
 import com.onlinegaragesale.model.Address;
 import com.onlinegaragesale.model.Contact;
+import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.model.Useraccount;
 import java.math.BigDecimal;
@@ -71,5 +72,16 @@ public class AppFactory
         contact.setHometell(values.get("homeTell").toString());
         contact.setWorktell(values.get("workTell").toString());
         return contact;
+    }
+
+    public static Garage createGarage(HashMap<String, Object> values)
+    {
+        Garage garage = new Garage();
+        garage.setClosedate((Date) values.get("closeDate"));
+        garage.setGaragetype(values.get("garageType").toString());
+        garage.setOpendate((Date) values.get("openDate"));
+        garage.setUserid((Useraccount)values.get("userId"));
+        
+        return garage;
     }
 }

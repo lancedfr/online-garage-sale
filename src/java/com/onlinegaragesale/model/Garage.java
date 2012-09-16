@@ -29,7 +29,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Date: 15 Sep 2012
  * Edited: 15 Sep 2012
  */
-@Entity 
+@Entity
 @Table(name = "GARAGE")
 @XmlRootElement
 @NamedQueries(
@@ -40,8 +40,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Garage.findByClosedate", query = "SELECT g FROM Garage g WHERE g.closedate = :closedate"),
     @NamedQuery(name = "Garage.findByGaragetype", query = "SELECT g FROM Garage g WHERE g.garagetype = :garagetype")
 })
-public class Garage implements Serializable 
+public class Garage implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -65,17 +66,12 @@ public class Garage implements Serializable
 
     public Garage()
     {
+        this.garageid = Long.valueOf(0);
     }
 
     public Garage(Long garageid)
     {
         this.garageid = garageid;
-    }
-
-    public Garage(Long garageid, Date opendate)
-    {
-        this.garageid = garageid;
-        this.opendate = opendate;
     }
 
     public Long getGarageid()
@@ -169,5 +165,4 @@ public class Garage implements Serializable
     {
         return "com.onlinegaragesale.model.Garage[ garageid=" + garageid + " ]";
     }
-
 }

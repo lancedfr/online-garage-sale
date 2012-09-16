@@ -3,8 +3,11 @@ package com.onlinegaragesale.services.crud.impl;
 import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.app.facade.Facade;
 import com.onlinegaragesale.app.factories.AppFactory;
+import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.model.Useraccount;
+import com.onlinegaragesale.services.crud.GarageCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashMap;
 import org.junit.After;
@@ -25,15 +28,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Date: 08 Sep 2012
  * Edited: 08 Sep 2012
  */
-public class UseraccountCrudServiceImplTest
+public class GarageCrudServiceImplTest
 {
 
-    private Long userID;
     private static ApplicationContext ctx;
     private static Facade facade;
     private static UseraccountCrudService useraccountCrudService;
+    private static GarageCrudService garageCrudService;
+    private Long userID;
+    private Long garageid;
 
-    public UseraccountCrudServiceImplTest()
+    public GarageCrudServiceImplTest()
     {
     }
 
@@ -43,6 +48,7 @@ public class UseraccountCrudServiceImplTest
         GetContext.setApplicationContext(new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml"));
         facade = new Facade();
         useraccountCrudService = facade.getUseraccountCrudService();
+        garageCrudService = facade.getGarageCrudService();
     }
 
     @AfterClass
@@ -80,7 +86,6 @@ public class UseraccountCrudServiceImplTest
         values.put("email", "TestEmail");
         values.put("homeTell", "TestHomeTell");
         values.put("workTell", "TestWorkTell");
-
         Useraccount useraccount = AppFactory.createUserAccount(values);
 
         useraccountCrudService.persist(useraccount);
@@ -90,5 +95,24 @@ public class UseraccountCrudServiceImplTest
         //useraccountCrudService.removeById(userID);
         //useraccount = useraccountCrudService.findById(userID);
         //Assert.assertNull(useraccount);
+    }
+
+    @Test
+    public void testGarageCrud()
+    {
+        HashMap<String, Object> values = new HashMap<String, Object>();
+        values.put("closeDate", new Date());
+        values.put("garageType", "small");
+        values.put("openDate", new Date());
+        values.put("userId", useraccountCrudService.findById(new Long(20124001)));
+        Garage garage = AppFactory.createGarage(values);
+        
+        garageCrudService.persist(garage);
+        garageid = garage.getGarageid();
+        Assert.assertNotNull(garage);
+        
+//        garageCrudService.removeById(new Long(1));
+//        Garage g = garageCrudService.findById(new Long(1));
+//        Assert.assertNull(g);
     }
 }
