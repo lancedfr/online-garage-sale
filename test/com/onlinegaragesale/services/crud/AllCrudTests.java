@@ -1,5 +1,6 @@
 package com.onlinegaragesale.services.crud;
 
+import com.onlinegaragesale.services.crud.impl.BitCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.CategoryCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.GarageCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.ProductCrudServiceImplTest;
@@ -26,7 +27,8 @@ import org.junit.runners.Suite;
     UseraccountCrudServiceImplTest.class,
     GarageCrudServiceImplTest.class,
     CategoryCrudServiceImplTest.class,
-    ProductCrudServiceImplTest.class
+    ProductCrudServiceImplTest.class,
+    BitCrudServiceImplTest.class
 })
 public class AllCrudTests
 {

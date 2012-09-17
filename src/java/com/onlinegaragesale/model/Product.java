@@ -36,7 +36,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Product.findByProdid", query = "SELECT p FROM Product p WHERE p.prodid = :prodid"),
     @NamedQuery(name = "Product.findByProdcondition", query = "SELECT p FROM Product p WHERE p.prodcondition = :prodcondition"),
     @NamedQuery(name = "Product.findByProddesc", query = "SELECT p FROM Product p WHERE p.proddesc = :proddesc"),
-    @NamedQuery(name = "Product.findByProdprice", query = "SELECT p FROM Product p WHERE p.prodprice = :prodprice")
+    @NamedQuery(name = "Product.findByProdprice", query = "SELECT p FROM Product p WHERE p.prodprice = :prodprice"),
+    @NamedQuery(name = "Product.findByProdstatus", query = "SELECT p FROM Product p WHERE p.prodstatus = :prodstatus")
 })
 public class Product implements Serializable 
 {
@@ -55,6 +56,8 @@ public class Product implements Serializable
     private Serializable prodimage;
     @Column(name = "PRODPRICE")
     private BigDecimal prodprice;
+    @Column(name = "PRODSTATUS")
+    private String prodstatus;
     @OneToMany(mappedBy = "prodid")
     private List<Bid> bidList;
     @JoinColumn(name = "GARAGEID", referencedColumnName = "GARAGEID")
@@ -121,6 +124,16 @@ public class Product implements Serializable
     public void setProdprice(BigDecimal prodprice)
     {
         this.prodprice = prodprice;
+    }
+
+    public String getProdstatus()
+    {
+        return prodstatus;
+    }
+
+    public void setProdstatus(String prodstatus)
+    {
+        this.prodstatus = prodstatus;
     }
 
     @XmlTransient

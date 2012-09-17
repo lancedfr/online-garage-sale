@@ -1,6 +1,7 @@
 package com.onlinegaragesale.app.factories;
 
 import com.onlinegaragesale.model.Address;
+import com.onlinegaragesale.model.Bid;
 import com.onlinegaragesale.model.Category;
 import com.onlinegaragesale.model.Contact;
 import com.onlinegaragesale.model.Garage;
@@ -9,6 +10,7 @@ import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.model.Useraccount;
 import com.onlinegaragesale.services.CreateNewId;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -76,6 +78,7 @@ public class AppFactory
         product.setProdcondition(values.get("prodCondition").toString());
         product.setProddesc(values.get("prodDesc").toString());
         product.setProdprice(BigDecimal.valueOf(Double.valueOf(values.get("prodPrice").toString())));
+        product.setProdstatus(values.get("prodStatus").toString());
         return product;
     }
     
@@ -85,5 +88,23 @@ public class AppFactory
         category.setCategorytype(values.get("categoryType").toString());
         return category;
     }
+
+    public static Bid createBid(HashMap<String, Object> values)
+    {
+        Bid bid = new Bid(CreateNewId.bid());
+        bid.setBidamount(BigDecimal.valueOf(Double.valueOf(values.get("bidAmount").toString())));
+        bid.setProdid((Product) values.get("prodId"));
+        bid.setUserid(Long.valueOf(values.get("userId").toString()));
+        return bid;
+    }
+    
+//    private Long bidid;
+//    @Column(name = "BIDAMOUNT")
+//    private BigDecimal bidamount;
+//    @Column(name = "USERID")
+//    private BigInteger userid;
+//    @JoinColumn(name = "PRODID", referencedColumnName = "PRODID")
+//    @ManyToOne
+//    private Product prodid;
 
 }

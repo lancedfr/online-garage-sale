@@ -2,9 +2,9 @@ package com.onlinegaragesale.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,7 +33,6 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries(
 {
     @NamedQuery(name = "Saleshistory.findAll", query = "SELECT s FROM Saleshistory s"),
-    @NamedQuery(name = "Saleshistory.findByUserid", query = "SELECT s FROM Saleshistory s WHERE s.userid = :userid"),
     @NamedQuery(name = "Saleshistory.findBySalesid", query = "SELECT s FROM Saleshistory s WHERE s.salesid = :salesid"),
     @NamedQuery(name = "Saleshistory.findByTotalsales", query = "SELECT s FROM Saleshistory s WHERE s.totalsales = :totalsales"),
     @NamedQuery(name = "Saleshistory.findByTotalsalescount", query = "SELECT s FROM Saleshistory s WHERE s.totalsalescount = :totalsalescount")
@@ -44,17 +43,15 @@ public class Saleshistory implements Serializable
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "USERID")
-    private Long userid;
     @Column(name = "SALESID")
-    private BigInteger salesid;
+    private Long salesid;
     @Column(name = "TOTALSALES")
     private BigDecimal totalsales;
     @Column(name = "TOTALSALESCOUNT")
     private String totalsalescount;
-    @OneToMany(mappedBy = "userid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesid")
     private List<Productsales> productsalesList;
-    @JoinColumn(name = "USERID", referencedColumnName = "USERID", insertable = false, updatable = false)
+    @JoinColumn(name = "SALESID", referencedColumnName = "USERID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Useraccount useraccount;
 
@@ -62,27 +59,17 @@ public class Saleshistory implements Serializable
     {
     }
 
-    public Saleshistory(Long userid)
+    public Saleshistory(Long salesid)
     {
-        this.userid = userid;
+        this.salesid = salesid;
     }
 
-    public Long getUserid()
-    {
-        return userid;
-    }
-
-    public void setUserid(Long userid)
-    {
-        this.userid = userid;
-    }
-
-    public BigInteger getSalesid()
+    public Long getSalesid()
     {
         return salesid;
     }
 
-    public void setSalesid(BigInteger salesid)
+    public void setSalesid(Long salesid)
     {
         this.salesid = salesid;
     }
@@ -133,7 +120,7 @@ public class Saleshistory implements Serializable
     public int hashCode()
     {
         int hash = 0;
-        hash += (userid != null ? userid.hashCode() : 0);
+        hash += (salesid != null ? salesid.hashCode() : 0);
         return hash;
     }
 
@@ -146,7 +133,7 @@ public class Saleshistory implements Serializable
             return false;
         }
         Saleshistory other = (Saleshistory) object;
-        if ((this.userid == null && other.userid != null) || (this.userid != null && !this.userid.equals(other.userid)))
+        if ((this.salesid == null && other.salesid != null) || (this.salesid != null && !this.salesid.equals(other.salesid)))
         {
             return false;
         }
@@ -156,7 +143,7 @@ public class Saleshistory implements Serializable
     @Override
     public String toString()
     {
-        return "com.onlinegaragesale.model.Saleshistory[ userid=" + userid + " ]";
+        return "com.onlinegaragesale.model.Saleshistory[ salesid=" + salesid + " ]";
     }
 
 }

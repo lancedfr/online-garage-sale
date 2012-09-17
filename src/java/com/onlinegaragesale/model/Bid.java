@@ -44,7 +44,7 @@ public class Bid implements Serializable
     @Column(name = "BIDAMOUNT")
     private BigDecimal bidamount;
     @Column(name = "USERID")
-    private BigInteger userid;
+    private Long userid;
     @JoinColumn(name = "PRODID", referencedColumnName = "PRODID")
     @ManyToOne
     private Product prodid;
@@ -78,12 +78,12 @@ public class Bid implements Serializable
         this.bidamount = bidamount;
     }
 
-    public BigInteger getUserid()
+    public Long getUserid()
     {
         return userid;
     }
 
-    public void setUserid(BigInteger userid)
+    public void setUserid(Long userid)
     {
         this.userid = userid;
     }

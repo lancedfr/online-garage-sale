@@ -3,12 +3,17 @@ package com.onlinegaragesale.services.crud.impl;
 import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.app.facade.Facade;
 import com.onlinegaragesale.app.factories.AppFactory;
+import com.onlinegaragesale.model.Bid;
+import com.onlinegaragesale.model.Category;
 import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.model.Product;
 import com.onlinegaragesale.model.Useraccount;
+import com.onlinegaragesale.services.crud.BidCrudService;
 import com.onlinegaragesale.services.crud.CategoryCrudService;
 import com.onlinegaragesale.services.crud.GarageCrudService;
 import com.onlinegaragesale.services.crud.ProductCrudService;
+import com.onlinegaragesale.services.crud.ProductsalesCrudService;
+import com.onlinegaragesale.services.crud.SaleshistoryCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,7 +36,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Date: 08 Sep 2012
  * Edited: 08 Sep 2012
  */
-public class ProductCrudServiceImplTest
+public class SalesHistoryCrudServiceImplTest
 {
 
     private static ApplicationContext ctx;
@@ -40,10 +45,13 @@ public class ProductCrudServiceImplTest
     private static GarageCrudService garageCrudService;
     private static ProductCrudService productCrudService;
     private static CategoryCrudService categoryCrudService;
+    private static BidCrudService bidCrudService;
+    private static SaleshistoryCrudService saleshistoryCrudService;
+    private static ProductsalesCrudService productsalesCrudService;
     private Long userID;
     private Long garageid;
 
-    public ProductCrudServiceImplTest()
+    public SalesHistoryCrudServiceImplTest()
     {
     }
 
@@ -56,6 +64,9 @@ public class ProductCrudServiceImplTest
         garageCrudService = facade.getGarageCrudService();
         productCrudService = facade.getProductCrudService();
         categoryCrudService = facade.getCategoryCrudService();
+        bidCrudService = facade.getBidCrudService();
+        saleshistoryCrudService = facade.getSaleshistoryCrudService();
+        productsalesCrudService = facade.getProductsalesCrudService();
     }
 
     @AfterClass
@@ -113,17 +124,26 @@ public class ProductCrudServiceImplTest
         values.put("openDate", new Date());
         values.put("userId", useraccountCrudService.findById(new Long(20124001)));
         Garage garage = AppFactory.createGarage(values);
-        
+
         garageCrudService.persist(garage);
         garageid = garage.getGarageid();
         Assert.assertNotNull(garage);
-        
+
 //        garageCrudService.removeById(new Long(1));
 //        Garage g = garageCrudService.findById(new Long(1));
 //        Assert.assertNull(g);
     }
-    
-    @Test
+
+    @Ignore
+    public void testCategoryCrud()
+    {
+        HashMap<String, Object> values = new HashMap<String, Object>();
+        values.put("categoryType", "Lighting");
+        Category createCategory = AppFactory.createCategory(values);
+        categoryCrudService.persist(createCategory);
+    }
+
+    @Ignore
     public void testProductCrud()
     {
         HashMap<String, Object> values = new HashMap<String, Object>();
@@ -131,12 +151,34 @@ public class ProductCrudServiceImplTest
         values.put("prodCondition", "GREAT");
         values.put("prodDesc", "Green Lamp");
         values.put("prodPrice", "234.66");
-        values.put("prodStatus", "Not Sold");
-        values.put("categoryId", categoryCrudService.findById(new Long(1)));
+        values.put("categoryType", "Lighting");
         Product product = AppFactory.createProduct(values);
-        
+
         productCrudService.persist(product);
         Product p = productCrudService.findById(new Long(1));
         Assert.assertNotNull(p);
+    }
+
+    @Ignore
+    public void testBidCrud()
+    {
+        HashMap<String, Object> values = new HashMap<String, Object>();
+        values.put("bidAmount", "55.99");
+        values.put("prodId", productCrudService.findById(new Long(1)));
+        values.put("userId", useraccountCrudService.findById(new Long(20124001)).getUserid());
+        Bid bid = AppFactory.createBid(values);
+
+        bidCrudService.persist(bid);
+        Bid b = bidCrudService.findById(new Long(1));
+        Assert.assertNotNull(b);
+    }
+
+    @Test
+    public void testSalesHistory()
+    {
+        HashMap<String, Object> values = new HashMap<String, Object>();
+        values.put("bidAmount", "55.99");
+        
+        
     }
 }

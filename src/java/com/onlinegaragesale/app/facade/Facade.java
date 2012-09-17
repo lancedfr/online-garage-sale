@@ -1,9 +1,12 @@
 package com.onlinegaragesale.app.facade;
 
 import com.onlinegaragesale.app.conf.GetContext;
+import com.onlinegaragesale.services.crud.BidCrudService;
 import com.onlinegaragesale.services.crud.CategoryCrudService;
 import com.onlinegaragesale.services.crud.GarageCrudService;
 import com.onlinegaragesale.services.crud.ProductCrudService;
+import com.onlinegaragesale.services.crud.ProductsalesCrudService;
+import com.onlinegaragesale.services.crud.SaleshistoryCrudService;
 import com.onlinegaragesale.services.crud.StudentCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
 import java.io.Serializable;
@@ -27,6 +30,9 @@ public class Facade implements Serializable
     private GarageCrudService garageCrudService;
     private ProductCrudService productCrudService;
     private CategoryCrudService categoryCrudService;
+    private BidCrudService bidCrudService;
+    private SaleshistoryCrudService saleshistoryCrudService;
+    private ProductsalesCrudService productsalesCrudService;
 
     public StudentCrudService getSampleCrudService()
     {
@@ -56,5 +62,23 @@ public class Facade implements Serializable
     {
         categoryCrudService = (CategoryCrudService) ctx.getBean("categoryCrudService");
         return categoryCrudService;
+    }
+
+    public BidCrudService getBidCrudService()
+    {
+        bidCrudService = (BidCrudService) ctx.getBean("bidCrudService");
+        return bidCrudService;
+    }
+
+    public SaleshistoryCrudService getSaleshistoryCrudService()
+    {
+        saleshistoryCrudService = (SaleshistoryCrudService) ctx.getBean("saleshistoryCrudService");
+        return saleshistoryCrudService;
+    }
+
+    public ProductsalesCrudService getProductsalesCrudService()
+    {
+        productsalesCrudService = (ProductsalesCrudService) ctx.getBean("productsalesCrudService");
+        return productsalesCrudService;
     }
 }

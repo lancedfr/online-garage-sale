@@ -51,9 +51,9 @@ public class Productsales implements Serializable
     private Serializable prodimage;
     @Column(name = "PRODPRICE")
     private BigDecimal prodprice;
-    @JoinColumn(name = "USERID", referencedColumnName = "USERID")
-    @ManyToOne
-    private Saleshistory userid;
+    @JoinColumn(name = "SALESID", referencedColumnName = "SALESID")
+    @ManyToOne(optional = false)
+    private Saleshistory salesid;
 
     public Productsales()
     {
@@ -114,14 +114,14 @@ public class Productsales implements Serializable
         this.prodprice = prodprice;
     }
 
-    public Saleshistory getUserid()
+    public Saleshistory getSalesid()
     {
-        return userid;
+        return salesid;
     }
 
-    public void setUserid(Saleshistory userid)
+    public void setSalesid(Saleshistory salesid)
     {
-        this.userid = userid;
+        this.salesid = salesid;
     }
 
     @Override
