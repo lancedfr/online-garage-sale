@@ -1,5 +1,6 @@
 package com.onlinegaragesale.services.crud;
 
+import com.onlinegaragesale.services.crud.impl.CategoryCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.GarageCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.ProductCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.UseraccountCrudServiceImplTest;
@@ -22,9 +23,10 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
 {
+    UseraccountCrudServiceImplTest.class,
     GarageCrudServiceImplTest.class,
-    ProductCrudServiceImplTest.class,
-    UseraccountCrudServiceImplTest.class
+    CategoryCrudServiceImplTest.class,
+    ProductCrudServiceImplTest.class
 })
 public class AllCrudTests
 {

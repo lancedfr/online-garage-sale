@@ -26,38 +26,36 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 15 Sep 2012
- * Edited: 15 Sep 2012
+ * Date: 17 Sep 2012
+ * Edited: 17 Sep 2012
  */
-@Entity
+@Entity 
 @Table(name = "GARAGE")
 @XmlRootElement
 @NamedQueries(
 {
     @NamedQuery(name = "Garage.findAll", query = "SELECT g FROM Garage g"),
     @NamedQuery(name = "Garage.findByGarageid", query = "SELECT g FROM Garage g WHERE g.garageid = :garageid"),
+    @NamedQuery(name = "Garage.findByGaragetype", query = "SELECT g FROM Garage g WHERE g.garagetype = :garagetype"),
     @NamedQuery(name = "Garage.findByOpendate", query = "SELECT g FROM Garage g WHERE g.opendate = :opendate"),
-    @NamedQuery(name = "Garage.findByClosedate", query = "SELECT g FROM Garage g WHERE g.closedate = :closedate"),
-    @NamedQuery(name = "Garage.findByGaragetype", query = "SELECT g FROM Garage g WHERE g.garagetype = :garagetype")
+    @NamedQuery(name = "Garage.findByClosedate", query = "SELECT g FROM Garage g WHERE g.closedate = :closedate")
 })
-public class Garage implements Serializable
+public class Garage implements Serializable 
 {
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "GARAGEID")
     private Long garageid;
-    @Basic(optional = false)
+    @Column(name = "GARAGETYPE")
+    private String garagetype;
     @Column(name = "OPENDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date opendate;
     @Column(name = "CLOSEDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date closedate;
-    @Column(name = "GARAGETYPE")
-    private String garagetype;
     @OneToMany(mappedBy = "garageid")
     private List<Product> productList;
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
@@ -66,7 +64,6 @@ public class Garage implements Serializable
 
     public Garage()
     {
-        this.garageid = Long.valueOf(0);
     }
 
     public Garage(Long garageid)
@@ -82,6 +79,16 @@ public class Garage implements Serializable
     public void setGarageid(Long garageid)
     {
         this.garageid = garageid;
+    }
+
+    public String getGaragetype()
+    {
+        return garagetype;
+    }
+
+    public void setGaragetype(String garagetype)
+    {
+        this.garagetype = garagetype;
     }
 
     public Date getOpendate()
@@ -102,16 +109,6 @@ public class Garage implements Serializable
     public void setClosedate(Date closedate)
     {
         this.closedate = closedate;
-    }
-
-    public String getGaragetype()
-    {
-        return garagetype;
-    }
-
-    public void setGaragetype(String garagetype)
-    {
-        this.garagetype = garagetype;
     }
 
     @XmlTransient
@@ -165,4 +162,5 @@ public class Garage implements Serializable
     {
         return "com.onlinegaragesale.model.Garage[ garageid=" + garageid + " ]";
     }
+
 }

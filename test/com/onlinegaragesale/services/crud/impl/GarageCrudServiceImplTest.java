@@ -15,6 +15,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -66,7 +67,7 @@ public class GarageCrudServiceImplTest
     {
     }
 
-    @Test
+    @Ignore
     public void testUseraccountCrud()
     {
         HashMap<String, Object> values = new HashMap<String, Object>();

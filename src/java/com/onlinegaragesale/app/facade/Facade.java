@@ -1,6 +1,7 @@
 package com.onlinegaragesale.app.facade;
 
 import com.onlinegaragesale.app.conf.GetContext;
+import com.onlinegaragesale.services.crud.CategoryCrudService;
 import com.onlinegaragesale.services.crud.GarageCrudService;
 import com.onlinegaragesale.services.crud.ProductCrudService;
 import com.onlinegaragesale.services.crud.StudentCrudService;
@@ -25,6 +26,7 @@ public class Facade implements Serializable
     private UseraccountCrudService useraccountCrudService;
     private GarageCrudService garageCrudService;
     private ProductCrudService productCrudService;
+    private CategoryCrudService categoryCrudService;
 
     public StudentCrudService getSampleCrudService()
     {
@@ -48,5 +50,11 @@ public class Facade implements Serializable
     {
         productCrudService = (ProductCrudService) ctx.getBean("productCrudService");
         return productCrudService;
+    }
+
+    public CategoryCrudService getCategoryCrudService()
+    {
+        categoryCrudService = (CategoryCrudService) ctx.getBean("categoryCrudService");
+        return categoryCrudService;
     }
 }

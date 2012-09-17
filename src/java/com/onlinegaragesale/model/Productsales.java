@@ -20,8 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 15 Sep 2012
- * Edited: 15 Sep 2012
+ * Date: 17 Sep 2012
+ * Edited: 17 Sep 2012
  */
 @Entity 
 @Table(name = "PRODUCTSALES")
@@ -30,8 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 {
     @NamedQuery(name = "Productsales.findAll", query = "SELECT p FROM Productsales p"),
     @NamedQuery(name = "Productsales.findByProdid", query = "SELECT p FROM Productsales p WHERE p.prodid = :prodid"),
-    @NamedQuery(name = "Productsales.findByProddesc", query = "SELECT p FROM Productsales p WHERE p.proddesc = :proddesc"),
     @NamedQuery(name = "Productsales.findByProdcondition", query = "SELECT p FROM Productsales p WHERE p.prodcondition = :prodcondition"),
+    @NamedQuery(name = "Productsales.findByProddesc", query = "SELECT p FROM Productsales p WHERE p.proddesc = :proddesc"),
     @NamedQuery(name = "Productsales.findByProdprice", query = "SELECT p FROM Productsales p WHERE p.prodprice = :prodprice")
 })
 public class Productsales implements Serializable 
@@ -42,10 +42,10 @@ public class Productsales implements Serializable
     @Basic(optional = false)
     @Column(name = "PRODID")
     private Long prodid;
-    @Column(name = "PRODDESC")
-    private String proddesc;
     @Column(name = "PRODCONDITION")
     private String prodcondition;
+    @Column(name = "PRODDESC")
+    private String proddesc;
     @Lob
     @Column(name = "PRODIMAGE")
     private Serializable prodimage;
@@ -74,16 +74,6 @@ public class Productsales implements Serializable
         this.prodid = prodid;
     }
 
-    public String getProddesc()
-    {
-        return proddesc;
-    }
-
-    public void setProddesc(String proddesc)
-    {
-        this.proddesc = proddesc;
-    }
-
     public String getProdcondition()
     {
         return prodcondition;
@@ -92,6 +82,16 @@ public class Productsales implements Serializable
     public void setProdcondition(String prodcondition)
     {
         this.prodcondition = prodcondition;
+    }
+
+    public String getProddesc()
+    {
+        return proddesc;
+    }
+
+    public void setProddesc(String proddesc)
+    {
+        this.proddesc = proddesc;
     }
 
     public Serializable getProdimage()

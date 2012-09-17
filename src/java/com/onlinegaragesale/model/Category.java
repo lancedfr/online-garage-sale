@@ -1,16 +1,19 @@
 package com.onlinegaragesale.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * File Name: Category.java
@@ -18,8 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 15 Sep 2012
- * Edited: 15 Sep 2012
+ * Date: 17 Sep 2012
+ * Edited: 17 Sep 2012
  */
 @Entity 
 @Table(name = "CATEGORY")
@@ -33,19 +36,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Category implements Serializable 
 {
     private static final long serialVersionUID = 1L;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "CATEGORYID")
     private Long categoryid;
     @Column(name = "CATEGORYTYPE")
     private String categorytype;
-    @JoinColumn(name = "PRODID", referencedColumnName = "PRODID")
-    @ManyToOne
-    private Product prodid;
+    @OneToMany(mappedBy = "categoryid")
+    private List<Product> productList;
 
     public Category()
     {
-        this.categoryid = new Long(0);
     }
 
     public Category(Long categoryid)
@@ -73,14 +75,16 @@ public class Category implements Serializable
         this.categorytype = categorytype;
     }
 
-    public Product getProdid()
+    @XmlTransient
+    @JsonIgnore
+    public List<Product> getProductList()
     {
-        return prodid;
+        return productList;
     }
 
-    public void setProdid(Product prodid)
+    public void setProductList(List<Product> productList)
     {
-        this.prodid = prodid;
+        this.productList = productList;
     }
 
     @Override

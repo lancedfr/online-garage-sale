@@ -24,8 +24,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 15 Sep 2012
- * Edited: 15 Sep 2012
+ * Date: 17 Sep 2012
+ * Edited: 17 Sep 2012
  */
 @Entity 
 @Table(name = "SALESHISTORY")
@@ -35,8 +35,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Saleshistory.findAll", query = "SELECT s FROM Saleshistory s"),
     @NamedQuery(name = "Saleshistory.findByUserid", query = "SELECT s FROM Saleshistory s WHERE s.userid = :userid"),
     @NamedQuery(name = "Saleshistory.findBySalesid", query = "SELECT s FROM Saleshistory s WHERE s.salesid = :salesid"),
-    @NamedQuery(name = "Saleshistory.findByTotalsalescount", query = "SELECT s FROM Saleshistory s WHERE s.totalsalescount = :totalsalescount"),
-    @NamedQuery(name = "Saleshistory.findByTotalsales", query = "SELECT s FROM Saleshistory s WHERE s.totalsales = :totalsales")
+    @NamedQuery(name = "Saleshistory.findByTotalsales", query = "SELECT s FROM Saleshistory s WHERE s.totalsales = :totalsales"),
+    @NamedQuery(name = "Saleshistory.findByTotalsalescount", query = "SELECT s FROM Saleshistory s WHERE s.totalsalescount = :totalsalescount")
 })
 public class Saleshistory implements Serializable 
 {
@@ -46,13 +46,12 @@ public class Saleshistory implements Serializable
     @Basic(optional = false)
     @Column(name = "USERID")
     private Long userid;
-    @Basic(optional = false)
     @Column(name = "SALESID")
     private BigInteger salesid;
-    @Column(name = "TOTALSALESCOUNT")
-    private Short totalsalescount;
     @Column(name = "TOTALSALES")
     private BigDecimal totalsales;
+    @Column(name = "TOTALSALESCOUNT")
+    private String totalsalescount;
     @OneToMany(mappedBy = "userid")
     private List<Productsales> productsalesList;
     @JoinColumn(name = "USERID", referencedColumnName = "USERID", insertable = false, updatable = false)
@@ -66,12 +65,6 @@ public class Saleshistory implements Serializable
     public Saleshistory(Long userid)
     {
         this.userid = userid;
-    }
-
-    public Saleshistory(Long userid, BigInteger salesid)
-    {
-        this.userid = userid;
-        this.salesid = salesid;
     }
 
     public Long getUserid()
@@ -94,16 +87,6 @@ public class Saleshistory implements Serializable
         this.salesid = salesid;
     }
 
-    public Short getTotalsalescount()
-    {
-        return totalsalescount;
-    }
-
-    public void setTotalsalescount(Short totalsalescount)
-    {
-        this.totalsalescount = totalsalescount;
-    }
-
     public BigDecimal getTotalsales()
     {
         return totalsales;
@@ -112,6 +95,16 @@ public class Saleshistory implements Serializable
     public void setTotalsales(BigDecimal totalsales)
     {
         this.totalsales = totalsales;
+    }
+
+    public String getTotalsalescount()
+    {
+        return totalsalescount;
+    }
+
+    public void setTotalsalescount(String totalsalescount)
+    {
+        this.totalsalescount = totalsalescount;
     }
 
     @XmlTransient

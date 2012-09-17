@@ -7,6 +7,7 @@ import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.model.Product;
 import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.model.Useraccount;
+import com.onlinegaragesale.services.CreateNewId;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class AppFactory
 
     public static Useraccount createUserAccount(HashMap<String, Object> values)
     {
-        Useraccount useraccount = new Useraccount();
+        Useraccount useraccount = new Useraccount(CreateNewId.userAccount());
         useraccount.setAge(BigDecimal.valueOf(Long.valueOf(values.get("age").toString())));
         useraccount.setDob((Date) values.get("dob"));
         useraccount.setFirstname(values.get("firstName").toString());
@@ -58,7 +59,7 @@ public class AppFactory
 
     public static Garage createGarage(HashMap<String, Object> values)
     {
-        Garage garage = new Garage();
+        Garage garage = new Garage(CreateNewId.garage());
         garage.setClosedate((Date) values.get("closeDate"));
         garage.setGaragetype(values.get("garageType").toString());
         garage.setOpendate((Date) values.get("openDate"));
@@ -69,8 +70,8 @@ public class AppFactory
 
     public static Product createProduct(HashMap<String, Object> values)
     {
-        Product product = new Product();
-        product.setCategoryList(createCatagory(values));
+        Product product = new Product(CreateNewId.product());
+        product.setCategoryid((Category) values.get("categoryId"));
         product.setGarageid((Garage) values.get("garageId"));
         product.setProdcondition(values.get("prodCondition").toString());
         product.setProddesc(values.get("prodDesc").toString());
@@ -78,13 +79,11 @@ public class AppFactory
         return product;
     }
     
-    private static List<Category> createCatagory(HashMap<String, Object> values)
+    public static Category createCategory(HashMap<String, Object> values)
     {
-        Category category = new Category();
+        Category category = new Category(CreateNewId.category());
         category.setCategorytype(values.get("categoryType").toString());
-        List<Category> categorys = new ArrayList<Category>();
-        categorys.add(category);
-        return categorys;
+        return category;
     }
 
 }

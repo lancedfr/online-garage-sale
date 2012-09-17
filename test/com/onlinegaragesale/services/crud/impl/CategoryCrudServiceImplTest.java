@@ -3,6 +3,7 @@ package com.onlinegaragesale.services.crud.impl;
 import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.app.facade.Facade;
 import com.onlinegaragesale.app.factories.AppFactory;
+import com.onlinegaragesale.model.Category;
 import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.model.Product;
 import com.onlinegaragesale.model.Useraccount;
@@ -12,6 +13,7 @@ import com.onlinegaragesale.services.crud.ProductCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -31,7 +33,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Date: 08 Sep 2012
  * Edited: 08 Sep 2012
  */
-public class ProductCrudServiceImplTest
+public class CategoryCrudServiceImplTest
 {
 
     private static ApplicationContext ctx;
@@ -43,7 +45,7 @@ public class ProductCrudServiceImplTest
     private Long userID;
     private Long garageid;
 
-    public ProductCrudServiceImplTest()
+    public CategoryCrudServiceImplTest()
     {
     }
 
@@ -124,6 +126,16 @@ public class ProductCrudServiceImplTest
     }
     
     @Test
+    public void testCategoryCrud()
+    {
+        HashMap<String, Object> values = new HashMap<String, Object>();
+        values.put("categoryType", "Lighting");
+        Category createCategory = AppFactory.createCategory(values);
+        categoryCrudService.persist(createCategory);
+    }
+    
+    
+    @Ignore
     public void testProductCrud()
     {
         HashMap<String, Object> values = new HashMap<String, Object>();
@@ -131,7 +143,7 @@ public class ProductCrudServiceImplTest
         values.put("prodCondition", "GREAT");
         values.put("prodDesc", "Green Lamp");
         values.put("prodPrice", "234.66");
-        values.put("categoryId", categoryCrudService.findById(new Long(1)));
+        values.put("categoryType", "Lighting");
         Product product = AppFactory.createProduct(values);
         
         productCrudService.persist(product);

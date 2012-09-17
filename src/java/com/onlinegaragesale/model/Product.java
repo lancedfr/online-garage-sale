@@ -2,7 +2,6 @@ package com.onlinegaragesale.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -25,8 +24,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 15 Sep 2012
- * Edited: 15 Sep 2012
+ * Date: 17 Sep 2012
+ * Edited: 17 Sep 2012
  */
 @Entity 
 @Table(name = "PRODUCT")
@@ -35,8 +34,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 {
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findByProdid", query = "SELECT p FROM Product p WHERE p.prodid = :prodid"),
-    @NamedQuery(name = "Product.findByProddesc", query = "SELECT p FROM Product p WHERE p.proddesc = :proddesc"),
     @NamedQuery(name = "Product.findByProdcondition", query = "SELECT p FROM Product p WHERE p.prodcondition = :prodcondition"),
+    @NamedQuery(name = "Product.findByProddesc", query = "SELECT p FROM Product p WHERE p.proddesc = :proddesc"),
     @NamedQuery(name = "Product.findByProdprice", query = "SELECT p FROM Product p WHERE p.prodprice = :prodprice")
 })
 public class Product implements Serializable 
@@ -47,26 +46,26 @@ public class Product implements Serializable
     @Basic(optional = false)
     @Column(name = "PRODID")
     private Long prodid;
-    @Column(name = "PRODDESC")
-    private String proddesc;
     @Column(name = "PRODCONDITION")
     private String prodcondition;
-    @Column(name = "PRODPRICE")
-    private BigDecimal prodprice;
+    @Column(name = "PRODDESC")
+    private String proddesc;
     @Lob
     @Column(name = "PRODIMAGE")
     private Serializable prodimage;
+    @Column(name = "PRODPRICE")
+    private BigDecimal prodprice;
     @OneToMany(mappedBy = "prodid")
     private List<Bid> bidList;
-    @OneToMany(mappedBy = "prodid")
-    private List<Category> categoryList;
     @JoinColumn(name = "GARAGEID", referencedColumnName = "GARAGEID")
     @ManyToOne
     private Garage garageid;
+    @JoinColumn(name = "CATEGORYID", referencedColumnName = "CATEGORYID")
+    @ManyToOne
+    private Category categoryid;
 
     public Product()
     {
-        this.prodid = new Long(0);
     }
 
     public Product(Long prodid)
@@ -84,6 +83,16 @@ public class Product implements Serializable
         this.prodid = prodid;
     }
 
+    public String getProdcondition()
+    {
+        return prodcondition;
+    }
+
+    public void setProdcondition(String prodcondition)
+    {
+        this.prodcondition = prodcondition;
+    }
+
     public String getProddesc()
     {
         return proddesc;
@@ -94,14 +103,14 @@ public class Product implements Serializable
         this.proddesc = proddesc;
     }
 
-    public String getProdcondition()
+    public Serializable getProdimage()
     {
-        return prodcondition;
+        return prodimage;
     }
 
-    public void setProdcondition(String prodcondition)
+    public void setProdimage(Serializable prodimage)
     {
-        this.prodcondition = prodcondition;
+        this.prodimage = prodimage;
     }
 
     public BigDecimal getProdprice()
@@ -114,16 +123,6 @@ public class Product implements Serializable
         this.prodprice = prodprice;
     }
 
-    public Serializable getProdimage()
-    {
-        return prodimage;
-    }
-
-    public void setProdimage(Serializable prodimage)
-    {
-        this.prodimage = prodimage;
-    }
-    
     @XmlTransient
     @JsonIgnore
     public List<Bid> getBidList()
@@ -136,18 +135,6 @@ public class Product implements Serializable
         this.bidList = bidList;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<Category> getCategoryList()
-    {
-        return categoryList;
-    }
-
-    public void setCategoryList(List<Category> categoryList)
-    {
-        this.categoryList = categoryList;
-    }
-
     public Garage getGarageid()
     {
         return garageid;
@@ -156,6 +143,16 @@ public class Product implements Serializable
     public void setGarageid(Garage garageid)
     {
         this.garageid = garageid;
+    }
+
+    public Category getCategoryid()
+    {
+        return categoryid;
+    }
+
+    public void setCategoryid(Category categoryid)
+    {
+        this.categoryid = categoryid;
     }
 
     @Override

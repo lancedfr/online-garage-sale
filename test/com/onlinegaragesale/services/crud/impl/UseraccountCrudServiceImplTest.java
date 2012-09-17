@@ -86,7 +86,6 @@ public class UseraccountCrudServiceImplTest
         useraccountCrudService.persist(useraccount);
         userID = useraccount.getUserid();
         Assert.assertNotNull(useraccount);
-
         //useraccountCrudService.removeById(userID);
         //useraccount = useraccountCrudService.findById(userID);
         //Assert.assertNull(useraccount);
