@@ -1,15 +1,19 @@
 package com.onlinegaragesale.app.factories;
 
 import com.onlinegaragesale.model.Address;
+import com.onlinegaragesale.model.Category;
 import com.onlinegaragesale.model.Contact;
 import com.onlinegaragesale.model.Garage;
+import com.onlinegaragesale.model.Product;
 import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.model.Useraccount;
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.hibernate.metamodel.source.hbm.Helper;
 
 /**
  * File Name: AppFactory.java
@@ -52,28 +56,6 @@ public class AppFactory
         return useraccount;
     }
 
-    private static Address createAddress(HashMap<String, Object> values)
-    {
-        Address address = new Address();
-        address.setAddressline(values.get("address").toString());
-        address.setAreacode(values.get("addressLine").toString());
-        address.setCity(values.get("city").toString());
-        address.setCountry(values.get("country").toString());
-        address.setRoad(values.get("road").toString());
-        address.setSuburb(values.get("suberb").toString());
-        return address;
-    }
-
-    private static Contact createContact(HashMap<String, Object> values)
-    {
-        Contact contact = new Contact();
-        contact.setCell(values.get("cell").toString());
-        contact.setEmail(values.get("email").toString());
-        contact.setHometell(values.get("homeTell").toString());
-        contact.setWorktell(values.get("workTell").toString());
-        return contact;
-    }
-
     public static Garage createGarage(HashMap<String, Object> values)
     {
         Garage garage = new Garage();
@@ -84,4 +66,25 @@ public class AppFactory
         
         return garage;
     }
+
+    public static Product createProduct(HashMap<String, Object> values)
+    {
+        Product product = new Product();
+        product.setCategoryList(createCatagory(values));
+        product.setGarageid((Garage) values.get("garageId"));
+        product.setProdcondition(values.get("prodCondition").toString());
+        product.setProddesc(values.get("prodDesc").toString());
+        product.setProdprice(BigDecimal.valueOf(Double.valueOf(values.get("prodPrice").toString())));
+        return product;
+    }
+    
+    private static List<Category> createCatagory(HashMap<String, Object> values)
+    {
+        Category category = new Category();
+        category.setCategorytype(values.get("categoryType").toString());
+        List<Category> categorys = new ArrayList<Category>();
+        categorys.add(category);
+        return categorys;
+    }
+
 }

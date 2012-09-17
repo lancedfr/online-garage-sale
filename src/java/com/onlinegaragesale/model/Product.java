@@ -37,8 +37,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Product.findByProdid", query = "SELECT p FROM Product p WHERE p.prodid = :prodid"),
     @NamedQuery(name = "Product.findByProddesc", query = "SELECT p FROM Product p WHERE p.proddesc = :proddesc"),
     @NamedQuery(name = "Product.findByProdcondition", query = "SELECT p FROM Product p WHERE p.prodcondition = :prodcondition"),
-    @NamedQuery(name = "Product.findByProdprice", query = "SELECT p FROM Product p WHERE p.prodprice = :prodprice"),
-    @NamedQuery(name = "Product.findByGarageUserid", query = "SELECT p FROM Product p WHERE p.garageUserid = :garageUserid")
+    @NamedQuery(name = "Product.findByProdprice", query = "SELECT p FROM Product p WHERE p.prodprice = :prodprice")
 })
 public class Product implements Serializable 
 {
@@ -57,8 +56,6 @@ public class Product implements Serializable
     @Lob
     @Column(name = "PRODIMAGE")
     private Serializable prodimage;
-    @Column(name = "GARAGE_USERID")
-    private BigInteger garageUserid;
     @OneToMany(mappedBy = "prodid")
     private List<Bid> bidList;
     @OneToMany(mappedBy = "prodid")
@@ -69,6 +66,7 @@ public class Product implements Serializable
 
     public Product()
     {
+        this.prodid = new Long(0);
     }
 
     public Product(Long prodid)
@@ -125,17 +123,7 @@ public class Product implements Serializable
     {
         this.prodimage = prodimage;
     }
-
-    public BigInteger getGarageUserid()
-    {
-        return garageUserid;
-    }
-
-    public void setGarageUserid(BigInteger garageUserid)
-    {
-        this.garageUserid = garageUserid;
-    }
-
+    
     @XmlTransient
     @JsonIgnore
     public List<Bid> getBidList()
