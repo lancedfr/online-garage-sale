@@ -1,5 +1,6 @@
 package com.onlinegaragesale.presentation.web.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -14,18 +15,18 @@ import java.util.Date;
 public class SampleBean
 {
 
-    private Long id;
+    private BigDecimal id;
     private String studentNumber;
     private String firstName;
     private String lastName;
     private Date dob;
 
-    public Long getId()
+    public BigDecimal getId()
     {
         return id;
     }
 
-    public void setId(Long id)
+    public void setId(BigDecimal id)
     {
         this.id = id;
     }

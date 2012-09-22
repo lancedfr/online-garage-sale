@@ -1,6 +1,7 @@
 package com.onlinegaragesale.services;
 
 import com.onlinegaragesale.dataaccess.DatabaseConnection;
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,12 +23,12 @@ import oracle.jdbc.OracleTypes;
 public class CreateNewId
 {
 
-    private static Long getNewIdFromSequences(String sql)
+    private static BigDecimal getNewIdFromSequences(String sql)
     {
         StringBuilder stringBuilder = new StringBuilder("SELECT ");
         stringBuilder.append(sql);
         stringBuilder.append(".NEXTVAL FROM DUAL");
-        Long newId = null;
+        BigDecimal newId = null;
         try
         {
             DatabaseConnection instance = DatabaseConnection.getInstance();
@@ -35,7 +36,7 @@ public class CreateNewId
             PreparedStatement prepareStatement = connection.prepareStatement(stringBuilder.toString());
             ResultSet resultSet = prepareStatement.executeQuery();
             resultSet.next();
-            newId = resultSet.getLong(1);
+            newId = resultSet.getBigDecimal(1);
         }
         catch (SQLException ex)
         {
@@ -44,12 +45,12 @@ public class CreateNewId
         return newId;
     }
     
-    private static Long getNewIdFromFunction(String sql)
+    private static BigDecimal getNewIdFromFunction(String sql)
     {
         StringBuilder stringBuilder = new StringBuilder("BEGIN ? := ");
         stringBuilder.append(sql);
         stringBuilder.append("; END;");
-        Long newUserAccountId = null;
+        BigDecimal newUserAccountId = null;
         try
         {
             DatabaseConnection instance = DatabaseConnection.getInstance();
@@ -57,7 +58,7 @@ public class CreateNewId
             CallableStatement prepareCall = connection.prepareCall(stringBuilder.toString());
             prepareCall.registerOutParameter(1, OracleTypes.NUMBER);
             prepareCall.execute();
-            newUserAccountId = prepareCall.getLong(1);
+            newUserAccountId = prepareCall.getBigDecimal(1);
         }
         catch (SQLException ex)
         {
@@ -66,37 +67,37 @@ public class CreateNewId
         return newUserAccountId;
     }
 
-    public static Long bid()
+    public static BigDecimal bid()
     {
         return getNewIdFromSequences("BID_ID_SEQ");
     }
 
-    public static Long category()
+    public static BigDecimal category()
     {
         return getNewIdFromSequences("CATEGORY_ID_SEQ");
     }
 
-    public static Long garage()
+    public static BigDecimal garage()
     {
         return getNewIdFromSequences("GARAGE_ID_SEQ");
     }
 
-    public static Long product()
+    public static BigDecimal product()
     {
         return getNewIdFromSequences("PRODUCT_ID_SEQ");
     }
 
-    public static Long productSales()
+    public static BigDecimal productSales()
     {
         return getNewIdFromSequences("PRODUCTSALES_ID_SEQ");
     }
 
-    public static Long salesHistory()
+    public static BigDecimal salesHistory()
     {
         return getNewIdFromSequences("SALESHISTORY_ID_SEQ");
     }
 
-    public static Long userAccount()
+    public static BigDecimal userAccount()
     {
         return getNewIdFromFunction("CREATE_USERACCOUNT_ID");
     }

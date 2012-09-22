@@ -2,6 +2,7 @@ package com.onlinegaragesale.repository.jpa;
 
 import com.onlinegaragesale.repository.GenericDAO;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,7 +33,7 @@ public class GenericJPAImpl<T extends Serializable> implements GenericDAO<T>
     }
 
     @Override
-    public T findById(final Long id)
+    public T findById(final BigDecimal id)
     {
         return this.em.find(this.clazz, id);
     }
@@ -62,7 +63,7 @@ public class GenericJPAImpl<T extends Serializable> implements GenericDAO<T>
     }
 
     @Override
-    public void removeById(final Long entityId)
+    public void removeById(final BigDecimal entityId)
     {
         final T entity = this.findById(entityId);
         this.remove(entity);

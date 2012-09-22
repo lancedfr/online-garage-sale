@@ -2,6 +2,7 @@ package com.onlinegaragesale.services.crud;
 
 import com.onlinegaragesale.model.Product;
 import com.onlinegaragesale.services.Service;
+import java.math.BigDecimal;
 
 /**
  * File Name: StudentCrudService.java
@@ -12,6 +13,6 @@ import com.onlinegaragesale.services.Service;
  * Date: 08 Sep 2012
  * Edited: 08 Sep 2012
  */
-public interface ProductCrudService extends Service<Product, Long>
+public interface ProductCrudService extends Service<Product, BigDecimal>
 {
 }

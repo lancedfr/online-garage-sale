@@ -3,6 +3,7 @@ package com.onlinegaragesale.services.crud.impl;
 import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.repository.GenericDAO;
 import com.onlinegaragesale.services.crud.GarageCrudService;
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class GarageCrudServiceImpl implements GarageCrudService
     }
 
     @Override
-    public Garage findById(Long id)
+    public Garage findById(BigDecimal id)
     {
         setDao(dao);
         return dao.findById(id);
@@ -71,7 +72,7 @@ public class GarageCrudServiceImpl implements GarageCrudService
     }
 
     @Override
-    public void removeById(Long entityId)
+    public void removeById(BigDecimal entityId)
     {
         setDao(dao);
         Garage v = dao.findById(entityId);

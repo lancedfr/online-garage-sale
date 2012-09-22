@@ -5,6 +5,7 @@ import com.onlinegaragesale.app.facade.Facade;
 import com.onlinegaragesale.app.factories.AppFactory;
 import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.services.crud.StudentCrudService;
+import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -26,7 +27,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class StudentCrudServiceImplTest
 {
 
-    private static Long studentID;
+    private static BigDecimal studentID;
     private static ApplicationContext ctx;
     private static Facade facade;
     private StudentCrudService studentCrudService;

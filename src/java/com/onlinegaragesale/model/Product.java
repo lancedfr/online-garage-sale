@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,8 +25,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 17 Sep 2012
- * Edited: 17 Sep 2012
+ * Date: 22 Sep 2012
+ * Edited: 22 Sep 2012
  */
 @Entity 
 @Table(name = "PRODUCT")
@@ -46,7 +47,7 @@ public class Product implements Serializable
     @Id
     @Basic(optional = false)
     @Column(name = "PRODID")
-    private Long prodid;
+    private BigDecimal prodid;
     @Column(name = "PRODCONDITION")
     private String prodcondition;
     @Column(name = "PRODDESC")
@@ -57,31 +58,31 @@ public class Product implements Serializable
     @Column(name = "PRODPRICE")
     private BigDecimal prodprice;
     @Column(name = "PRODSTATUS")
-    private String prodstatus;
-    @OneToMany(mappedBy = "prodid")
+    private Character prodstatus;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "prodid")
     private List<Bid> bidList;
     @JoinColumn(name = "GARAGEID", referencedColumnName = "GARAGEID")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Garage garageid;
     @JoinColumn(name = "CATEGORYID", referencedColumnName = "CATEGORYID")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Category categoryid;
 
     public Product()
     {
     }
 
-    public Product(Long prodid)
+    public Product(BigDecimal prodid)
     {
         this.prodid = prodid;
     }
 
-    public Long getProdid()
+    public BigDecimal getProdid()
     {
         return prodid;
     }
 
-    public void setProdid(Long prodid)
+    public void setProdid(BigDecimal prodid)
     {
         this.prodid = prodid;
     }
@@ -126,12 +127,12 @@ public class Product implements Serializable
         this.prodprice = prodprice;
     }
 
-    public String getProdstatus()
+    public Character getProdstatus()
     {
         return prodstatus;
     }
 
-    public void setProdstatus(String prodstatus)
+    public void setProdstatus(Character prodstatus)
     {
         this.prodstatus = prodstatus;
     }

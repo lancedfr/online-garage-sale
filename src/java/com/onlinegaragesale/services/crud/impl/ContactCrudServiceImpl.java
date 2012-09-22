@@ -3,6 +3,7 @@ package com.onlinegaragesale.services.crud.impl;
 import com.onlinegaragesale.model.Contact;
 import com.onlinegaragesale.repository.GenericDAO;
 import com.onlinegaragesale.services.crud.ContactCrudService;
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class ContactCrudServiceImpl implements ContactCrudService
     }
 
     @Override
-    public Contact findById(Long id)
+    public Contact findById(BigDecimal id)
     {
         setDao(dao);
         return dao.findById(id);
@@ -71,7 +72,7 @@ public class ContactCrudServiceImpl implements ContactCrudService
     }
 
     @Override
-    public void removeById(Long entityId)
+    public void removeById(BigDecimal entityId)
     {
         setDao(dao);
         Contact v = dao.findById(entityId);

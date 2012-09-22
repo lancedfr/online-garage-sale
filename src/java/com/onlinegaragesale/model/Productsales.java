@@ -20,8 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 17 Sep 2012
- * Edited: 17 Sep 2012
+ * Date: 22 Sep 2012
+ * Edited: 22 Sep 2012
  */
 @Entity 
 @Table(name = "PRODUCTSALES")
@@ -41,7 +41,7 @@ public class Productsales implements Serializable
     @Id
     @Basic(optional = false)
     @Column(name = "PRODID")
-    private Long prodid;
+    private BigDecimal prodid;
     @Column(name = "PRODCONDITION")
     private String prodcondition;
     @Column(name = "PRODDESC")
@@ -51,25 +51,25 @@ public class Productsales implements Serializable
     private Serializable prodimage;
     @Column(name = "PRODPRICE")
     private BigDecimal prodprice;
-    @JoinColumn(name = "SALESID", referencedColumnName = "SALESID")
+    @JoinColumn(name = "USERID", referencedColumnName = "USERID")
     @ManyToOne(optional = false)
-    private Saleshistory salesid;
+    private Saleshistory userid;
 
     public Productsales()
     {
     }
 
-    public Productsales(Long prodid)
+    public Productsales(BigDecimal prodid)
     {
         this.prodid = prodid;
     }
 
-    public Long getProdid()
+    public BigDecimal getProdid()
     {
         return prodid;
     }
 
-    public void setProdid(Long prodid)
+    public void setProdid(BigDecimal prodid)
     {
         this.prodid = prodid;
     }
@@ -114,14 +114,14 @@ public class Productsales implements Serializable
         this.prodprice = prodprice;
     }
 
-    public Saleshistory getSalesid()
+    public Saleshistory getUserid()
     {
-        return salesid;
+        return userid;
     }
 
-    public void setSalesid(Saleshistory salesid)
+    public void setUserid(Saleshistory userid)
     {
-        this.salesid = salesid;
+        this.userid = userid;
     }
 
     @Override

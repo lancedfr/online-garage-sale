@@ -26,8 +26,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 17 Sep 2012
- * Edited: 17 Sep 2012
+ * Date: 22 Sep 2012
+ * Edited: 22 Sep 2012
  */
 @Entity 
 @Table(name = "USERACCOUNT")
@@ -38,19 +38,19 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Useraccount.findByUserid", query = "SELECT u FROM Useraccount u WHERE u.userid = :userid"),
     @NamedQuery(name = "Useraccount.findByFirstname", query = "SELECT u FROM Useraccount u WHERE u.firstname = :firstname"),
     @NamedQuery(name = "Useraccount.findByMiddlename", query = "SELECT u FROM Useraccount u WHERE u.middlename = :middlename"),
-    @NamedQuery(name = "Useraccount.findByAddressline", query = "SELECT u FROM Useraccount u WHERE u.addressline = :addressline"),
     @NamedQuery(name = "Useraccount.findByLastname", query = "SELECT u FROM Useraccount u WHERE u.lastname = :lastname"),
-    @NamedQuery(name = "Useraccount.findByAge", query = "SELECT u FROM Useraccount u WHERE u.age = :age"),
-    @NamedQuery(name = "Useraccount.findByCell", query = "SELECT u FROM Useraccount u WHERE u.cell = :cell"),
     @NamedQuery(name = "Useraccount.findByDob", query = "SELECT u FROM Useraccount u WHERE u.dob = :dob"),
-    @NamedQuery(name = "Useraccount.findByAreacode", query = "SELECT u FROM Useraccount u WHERE u.areacode = :areacode"),
+    @NamedQuery(name = "Useraccount.findByAge", query = "SELECT u FROM Useraccount u WHERE u.age = :age"),
     @NamedQuery(name = "Useraccount.findByEmail", query = "SELECT u FROM Useraccount u WHERE u.email = :email"),
     @NamedQuery(name = "Useraccount.findByHometell", query = "SELECT u FROM Useraccount u WHERE u.hometell = :hometell"),
-    @NamedQuery(name = "Useraccount.findByCity", query = "SELECT u FROM Useraccount u WHERE u.city = :city"),
     @NamedQuery(name = "Useraccount.findByWorktell", query = "SELECT u FROM Useraccount u WHERE u.worktell = :worktell"),
-    @NamedQuery(name = "Useraccount.findByCountry", query = "SELECT u FROM Useraccount u WHERE u.country = :country"),
+    @NamedQuery(name = "Useraccount.findByCell", query = "SELECT u FROM Useraccount u WHERE u.cell = :cell"),
+    @NamedQuery(name = "Useraccount.findByAddressline", query = "SELECT u FROM Useraccount u WHERE u.addressline = :addressline"),
     @NamedQuery(name = "Useraccount.findByRoad", query = "SELECT u FROM Useraccount u WHERE u.road = :road"),
+    @NamedQuery(name = "Useraccount.findByCity", query = "SELECT u FROM Useraccount u WHERE u.city = :city"),
     @NamedQuery(name = "Useraccount.findBySuburb", query = "SELECT u FROM Useraccount u WHERE u.suburb = :suburb"),
+    @NamedQuery(name = "Useraccount.findByCountry", query = "SELECT u FROM Useraccount u WHERE u.country = :country"),
+    @NamedQuery(name = "Useraccount.findByAreacode", query = "SELECT u FROM Useraccount u WHERE u.areacode = :areacode"),
     @NamedQuery(name = "Useraccount.findByAccountpassword", query = "SELECT u FROM Useraccount u WHERE u.accountpassword = :accountpassword")
 })
 public class Useraccount implements Serializable 
@@ -60,64 +60,67 @@ public class Useraccount implements Serializable
     @Id
     @Basic(optional = false)
     @Column(name = "USERID")
-    private Long userid;
+    private BigDecimal userid;
     @Basic(optional = false)
     @Column(name = "FIRSTNAME")
     private String firstname;
     @Column(name = "MIDDLENAME")
     private String middlename;
-    @Column(name = "ADDRESSLINE")
-    private String addressline;
     @Basic(optional = false)
     @Column(name = "LASTNAME")
     private String lastname;
-    @Column(name = "AGE")
-    private BigDecimal age;
-    @Column(name = "CELL")
-    private String cell;
     @Basic(optional = false)
     @Column(name = "DOB")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dob;
-    @Column(name = "AREACODE")
-    private String areacode;
+    @Column(name = "AGE")
+    private Short age;
+    @Basic(optional = false)
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "HOMETELL")
     private String hometell;
-    @Column(name = "CITY")
-    private String city;
     @Column(name = "WORKTELL")
     private String worktell;
-    @Column(name = "COUNTRY")
-    private String country;
+    @Column(name = "CELL")
+    private String cell;
+    @Column(name = "ADDRESSLINE")
+    private String addressline;
     @Column(name = "ROAD")
     private String road;
+    @Column(name = "CITY")
+    private String city;
     @Column(name = "SUBURB")
     private String suburb;
+    @Basic(optional = false)
+    @Column(name = "COUNTRY")
+    private String country;
+    @Basic(optional = false)
+    @Column(name = "AREACODE")
+    private String areacode;
     @Basic(optional = false)
     @Column(name = "ACCOUNTPASSWORD")
     private String accountpassword;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "useraccount")
     private Saleshistory saleshistory;
-    @OneToMany(mappedBy = "userid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
     private List<Garage> garageList;
 
     public Useraccount()
     {
     }
 
-    public Useraccount(Long userid)
+    public Useraccount(BigDecimal userid)
     {
         this.userid = userid;
     }
 
-    public Long getUserid()
+    public BigDecimal getUserid()
     {
         return userid;
     }
 
-    public void setUserid(Long userid)
+    public void setUserid(BigDecimal userid)
     {
         this.userid = userid;
     }
@@ -142,16 +145,6 @@ public class Useraccount implements Serializable
         this.middlename = middlename;
     }
 
-    public String getAddressline()
-    {
-        return addressline;
-    }
-
-    public void setAddressline(String addressline)
-    {
-        this.addressline = addressline;
-    }
-
     public String getLastname()
     {
         return lastname;
@@ -160,26 +153,6 @@ public class Useraccount implements Serializable
     public void setLastname(String lastname)
     {
         this.lastname = lastname;
-    }
-
-    public BigDecimal getAge()
-    {
-        return age;
-    }
-
-    public void setAge(BigDecimal age)
-    {
-        this.age = age;
-    }
-
-    public String getCell()
-    {
-        return cell;
-    }
-
-    public void setCell(String cell)
-    {
-        this.cell = cell;
     }
 
     public Date getDob()
@@ -192,14 +165,14 @@ public class Useraccount implements Serializable
         this.dob = dob;
     }
 
-    public String getAreacode()
+    public Short getAge()
     {
-        return areacode;
+        return age;
     }
 
-    public void setAreacode(String areacode)
+    public void setAge(Short age)
     {
-        this.areacode = areacode;
+        this.age = age;
     }
 
     public String getEmail()
@@ -222,16 +195,6 @@ public class Useraccount implements Serializable
         this.hometell = hometell;
     }
 
-    public String getCity()
-    {
-        return city;
-    }
-
-    public void setCity(String city)
-    {
-        this.city = city;
-    }
-
     public String getWorktell()
     {
         return worktell;
@@ -242,14 +205,24 @@ public class Useraccount implements Serializable
         this.worktell = worktell;
     }
 
-    public String getCountry()
+    public String getCell()
     {
-        return country;
+        return cell;
     }
 
-    public void setCountry(String country)
+    public void setCell(String cell)
     {
-        this.country = country;
+        this.cell = cell;
+    }
+
+    public String getAddressline()
+    {
+        return addressline;
+    }
+
+    public void setAddressline(String addressline)
+    {
+        this.addressline = addressline;
     }
 
     public String getRoad()
@@ -262,6 +235,16 @@ public class Useraccount implements Serializable
         this.road = road;
     }
 
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
+    }
+
     public String getSuburb()
     {
         return suburb;
@@ -270,6 +253,26 @@ public class Useraccount implements Serializable
     public void setSuburb(String suburb)
     {
         this.suburb = suburb;
+    }
+
+    public String getCountry()
+    {
+        return country;
+    }
+
+    public void setCountry(String country)
+    {
+        this.country = country;
+    }
+
+    public String getAreacode()
+    {
+        return areacode;
+    }
+
+    public void setAreacode(String areacode)
+    {
+        this.areacode = areacode;
     }
 
     public String getAccountpassword()

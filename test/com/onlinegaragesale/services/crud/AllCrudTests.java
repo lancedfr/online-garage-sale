@@ -4,6 +4,7 @@ import com.onlinegaragesale.services.crud.impl.BitCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.CategoryCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.GarageCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.ProductCrudServiceImplTest;
+import com.onlinegaragesale.services.crud.impl.SalesHistoryCrudServiceImplTest;
 import com.onlinegaragesale.services.crud.impl.UseraccountCrudServiceImplTest;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,7 +29,8 @@ import org.junit.runners.Suite;
     GarageCrudServiceImplTest.class,
     CategoryCrudServiceImplTest.class,
     ProductCrudServiceImplTest.class,
-    BitCrudServiceImplTest.class
+    BitCrudServiceImplTest.class,
+    SalesHistoryCrudServiceImplTest.class
 })
 public class AllCrudTests
 {

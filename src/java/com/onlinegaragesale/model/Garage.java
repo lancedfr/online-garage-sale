@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,8 +27,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 17 Sep 2012
- * Edited: 17 Sep 2012
+ * Date: 22 Sep 2012
+ * Edited: 22 Sep 2012
  */
 @Entity 
 @Table(name = "GARAGE")
@@ -47,36 +48,37 @@ public class Garage implements Serializable
     @Id
     @Basic(optional = false)
     @Column(name = "GARAGEID")
-    private Long garageid;
+    private BigDecimal garageid;
     @Column(name = "GARAGETYPE")
     private String garagetype;
+    @Basic(optional = false)
     @Column(name = "OPENDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date opendate;
     @Column(name = "CLOSEDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date closedate;
-    @OneToMany(mappedBy = "garageid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "garageid")
     private List<Product> productList;
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Useraccount userid;
 
     public Garage()
     {
     }
 
-    public Garage(Long garageid)
+    public Garage(BigDecimal garageid)
     {
         this.garageid = garageid;
     }
 
-    public Long getGarageid()
+    public BigDecimal getGarageid()
     {
         return garageid;
     }
 
-    public void setGarageid(Long garageid)
+    public void setGarageid(BigDecimal garageid)
     {
         this.garageid = garageid;
     }

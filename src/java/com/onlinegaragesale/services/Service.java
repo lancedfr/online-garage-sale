@@ -24,7 +24,7 @@ public interface Service<T, ID>
 
     public void remove(final T entity);
 
-    public void removeById(final Long entityId);
+    public void removeById(final ID entityId);
 
     public List<T> findInRange(int firstResult, int maxResults);
 

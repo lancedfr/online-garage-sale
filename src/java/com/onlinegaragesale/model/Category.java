@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,8 +22,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 17 Sep 2012
- * Edited: 17 Sep 2012
+ * Date: 22 Sep 2012
+ * Edited: 22 Sep 2012
  */
 @Entity 
 @Table(name = "CATEGORY")
@@ -40,27 +41,27 @@ public class Category implements Serializable
     @Id
     @Basic(optional = false)
     @Column(name = "CATEGORYID")
-    private Long categoryid;
+    private BigDecimal categoryid;
     @Column(name = "CATEGORYTYPE")
     private String categorytype;
-    @OneToMany(mappedBy = "categoryid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
     private List<Product> productList;
 
     public Category()
     {
     }
 
-    public Category(Long categoryid)
+    public Category(BigDecimal categoryid)
     {
         this.categoryid = categoryid;
     }
 
-    public Long getCategoryid()
+    public BigDecimal getCategoryid()
     {
         return categoryid;
     }
 
-    public void setCategoryid(Long categoryid)
+    public void setCategoryid(BigDecimal categoryid)
     {
         this.categoryid = categoryid;
     }

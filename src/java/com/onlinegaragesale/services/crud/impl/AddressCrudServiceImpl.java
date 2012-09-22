@@ -38,7 +38,7 @@ public class AddressCrudServiceImpl implements AddressCrudService
     }
 
     @Override
-    public Address findById(Long id)
+    public Address findById(BigDecimal id)
     {
         setDao(dao);
         return dao.findById(id);
@@ -73,7 +73,7 @@ public class AddressCrudServiceImpl implements AddressCrudService
     }
 
     @Override
-    public void removeById(Long entityId)
+    public void removeById(BigDecimal entityId)
     {
         setDao(dao);
         Address v = dao.findById(entityId);

@@ -1,6 +1,7 @@
 package com.onlinegaragesale.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -41,7 +42,7 @@ public class Student implements Serializable
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private BigDecimal id;
     @Column(name = "DOB")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dob;
@@ -54,20 +55,20 @@ public class Student implements Serializable
 
     public Student()
     {
-        this.id = Long.MIN_VALUE;
+        this.id = BigDecimal.ONE;
     }
 
-    public Student(Long id)
+    public Student(BigDecimal id)
     {
         this.id = id;
     }
 
-    public Long getId()
+    public BigDecimal getId()
     {
         return id;
     }
 
-    public void setId(Long id)
+    public void setId(BigDecimal id)
     {
         this.id = id;
     }

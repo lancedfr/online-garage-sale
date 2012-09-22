@@ -38,7 +38,7 @@ public class AppFactory
     public static Useraccount createUserAccount(HashMap<String, Object> values)
     {
         Useraccount useraccount = new Useraccount(CreateNewId.userAccount());
-        useraccount.setAge(BigDecimal.valueOf(Long.valueOf(values.get("age").toString())));
+        useraccount.setAge(Short.valueOf(values.get("age").toString()));
         useraccount.setDob((Date) values.get("dob"));
         useraccount.setFirstname(values.get("firstName").toString());
         useraccount.setLastname(values.get("lastName").toString());
@@ -78,7 +78,7 @@ public class AppFactory
         product.setProdcondition(values.get("prodCondition").toString());
         product.setProddesc(values.get("prodDesc").toString());
         product.setProdprice(BigDecimal.valueOf(Double.valueOf(values.get("prodPrice").toString())));
-        product.setProdstatus(values.get("prodStatus").toString());
+        product.setProdstatus(values.get("prodStatus").toString().charAt(0));
         return product;
     }
     
@@ -94,7 +94,7 @@ public class AppFactory
         Bid bid = new Bid(CreateNewId.bid());
         bid.setBidamount(BigDecimal.valueOf(Double.valueOf(values.get("bidAmount").toString())));
         bid.setProdid((Product) values.get("prodId"));
-        bid.setUserid(Long.valueOf(values.get("userId").toString()));
+        bid.setUserid(BigDecimal.valueOf(Double.valueOf(values.get("userId").toString())));
         return bid;
     }
     

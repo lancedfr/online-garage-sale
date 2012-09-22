@@ -2,6 +2,7 @@ package com.onlinegaragesale.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -24,8 +25,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 17 Sep 2012
- * Edited: 17 Sep 2012
+ * Date: 22 Sep 2012
+ * Edited: 22 Sep 2012
  */
 @Entity 
 @Table(name = "SALESHISTORY")
@@ -33,7 +34,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries(
 {
     @NamedQuery(name = "Saleshistory.findAll", query = "SELECT s FROM Saleshistory s"),
-    @NamedQuery(name = "Saleshistory.findBySalesid", query = "SELECT s FROM Saleshistory s WHERE s.salesid = :salesid"),
+    @NamedQuery(name = "Saleshistory.findByUserid", query = "SELECT s FROM Saleshistory s WHERE s.userid = :userid"),
     @NamedQuery(name = "Saleshistory.findByTotalsales", query = "SELECT s FROM Saleshistory s WHERE s.totalsales = :totalsales"),
     @NamedQuery(name = "Saleshistory.findByTotalsalescount", query = "SELECT s FROM Saleshistory s WHERE s.totalsalescount = :totalsalescount")
 })
@@ -43,15 +44,15 @@ public class Saleshistory implements Serializable
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "SALESID")
-    private Long salesid;
+    @Column(name = "USERID")
+    private BigDecimal userid;
     @Column(name = "TOTALSALES")
     private BigDecimal totalsales;
     @Column(name = "TOTALSALESCOUNT")
-    private String totalsalescount;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesid")
+    private BigInteger totalsalescount;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
     private List<Productsales> productsalesList;
-    @JoinColumn(name = "SALESID", referencedColumnName = "USERID", insertable = false, updatable = false)
+    @JoinColumn(name = "USERID", referencedColumnName = "USERID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Useraccount useraccount;
 
@@ -59,19 +60,19 @@ public class Saleshistory implements Serializable
     {
     }
 
-    public Saleshistory(Long salesid)
+    public Saleshistory(BigDecimal userid)
     {
-        this.salesid = salesid;
+        this.userid = userid;
     }
 
-    public Long getSalesid()
+    public BigDecimal getUserid()
     {
-        return salesid;
+        return userid;
     }
 
-    public void setSalesid(Long salesid)
+    public void setUserid(BigDecimal userid)
     {
-        this.salesid = salesid;
+        this.userid = userid;
     }
 
     public BigDecimal getTotalsales()
@@ -84,12 +85,12 @@ public class Saleshistory implements Serializable
         this.totalsales = totalsales;
     }
 
-    public String getTotalsalescount()
+    public BigInteger getTotalsalescount()
     {
         return totalsalescount;
     }
 
-    public void setTotalsalescount(String totalsalescount)
+    public void setTotalsalescount(BigInteger totalsalescount)
     {
         this.totalsalescount = totalsalescount;
     }
@@ -120,7 +121,7 @@ public class Saleshistory implements Serializable
     public int hashCode()
     {
         int hash = 0;
-        hash += (salesid != null ? salesid.hashCode() : 0);
+        hash += (userid != null ? userid.hashCode() : 0);
         return hash;
     }
 
@@ -133,7 +134,7 @@ public class Saleshistory implements Serializable
             return false;
         }
         Saleshistory other = (Saleshistory) object;
-        if ((this.salesid == null && other.salesid != null) || (this.salesid != null && !this.salesid.equals(other.salesid)))
+        if ((this.userid == null && other.userid != null) || (this.userid != null && !this.userid.equals(other.userid)))
         {
             return false;
         }
@@ -143,7 +144,7 @@ public class Saleshistory implements Serializable
     @Override
     public String toString()
     {
-        return "com.onlinegaragesale.model.Saleshistory[ salesid=" + salesid + " ]";
+        return "com.onlinegaragesale.model.Saleshistory[ userid=" + userid + " ]";
     }
 
 }

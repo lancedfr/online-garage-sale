@@ -5,6 +5,7 @@ import com.onlinegaragesale.app.facade.Facade;
 import com.onlinegaragesale.app.factories.AppFactory;
 import com.onlinegaragesale.model.Useraccount;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import org.junit.After;
@@ -13,7 +14,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -28,8 +28,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class UseraccountCrudServiceImplTest
 {
 
-    private Long userID;
-    private static ApplicationContext ctx;
+    private BigDecimal userID;
     private static Facade facade;
     private static UseraccountCrudService useraccountCrudService;
 
