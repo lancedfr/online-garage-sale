@@ -1,7 +1,6 @@
 package com.onlinegaragesale.services.crud.impl;
 
 import com.onlinegaragesale.model.Address;
-import com.onlinegaragesale.model.Address;
 import com.onlinegaragesale.repository.GenericDAO;
 import com.onlinegaragesale.services.crud.AddressCrudService;
 import java.math.BigDecimal;

@@ -8,7 +8,7 @@ import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.model.Product;
 import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.model.Useraccount;
-import com.onlinegaragesale.services.CreateNewId;
+import com.onlinegaragesale.services.ObjectId;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class AppFactory
 
     public static Useraccount createUserAccount(HashMap<String, Object> values)
     {
-        Useraccount useraccount = new Useraccount(CreateNewId.userAccount());
+        Useraccount useraccount = new Useraccount(ObjectId.getNewUserAccountId());
         useraccount.setAge(Short.valueOf(values.get("age").toString()));
         useraccount.setDob((Date) values.get("dob"));
         useraccount.setFirstname(values.get("firstName").toString());
@@ -61,7 +61,7 @@ public class AppFactory
 
     public static Garage createGarage(HashMap<String, Object> values)
     {
-        Garage garage = new Garage(CreateNewId.garage());
+        Garage garage = new Garage(ObjectId.getNewGarageId());
         garage.setClosedate((Date) values.get("closeDate"));
         garage.setGaragetype(values.get("garageType").toString());
         garage.setOpendate((Date) values.get("openDate"));
@@ -72,7 +72,7 @@ public class AppFactory
 
     public static Product createProduct(HashMap<String, Object> values)
     {
-        Product product = new Product(CreateNewId.product());
+        Product product = new Product(ObjectId.getNewProductId());
         product.setCategoryid((Category) values.get("categoryId"));
         product.setGarageid((Garage) values.get("garageId"));
         product.setProdcondition(values.get("prodCondition").toString());
@@ -84,14 +84,14 @@ public class AppFactory
     
     public static Category createCategory(HashMap<String, Object> values)
     {
-        Category category = new Category(CreateNewId.category());
+        Category category = new Category(ObjectId.getNewCategoryId());
         category.setCategorytype(values.get("categoryType").toString());
         return category;
     }
 
     public static Bid createBid(HashMap<String, Object> values)
     {
-        Bid bid = new Bid(CreateNewId.bid());
+        Bid bid = new Bid(ObjectId.getNewBidId());
         bid.setBidamount(BigDecimal.valueOf(Double.valueOf(values.get("bidAmount").toString())));
         bid.setProdid((Product) values.get("prodId"));
         bid.setUserid(BigDecimal.valueOf(Double.valueOf(values.get("userId").toString())));

@@ -4,6 +4,7 @@ import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.app.facade.Facade;
 import com.onlinegaragesale.app.factories.AppFactory;
 import com.onlinegaragesale.model.Student;
+import com.onlinegaragesale.services.ObjectId;
 import com.onlinegaragesale.services.crud.StudentCrudService;
 import java.math.BigDecimal;
 import org.junit.After;
@@ -11,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -54,6 +56,13 @@ public class StudentCrudServiceImplTest
     @After
     public void tearDown()
     {
+    }
+    
+    @Ignore
+    public void aTest()
+    {
+        BigDecimal currectUserAccountId = ObjectId.getNewUserAccountId();
+        Assert.assertEquals(new BigDecimal("20124006"), currectUserAccountId);
     }
 
     @Test
