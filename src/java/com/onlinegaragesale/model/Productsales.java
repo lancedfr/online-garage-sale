@@ -2,6 +2,7 @@ package com.onlinegaragesale.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Date: 22 Sep 2012
  * Edited: 22 Sep 2012
  */
-@Entity 
+@Entity
 @Table(name = "PRODUCTSALES")
 @XmlRootElement
 @NamedQueries(
@@ -34,8 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Productsales.findByProddesc", query = "SELECT p FROM Productsales p WHERE p.proddesc = :proddesc"),
     @NamedQuery(name = "Productsales.findByProdprice", query = "SELECT p FROM Productsales p WHERE p.prodprice = :prodprice")
 })
-public class Productsales implements Serializable 
+public class Productsales implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -54,6 +56,8 @@ public class Productsales implements Serializable
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
     @ManyToOne(optional = false)
     private Saleshistory userid;
+    @Basic(optional = false)
+    private BigDecimal bidderid;
 
     public Productsales()
     {
@@ -124,6 +128,16 @@ public class Productsales implements Serializable
         this.userid = userid;
     }
 
+    public BigDecimal getBidderid()
+    {
+        return bidderid;
+    }
+
+    public void setBidderid(BigDecimal bidderid)
+    {
+        this.bidderid = bidderid;
+    }
+
     @Override
     public int hashCode()
     {
@@ -153,5 +167,4 @@ public class Productsales implements Serializable
     {
         return "com.onlinegaragesale.model.Productsales[ prodid=" + prodid + " ]";
     }
-
 }

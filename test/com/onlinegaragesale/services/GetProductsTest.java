@@ -2,12 +2,14 @@ package com.onlinegaragesale.services;
 
 import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.app.facade.Facade;
-import com.onlinegaragesale.model.Bid;
-import com.onlinegaragesale.services.crud.BidCrudService;
+import com.onlinegaragesale.model.Product;
+import com.onlinegaragesale.model.Useraccount;
+import com.onlinegaragesale.services.crud.UseraccountCrudService;
 import java.math.BigDecimal;
-import junit.framework.Assert;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,21 +17,21 @@ import static org.junit.Assert.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * File Name: AcceptBidTest.java
+ * File Name: GetProductsTest.java
  * Version: 1.0
  * Description:
  * Package: com.onlinegaragesale.services
  * Author: Lance
- * Date: 22 Sep 2012
- * Edited: 22 Sep 2012
+ * Date: 23 Sep 2012
+ * Edited: 23 Sep 2012
  */
-public class AcceptBidTest 
+public class GetProductsTest 
 {
     private static Facade facade;
-    private static AcceptBidService acceptBidService;
-    private static BidCrudService bidCrudService;
+    private static GetProductsService getProductsService;
+    private static UseraccountCrudService useraccountCrudService;
 
-    public AcceptBidTest() 
+    public GetProductsTest() 
     {
     }
 
@@ -38,8 +40,8 @@ public class AcceptBidTest
     {
         GetContext.setApplicationContext(new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml"));
         facade = new Facade();
-        acceptBidService = facade.getAcceptBidService();
-        bidCrudService = facade.getBidCrudService();
+        getProductsService = facade.getGetProductsService();
+        useraccountCrudService = facade.getUseraccountCrudService();
     }
 
     @AfterClass
@@ -61,13 +63,16 @@ public class AcceptBidTest
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void AcceptBidTestTest() 
+    public void GetProductsUserProductsTest() 
     {
-        Bid bid = bidCrudService.findById(new BigDecimal("6"));
-        acceptBidService.acceptBid(bid);
-        Bid findById = bidCrudService.findById(new BigDecimal("5"));
-        Character bidstatus = findById.getBidstatus();
-        Assert.assertEquals('0', bidstatus.charValue());
+        List<Product> userProducts = getProductsService.userProducts(new Useraccount(BigDecimal.valueOf(20124001)));
+        Assert.assertEquals(3, userProducts.size());
     }
-
+    
+    @Test
+    public void GetProductsUsersBidsTest() 
+    {
+        List<Product> usersBids = getProductsService.usersBids(new Useraccount(BigDecimal.valueOf(20124003)));
+        Assert.assertEquals(4, usersBids.size());
+    }
 }
