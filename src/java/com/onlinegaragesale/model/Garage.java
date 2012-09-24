@@ -30,7 +30,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Date: 22 Sep 2012
  * Edited: 22 Sep 2012
  */
-@Entity 
+@Entity
 @Table(name = "GARAGE")
 @XmlRootElement
 @NamedQueries(
@@ -41,8 +41,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Garage.findByOpendate", query = "SELECT g FROM Garage g WHERE g.opendate = :opendate"),
     @NamedQuery(name = "Garage.findByClosedate", query = "SELECT g FROM Garage g WHERE g.closedate = :closedate")
 })
-public class Garage implements Serializable 
+public class Garage implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -64,55 +65,98 @@ public class Garage implements Serializable
     @ManyToOne(optional = false)
     private Useraccount userid;
 
+    /**
+     *
+     */
     public Garage()
     {
     }
 
+    /**
+     *
+     * @param garageid
+     */
     public Garage(BigDecimal garageid)
     {
         this.garageid = garageid;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getGarageid()
     {
         return garageid;
     }
 
+    /**
+     *
+     * @param garageid
+     */
     public void setGarageid(BigDecimal garageid)
     {
         this.garageid = garageid;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGaragetype()
     {
         return garagetype;
     }
 
+    /**
+     *
+     * @param garagetype
+     */
     public void setGaragetype(String garagetype)
     {
         this.garagetype = garagetype;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getOpendate()
     {
         return opendate;
     }
 
+    /**
+     *
+     * @param opendate
+     */
     public void setOpendate(Date opendate)
     {
         this.opendate = opendate;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getClosedate()
     {
         return closedate;
     }
 
+    /**
+     *
+     * @param closedate
+     */
     public void setClosedate(Date closedate)
     {
         this.closedate = closedate;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     @JsonIgnore
     public List<Product> getProductList()
@@ -120,16 +164,28 @@ public class Garage implements Serializable
         return productList;
     }
 
+    /**
+     *
+     * @param productList
+     */
     public void setProductList(List<Product> productList)
     {
         this.productList = productList;
     }
 
+    /**
+     *
+     * @return
+     */
     public Useraccount getUserid()
     {
         return userid;
     }
 
+    /**
+     *
+     * @param userid
+     */
     public void setUserid(Useraccount userid)
     {
         this.userid = userid;
@@ -164,5 +220,4 @@ public class Garage implements Serializable
     {
         return "com.onlinegaragesale.model.Garage[ garageid=" + garageid + " ]";
     }
-
 }

@@ -26,12 +26,19 @@ public class CategoryCrudServiceImpl implements CategoryCrudService
     @Autowired
     private GenericDAO<Category> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Category> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Category.class);
     }
 
+    /**
+     *
+     */
     public CategoryCrudServiceImpl()
     {
     }

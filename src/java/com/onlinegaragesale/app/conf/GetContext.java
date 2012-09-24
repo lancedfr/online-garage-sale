@@ -16,11 +16,20 @@ public class GetContext
 
     private static ApplicationContext ctx;
 
+    /**
+     * Sets the ApplicationContext for application
+     *
+     * @param applicationContext
+     */
     public static void setApplicationContext(ApplicationContext applicationContext)
     {
         ctx = applicationContext;
     }
 
+    /**
+     *
+     * @return ApplicationContext
+     */
     public static ApplicationContext getApplicationContext()
     {
         return ctx;

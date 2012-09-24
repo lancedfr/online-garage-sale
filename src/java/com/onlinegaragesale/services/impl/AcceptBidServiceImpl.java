@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 @Service("acceptBidService")
 public class AcceptBidServiceImpl implements AcceptBidService
 {
+
     @Autowired
     private BidCrudService bidCrudService;
 

@@ -26,12 +26,19 @@ public class SaleshistoryCrudServiceImpl implements SaleshistoryCrudService
     @Autowired
     private GenericDAO<Saleshistory> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Saleshistory> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Saleshistory.class);
     }
 
+    /**
+     *
+     */
     public SaleshistoryCrudServiceImpl()
     {
     }

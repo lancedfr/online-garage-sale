@@ -26,12 +26,19 @@ public class StudentCrudServiceImpl implements StudentCrudService
     @Autowired
     private GenericDAO<Student> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Student> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Student.class);
     }
 
+    /**
+     *
+     */
     public StudentCrudServiceImpl()
     {
     }

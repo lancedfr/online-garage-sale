@@ -26,12 +26,19 @@ public class AddressCrudServiceImpl implements AddressCrudService
     @Autowired
     private GenericDAO<Address> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Address> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Address.class);
     }
 
+    /**
+     *
+     */
     public AddressCrudServiceImpl()
     {
     }

@@ -21,51 +21,91 @@ public class SampleBean
     private String lastName;
     private Date dob;
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getId()
     {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(BigDecimal id)
     {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStudentNumber()
     {
         return studentNumber;
     }
 
+    /**
+     *
+     * @param studentNumber
+     */
     public void setStudentNumber(String studentNumber)
     {
         this.studentNumber = studentNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFirstName()
     {
         return firstName;
     }
 
+    /**
+     *
+     * @param firstName
+     */
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLastName()
     {
         return lastName;
     }
 
+    /**
+     *
+     * @param lastName
+     */
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDob()
     {
         return dob;
     }
 
+    /**
+     *
+     * @param dob
+     */
     public void setDob(Date dob)
     {
         this.dob = dob;

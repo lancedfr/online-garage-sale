@@ -62,7 +62,7 @@ public class BitCrudServiceImplTest
     public void tearDown()
     {
     }
-    
+
     @Test
     public void testBidCrud()
     {
@@ -71,10 +71,9 @@ public class BitCrudServiceImplTest
         values.put("prodId", productCrudService.findById(new BigDecimal(6)));
         values.put("userId", useraccountCrudService.findById(new BigDecimal(20124004)).getUserid());
         Bid bid = AppFactory.createBid(values);
-        
+
         bidCrudService.persist(bid);
         Bid b = bidCrudService.findById(new BigDecimal(9));
         Assert.assertNotNull(b);
     }
-
 }

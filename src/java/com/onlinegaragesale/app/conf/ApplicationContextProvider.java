@@ -16,6 +16,13 @@ import org.springframework.context.ApplicationContextAware;
 public class ApplicationContextProvider implements ApplicationContextAware
 {
 
+    /**
+     * Sets the ApplicationContext for springs ApplicationContextAware
+     * NB: not necessarily called manually
+     *
+     * @param ctx
+     * @throws BeansException
+     */
     @Override
     public void setApplicationContext(ApplicationContext ctx) throws BeansException
     {

@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Date: 08 Sep 2012
  * Edited: 08 Sep 2012
  */
-@Service("useraccountCrudService") 
+@Service("useraccountCrudService")
 @Transactional
 public class UseraccountCrudServiceImpl implements UseraccountCrudService
 {
@@ -26,12 +26,19 @@ public class UseraccountCrudServiceImpl implements UseraccountCrudService
     @Autowired
     private GenericDAO<Useraccount> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Useraccount> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Useraccount.class);
     }
 
+    /**
+     *
+     */
     public UseraccountCrudServiceImpl()
     {
     }

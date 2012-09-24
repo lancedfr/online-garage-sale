@@ -70,7 +70,7 @@ public class UseraccountCrudServiceImplTest
         values.put("middleName", "TestMName");
         values.put("pasword", "TestPassword");
         values.put("address", "TestAddress");
-        values.put("addressLine", "TestAddressLine");
+        values.put("areacode", "TestAddressLine");
         values.put("city", "TestCity");
         values.put("country", "TestCountry");
         values.put("road", "TestRoad");

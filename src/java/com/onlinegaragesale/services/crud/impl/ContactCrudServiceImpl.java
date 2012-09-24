@@ -26,12 +26,19 @@ public class ContactCrudServiceImpl implements ContactCrudService
     @Autowired
     private GenericDAO<Contact> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Contact> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Contact.class);
     }
 
+    /**
+     *
+     */
     public ContactCrudServiceImpl()
     {
     }

@@ -14,5 +14,12 @@ import com.onlinegaragesale.model.Bid;
 public interface AcceptBidService
 {
 
+    /**
+     * Changes the status of the provided bid to accepted and other bids related
+     * to that product to declined.
+     * Also changes the status of the product to sold
+     *
+     * @param bid
+     */
     public void acceptBid(Bid bid);
 }

@@ -74,7 +74,7 @@ public class ProductCrudServiceImplTest
         values.put("prodStatus", "Not Sold");
         values.put("categoryId", categoryCrudService.findById(new BigDecimal(5)));
         Product product = AppFactory.createProduct(values);
-        
+
         productCrudService.persist(product);
         Product p = productCrudService.findById(new BigDecimal(6));
         Assert.assertNotNull(p);

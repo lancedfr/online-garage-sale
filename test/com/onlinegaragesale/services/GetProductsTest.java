@@ -13,7 +13,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -25,18 +24,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Date: 23 Sep 2012
  * Edited: 23 Sep 2012
  */
-public class GetProductsTest 
+public class GetProductsTest
 {
+
     private static Facade facade;
     private static GetProductsService getProductsService;
     private static UseraccountCrudService useraccountCrudService;
 
-    public GetProductsTest() 
+    public GetProductsTest()
     {
     }
 
     @BeforeClass
-    public static void setUpClass() 
+    public static void setUpClass()
     {
         GetContext.setApplicationContext(new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml"));
         facade = new Facade();
@@ -45,17 +45,17 @@ public class GetProductsTest
     }
 
     @AfterClass
-    public static void tearDownClass() 
+    public static void tearDownClass()
     {
     }
 
     @Before
-    public void setUp() 
+    public void setUp()
     {
     }
 
     @After
-    public void tearDown() 
+    public void tearDown()
     {
     }
 
@@ -63,16 +63,35 @@ public class GetProductsTest
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void GetProductsUserProductsTest() 
+    public void getUserProductsTest()
     {
-        List<Product> userProducts = getProductsService.userProducts(new Useraccount(BigDecimal.valueOf(20124001)));
+        List<Product> userProducts = getProductsService.userProducts(BigDecimal.valueOf(20124001));
         Assert.assertEquals(3, userProducts.size());
+
+        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124001));
+        List<Product> userProducts2 = getProductsService.userProducts(useraccount);
+        Assert.assertEquals(3, userProducts2.size());
     }
-    
+
     @Test
-    public void GetProductsUsersBidsTest() 
+    public void getUsersBidsTest()
     {
-        List<Product> usersBids = getProductsService.usersBids(new Useraccount(BigDecimal.valueOf(20124003)));
+        List<Product> usersBids = getProductsService.usersBids(BigDecimal.valueOf(20124003));
         Assert.assertEquals(4, usersBids.size());
+
+        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124003));
+        List<Product> usersBids2 = getProductsService.usersBids(useraccount);
+        Assert.assertEquals(4, usersBids2.size());
+    }
+
+    @Test
+    public void getProductsToBuyTest()
+    {
+        List<Product> productsToBuy = getProductsService.productsToBuy(BigDecimal.valueOf(20124001));
+        Assert.assertEquals(1, productsToBuy.size());
+
+        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124001));
+        List<Product> productsToBuy2 = getProductsService.productsToBuy(useraccount);
+        Assert.assertEquals(1, productsToBuy2.size());
     }
 }

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Date: 15 Sep 2012
  * Edited: 15 Sep 2012
  */
-@Entity 
+@Entity
 @Table(name = "STUDENT")
 @XmlRootElement
 @NamedQueries(
@@ -35,8 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Student.findByLastname", query = "SELECT s FROM Student s WHERE s.lastname = :lastname"),
     @NamedQuery(name = "Student.findByStudentnumber", query = "SELECT s FROM Student s WHERE s.studentnumber = :studentnumber")
 })
-public class Student implements Serializable 
+public class Student implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -53,61 +54,108 @@ public class Student implements Serializable
     @Column(name = "STUDENTNUMBER")
     private String studentnumber;
 
+    /**
+     *
+     */
     public Student()
     {
         this.id = BigDecimal.ONE;
     }
 
+    /**
+     *
+     * @param id
+     */
     public Student(BigDecimal id)
     {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getId()
     {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(BigDecimal id)
     {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDob()
     {
         return dob;
     }
 
+    /**
+     *
+     * @param dob
+     */
     public void setDob(Date dob)
     {
         this.dob = dob;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFirstname()
     {
         return firstname;
     }
 
+    /**
+     *
+     * @param firstname
+     */
     public void setFirstname(String firstname)
     {
         this.firstname = firstname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLastname()
     {
         return lastname;
     }
 
+    /**
+     *
+     * @param lastname
+     */
     public void setLastname(String lastname)
     {
         this.lastname = lastname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStudentNumber()
     {
         return studentnumber;
     }
 
+    /**
+     *
+     * @param studentnumber
+     */
     public void setStudentNumber(String studentnumber)
     {
         this.studentnumber = studentnumber;
@@ -142,5 +190,4 @@ public class Student implements Serializable
     {
         return "com.onlinegaragesale.model.Student[ id=" + id + " ]";
     }
-
 }

@@ -26,12 +26,19 @@ public class ProductsalesCrudServiceImpl implements ProductsalesCrudService
     @Autowired
     private GenericDAO<Productsales> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Productsales> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Productsales.class);
     }
 
+    /**
+     *
+     */
     public ProductsalesCrudServiceImpl()
     {
     }

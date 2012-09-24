@@ -11,7 +11,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -23,18 +22,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Date: 22 Sep 2012
  * Edited: 22 Sep 2012
  */
-public class AcceptBidTest 
+public class AcceptBidTest
 {
+
     private static Facade facade;
     private static AcceptBidService acceptBidService;
     private static BidCrudService bidCrudService;
 
-    public AcceptBidTest() 
+    public AcceptBidTest()
     {
     }
 
     @BeforeClass
-    public static void setUpClass() 
+    public static void setUpClass()
     {
         GetContext.setApplicationContext(new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml"));
         facade = new Facade();
@@ -43,17 +43,17 @@ public class AcceptBidTest
     }
 
     @AfterClass
-    public static void tearDownClass() 
+    public static void tearDownClass()
     {
     }
 
     @Before
-    public void setUp() 
+    public void setUp()
     {
     }
 
     @After
-    public void tearDown() 
+    public void tearDown()
     {
     }
 
@@ -61,7 +61,7 @@ public class AcceptBidTest
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void AcceptBidTestTest() 
+    public void AcceptBidTestTest()
     {
         Bid bid = bidCrudService.findById(new BigDecimal("6"));
         acceptBidService.acceptBid(bid);
@@ -69,5 +69,4 @@ public class AcceptBidTest
         Character bidstatus = findById.getBidstatus();
         Assert.assertEquals('0', bidstatus.charValue());
     }
-
 }

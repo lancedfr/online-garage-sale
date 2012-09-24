@@ -58,7 +58,7 @@ public class SalesHistoryCrudServiceImplTest
     {
         HashMap<String, Object> values = new HashMap<String, Object>();
         values.put("bidAmount", "55.99");
-        
-        
+
+
     }
 }

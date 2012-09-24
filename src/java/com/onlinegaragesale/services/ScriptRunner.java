@@ -105,7 +105,7 @@ public class ScriptRunner
         {
             throw e;
         }
-        catch(IOException e)
+        catch (IOException e)
         {
             throw e;
         }

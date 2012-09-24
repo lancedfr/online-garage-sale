@@ -24,6 +24,10 @@ public class HomeController
     private final Facade facade = new Facade();
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+    /**
+     *
+     * @return
+     */
     @RequestMapping(
     {
         "/"
@@ -33,6 +37,11 @@ public class HomeController
         return "index";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/about.html", method = RequestMethod.GET)
     public String getAbout(Model model)
     {

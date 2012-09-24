@@ -6,6 +6,7 @@ import com.onlinegaragesale.model.Product;
 import com.onlinegaragesale.model.Useraccount;
 import com.onlinegaragesale.services.GetProductsService;
 import com.onlinegaragesale.services.crud.BidCrudService;
+import com.onlinegaragesale.services.crud.ProductCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -30,13 +31,30 @@ public class GetProductsServiceImpl implements GetProductsService
     private UseraccountCrudService useraccountCrudService;
     @Autowired
     private BidCrudService bidCrudService;
+    @Autowired
+    private ProductCrudService productCrudService;
 
     @Override
     public List<Product> userProducts(Useraccount useraccount)
     {
         List<Product> products = new ArrayList<Product>();
-        BigDecimal userid = useraccount.getUserid();
-        Useraccount useraccountById = useraccountCrudService.findById(userid);
+        List<Garage> garageList = useraccount.getGarageList();
+        for (Garage garage : garageList)
+        {
+            List<Product> productList = garage.getProductList();
+            for (Product product : productList)
+            {
+                products.add(product);
+            }
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> userProducts(BigDecimal userId)
+    {
+        List<Product> products = new ArrayList<Product>();
+        Useraccount useraccountById = useraccountCrudService.findById(userId);
         List<Garage> garageList = useraccountById.getGarageList();
         for (Garage garage : garageList)
         {
@@ -53,7 +71,23 @@ public class GetProductsServiceImpl implements GetProductsService
     public List<Product> usersBids(Useraccount useraccount)
     {
         List<Product> products = new ArrayList<Product>();
-        Useraccount useraccountById = useraccountCrudService.findById(useraccount.getUserid());
+        final BigDecimal userid = useraccount.getUserid();
+        List<Bid> bids = bidCrudService.findAll();
+        for (Bid bid : bids)
+        {
+            if (bid.getUserid().equals(userid))
+            {
+                products.add(bid.getProdid());
+            }
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> usersBids(BigDecimal userId)
+    {
+        List<Product> products = new ArrayList<Product>();
+        Useraccount useraccountById = useraccountCrudService.findById(userId);
         final BigDecimal userid = useraccountById.getUserid();
         List<Bid> bids = bidCrudService.findAll();
         for (Bid bid : bids)
@@ -67,19 +101,43 @@ public class GetProductsServiceImpl implements GetProductsService
     }
 
     @Override
-    public List<Product> userBuys(Useraccount useraccount)
+    public List<Product> productsToBuy(Useraccount useraccount)
     {
-        throw new UnsupportedOperationException("GetProducts.userBuys Not supported yet.");
-//        List<Product> products = new ArrayList<Product>();
-//        Useraccount useraccountById = useraccountCrudService.findById(useraccount.getUserid());
-//        List<Bid> bids = bidCrudService.findAll();
-//        for (Bid bid : bids)
-//        {
-//            if (bid.getUserid() == useraccountById.getUserid())
-//            {
-//                products.add(bid.getProdid());
-//            }
-//        }
-//        return products;
+        Character forSaleStatus = new Character('0');
+        List<Product> productsToBuy = new ArrayList<Product>();
+        Garage userGarage = useraccount.getGarageList().get(0);
+        List<Product> products = productCrudService.findAll();
+        for (Product product : products)
+        {
+            if (!product.getGarageid().equals(userGarage))
+            {
+                if (forSaleStatus.equals(product.getProdstatus()))
+                {
+                    productsToBuy.add(product);
+                }
+            }
+        }
+        return productsToBuy;
+    }
+
+    @Override
+    public List<Product> productsToBuy(BigDecimal userId)
+    {
+        Character forSaleStatus = new Character('0');
+        List<Product> productsToBuy = new ArrayList<Product>();
+        Useraccount useraccountById = useraccountCrudService.findById(userId);
+        Garage userGarage = useraccountById.getGarageList().get(0);
+        List<Product> products = productCrudService.findAll();
+        for (Product product : products)
+        {
+            if (!product.getGarageid().equals(userGarage))
+            {
+                if (forSaleStatus.equals(product.getProdstatus()))
+                {
+                    productsToBuy.add(product);
+                }
+            }
+        }
+        return productsToBuy;
     }
 }

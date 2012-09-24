@@ -71,11 +71,11 @@ public class GarageCrudServiceImplTest
         values.put("openDate", new Date());
         values.put("userId", useraccountCrudService.findById(new BigDecimal(20124004)));
         Garage garage = AppFactory.createGarage(values);
-        
+
         garageCrudService.persist(garage);
         garageid = garage.getGarageid();
         Assert.assertNotNull(garage);
-        
+
 //        garageCrudService.removeById(new Long(1));
 //        Garage g = garageCrudService.findById(new Long(1));
 //        Assert.assertNull(g);

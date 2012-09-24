@@ -38,60 +38,100 @@ public class Facade implements Serializable
     private AcceptBidService acceptBidService;
     private GetProductsService getProductsService;
 
+    /**
+     *
+     * @return studentCrudService
+     */
     public StudentCrudService getSampleCrudService()
     {
         studentCrudService = (StudentCrudService) ctx.getBean("studentCrudService");
         return studentCrudService;
     }
 
+    /**
+     *
+     * @return useraccountCrudService
+     */
     public UseraccountCrudService getUseraccountCrudService()
     {
         useraccountCrudService = (UseraccountCrudService) ctx.getBean("useraccountCrudService");
         return useraccountCrudService;
     }
 
+    /**
+     *
+     * @return garageCrudService
+     */
     public GarageCrudService getGarageCrudService()
     {
         garageCrudService = (GarageCrudService) ctx.getBean("garageCrudService");
         return garageCrudService;
     }
 
+    /**
+     *
+     * @return productCrudService
+     */
     public ProductCrudService getProductCrudService()
     {
         productCrudService = (ProductCrudService) ctx.getBean("productCrudService");
         return productCrudService;
     }
 
+    /**
+     *
+     * @return categoryCrudService
+     */
     public CategoryCrudService getCategoryCrudService()
     {
         categoryCrudService = (CategoryCrudService) ctx.getBean("categoryCrudService");
         return categoryCrudService;
     }
 
+    /**
+     *
+     * @return bidCrudService
+     */
     public BidCrudService getBidCrudService()
     {
         bidCrudService = (BidCrudService) ctx.getBean("bidCrudService");
         return bidCrudService;
     }
 
+    /**
+     *
+     * @return saleshistoryCrudService
+     */
     public SaleshistoryCrudService getSaleshistoryCrudService()
     {
         saleshistoryCrudService = (SaleshistoryCrudService) ctx.getBean("saleshistoryCrudService");
         return saleshistoryCrudService;
     }
 
+    /**
+     *
+     * @return productsalesCrudService
+     */
     public ProductsalesCrudService getProductsalesCrudService()
     {
         productsalesCrudService = (ProductsalesCrudService) ctx.getBean("productsalesCrudService");
         return productsalesCrudService;
     }
 
+    /**
+     *
+     * @return acceptBidService
+     */
     public AcceptBidService getAcceptBidService()
     {
         acceptBidService = (AcceptBidService) ctx.getBean("acceptBidService");
         return acceptBidService;
     }
 
+    /**
+     *
+     * @return getProductsService
+     */
     public GetProductsService getGetProductsService()
     {
         getProductsService = (GetProductsService) ctx.getBean("getProductsService");

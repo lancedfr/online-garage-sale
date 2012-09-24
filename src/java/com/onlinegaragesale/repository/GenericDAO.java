@@ -11,9 +11,15 @@ import java.math.BigDecimal;
  * Author: Lance
  * Date: 08 Sep 2012
  * Edited: 08 Sep 2012
+ *
+ * @param <T>
  */
 public interface GenericDAO<T extends Serializable> extends DAO<T, BigDecimal>
 {
 
+    /**
+     *
+     * @param clazzToSet
+     */
     void setClazz(final Class<T> clazzToSet);
 }

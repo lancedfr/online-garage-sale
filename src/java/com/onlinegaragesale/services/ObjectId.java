@@ -68,37 +68,65 @@ public class ObjectId
         return newUserAccountId;
     }
 
-    public static BigDecimal getCurrectBidId()
+    /**
+     *
+     * @return Current
+     */
+    public static BigDecimal getCurrentBidId()
     {
         return getIdFromSequences("BID_ID_SEQ.CURRVAL");
     }
 
-    public static BigDecimal getCurrectCategoryId()
+    /**
+     *
+     * @return Currect Category Id
+     */
+    public static BigDecimal getCurrentCategoryId()
     {
         return getIdFromSequences("CATEGORY_ID_SEQ.CURRVAL");
     }
 
-    public static BigDecimal getCurrectGarageId()
+    /**
+     *
+     * @return Current Garage Id
+     */
+    public static BigDecimal getCurrentGarageId()
     {
         return getIdFromSequences("GARAGE_ID_SEQ.CURRVAL");
     }
 
-    public static BigDecimal getCurrectProductId()
+    /**
+     *
+     * @return Current Product Id
+     */
+    public static BigDecimal getCurrentProductId()
     {
         return getIdFromSequences("PRODUCT_ID_SEQ.CURRVAL");
     }
 
-    public static BigDecimal getCurrectProductSalesId()
+    /**
+     *
+     * @return Current ProductSales Id
+     */
+    public static BigDecimal getCurrentProductSalesId()
     {
         return getIdFromSequences("PRODUCTSALES_ID_SEQ.CURRVAL");
     }
 
-    public static BigDecimal getCurrectsalesHistoryId()
+    /**
+     *
+     * @return Current SalesHistory Id
+     */
+    public static BigDecimal getCurrentSalesHistoryId()
     {
         return getIdFromSequences("SALESHISTORY_ID_SEQ.CURRVAL");
     }
 
-    public static BigDecimal getCurrectUserAccountId()
+    /**
+     *
+     * @return Current UserAccount Id
+     */
+    public static BigDecimal getCurrentUserAccountId()
     {
         BigDecimal idFromSequences = getIdFromSequences("USERACCOUNT_ID_SEQ.CURRVAL");
         Calendar calendar = Calendar.getInstance();
@@ -106,36 +134,64 @@ public class ObjectId
         return new BigDecimal(String.valueOf(weekYear) + idFromSequences.toString());
     }
 
+    /**
+     *
+     * @return New Bid Id
+     */
     public static BigDecimal getNewBidId()
     {
         return getIdFromSequences("BID_ID_SEQ.NEXTVAL");
     }
 
+    /**
+     *
+     * @return New Category Id
+     */
     public static BigDecimal getNewCategoryId()
     {
         return getIdFromSequences("CATEGORY_ID_SEQ.NEXTVAL");
     }
 
+    /**
+     *
+     * @return New Garage Id
+     */
     public static BigDecimal getNewGarageId()
     {
         return getIdFromSequences("GARAGE_ID_SEQ.NEXTVAL");
     }
 
+    /**
+     *
+     * @return New Product Id
+     */
     public static BigDecimal getNewProductId()
     {
         return getIdFromSequences("PRODUCT_ID_SEQ.NEXTVAL");
     }
 
+    /**
+     *
+     * @return New ProductSales Id
+     */
     public static BigDecimal getNewProductSalesId()
     {
         return getIdFromSequences("PRODUCTSALES_ID_SEQ.NEXTVAL");
     }
 
-    public static BigDecimal getNewsalesHistoryId()
+    /**
+     *
+     * @return New SalesHistory Id
+     */
+    public static BigDecimal getNewSalesHistoryId()
     {
         return getIdFromSequences("SALESHISTORY_ID_SEQ.NEXTVAL");
     }
 
+    /**
+     *
+     * @return New UserAccount Id
+     */
     public static BigDecimal getNewUserAccountId()
     {
         return getNewIdFromFunction("CREATE_USERACCOUNT_ID");

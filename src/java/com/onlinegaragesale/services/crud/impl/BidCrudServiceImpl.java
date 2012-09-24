@@ -26,12 +26,19 @@ public class BidCrudServiceImpl implements BidCrudService
     @Autowired
     private GenericDAO<Bid> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Bid> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Bid.class);
     }
 
+    /**
+     *
+     */
     public BidCrudServiceImpl()
     {
     }

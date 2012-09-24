@@ -1,5 +1,6 @@
 package com.onlinegaragesale.model;
 
+import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 /**
@@ -12,16 +13,24 @@ import javax.persistence.Embeddable;
  * Edited: 22 Sep 2012
  */
 @Embeddable
-public class UserPassword
+public class UserPassword implements Serializable
 {
 
     private String userPassword;
 
+    /**
+     *
+     * @return
+     */
     public String getUserPassword()
     {
         return userPassword;
     }
 
+    /**
+     *
+     * @param userPassword
+     */
     public void setUserPassword(String userPassword)
     {
         this.userPassword = userPassword;

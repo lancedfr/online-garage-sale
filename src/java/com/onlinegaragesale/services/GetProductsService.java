@@ -2,6 +2,7 @@ package com.onlinegaragesale.services;
 
 import com.onlinegaragesale.model.Product;
 import com.onlinegaragesale.model.Useraccount;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,9 +17,45 @@ import java.util.List;
 public interface GetProductsService
 {
 
+    /**
+     *
+     * @param useraccount
+     * @return A List<Product> related to the provided user
+     */
     public List<Product> userProducts(Useraccount useraccount);
 
+    /**
+     *
+     * @param userId
+     * @return A List<Product> related to the provided userId
+     */
+    public List<Product> userProducts(BigDecimal userId);
+
+    /**
+     *
+     * @param useraccount
+     * @return A List<Product> the provided user made bids on
+     */
     public List<Product> usersBids(Useraccount useraccount);
 
-    public List<Product> userBuys(Useraccount useraccount);
+    /**
+     *
+     * @param userId
+     * @return A List<Product> the provided userId made bids on
+     */
+    public List<Product> usersBids(BigDecimal userId);
+
+    /**
+     *
+     * @param useraccount
+     * @return A List<Product> up for sale to the provided user
+     */
+    public List<Product> productsToBuy(Useraccount useraccount);
+
+    /**
+     *
+     * @param userId
+     * @return A List<Product> up for sale to the provided userId
+     */
+    public List<Product> productsToBuy(BigDecimal userId);
 }

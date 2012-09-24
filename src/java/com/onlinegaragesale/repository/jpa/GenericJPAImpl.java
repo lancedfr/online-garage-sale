@@ -17,6 +17,8 @@ import org.springframework.stereotype.Repository;
  * Author: Lance
  * Date: 08 Sep 2012
  * Edited: 08 Sep 2012
+ *
+ * @param <T>
  */
 @Repository("dao")
 public class GenericJPAImpl<T extends Serializable> implements GenericDAO<T>

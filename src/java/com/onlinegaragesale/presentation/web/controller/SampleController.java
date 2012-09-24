@@ -27,12 +27,22 @@ public class SampleController
 
     private final Facade facade = new Facade();
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "sample/sampleindex.html", method = RequestMethod.GET)
     public String getSampleIndex(Model model)
     {
         return "sample/sampleindex";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "sample/addsample.html", method = RequestMethod.GET)
     public String addSample(Model model)
     {
@@ -41,6 +51,11 @@ public class SampleController
         return "sample/addsample";
     }
 
+    /**
+     *
+     * @param sampleBean
+     * @return
+     */
     @RequestMapping(value = "sample/persistsample.html", method = RequestMethod.POST)
     public String addSample(@Validated SampleBean sampleBean)
     {
@@ -50,6 +65,11 @@ public class SampleController
         return "sample/sampleindex";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "sample/deletesample.html", method = RequestMethod.GET)
     public String deleteSample(Model model)
     {
@@ -58,6 +78,11 @@ public class SampleController
         return "sample/deletesample";
     }
 
+    /**
+     *
+     * @param sampleBean
+     * @return
+     */
     @RequestMapping(value = "sample/removesample.html", method = RequestMethod.POST)
     public String deleteSample(@Validated SampleBean sampleBean)
     {
@@ -67,6 +92,11 @@ public class SampleController
         return "sample/sampleindex";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "sample/editsample.html", method = RequestMethod.GET)
     public String editSample(Model model)
     {
@@ -75,6 +105,11 @@ public class SampleController
         return "sample/editsample";
     }
 
+    /**
+     *
+     * @param sampleBean
+     * @return
+     */
     @RequestMapping(value = "sample/mergesample.html", method = RequestMethod.POST)
     public String editSample(@Validated SampleBean sampleBean)
     {
@@ -85,6 +120,11 @@ public class SampleController
         return "sample/sampleindex";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "sample/listsamle.html", method = RequestMethod.GET)
     public String listSample(Model model)
     {

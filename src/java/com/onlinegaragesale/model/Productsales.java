@@ -2,7 +2,6 @@ package com.onlinegaragesale.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,80 +58,143 @@ public class Productsales implements Serializable
     @Basic(optional = false)
     private BigDecimal bidderid;
 
+    /**
+     *
+     */
     public Productsales()
     {
     }
 
+    /**
+     *
+     * @param prodid
+     */
     public Productsales(BigDecimal prodid)
     {
         this.prodid = prodid;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getProdid()
     {
         return prodid;
     }
 
+    /**
+     *
+     * @param prodid
+     */
     public void setProdid(BigDecimal prodid)
     {
         this.prodid = prodid;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getProdcondition()
     {
         return prodcondition;
     }
 
+    /**
+     *
+     * @param prodcondition
+     */
     public void setProdcondition(String prodcondition)
     {
         this.prodcondition = prodcondition;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getProddesc()
     {
         return proddesc;
     }
 
+    /**
+     *
+     * @param proddesc
+     */
     public void setProddesc(String proddesc)
     {
         this.proddesc = proddesc;
     }
 
+    /**
+     *
+     * @return
+     */
     public Serializable getProdimage()
     {
         return prodimage;
     }
 
+    /**
+     *
+     * @param prodimage
+     */
     public void setProdimage(Serializable prodimage)
     {
         this.prodimage = prodimage;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getProdprice()
     {
         return prodprice;
     }
 
+    /**
+     *
+     * @param prodprice
+     */
     public void setProdprice(BigDecimal prodprice)
     {
         this.prodprice = prodprice;
     }
 
+    /**
+     *
+     * @return
+     */
     public Saleshistory getUserid()
     {
         return userid;
     }
 
+    /**
+     *
+     * @param userid
+     */
     public void setUserid(Saleshistory userid)
     {
         this.userid = userid;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getBidderid()
     {
         return bidderid;
     }
 
+    /**
+     *
+     * @param bidderid
+     */
     public void setBidderid(BigDecimal bidderid)
     {
         this.bidderid = bidderid;

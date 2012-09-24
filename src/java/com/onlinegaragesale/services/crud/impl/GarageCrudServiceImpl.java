@@ -26,12 +26,19 @@ public class GarageCrudServiceImpl implements GarageCrudService
     @Autowired
     private GenericDAO<Garage> dao;
 
+    /**
+     *
+     * @param daoToSet
+     */
     public final void setDao(final GenericDAO<Garage> daoToSet)
     {
         this.dao = daoToSet;
         this.dao.setClazz(Garage.class);
     }
 
+    /**
+     *
+     */
     public GarageCrudServiceImpl()
     {
     }
