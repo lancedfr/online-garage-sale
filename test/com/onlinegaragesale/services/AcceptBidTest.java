@@ -61,7 +61,7 @@ public class AcceptBidTest
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void AcceptBidTestTest()
+    public void acceptBidTestTest()
     {
         Bid bid = bidCrudService.findById(new BigDecimal("6"));
         acceptBidService.acceptBid(bid);

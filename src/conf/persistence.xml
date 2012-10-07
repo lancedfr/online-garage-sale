@@ -3,12 +3,12 @@
   <persistence-unit name="onlinegaragesalePU" transaction-type="RESOURCE_LOCAL">
     <non-jta-data-source/>
     <class>com.onlinegaragesale.model.Student</class>
-    <class>com.onlinegaragesale.model.Product</class>
-    <class>com.onlinegaragesale.model.Bid</class>
     <class>com.onlinegaragesale.model.Useraccount</class>
     <class>com.onlinegaragesale.model.Garage</class>
-    <class>com.onlinegaragesale.model.Productsales</class>
     <class>com.onlinegaragesale.model.Saleshistory</class>
     <class>com.onlinegaragesale.model.Category</class>
+    <class>com.onlinegaragesale.model.Productsales</class>
+    <class>com.onlinegaragesale.model.Bid</class>
+    <class>com.onlinegaragesale.model.Product</class>
   </persistence-unit>
 </persistence>

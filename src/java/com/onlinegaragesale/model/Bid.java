@@ -2,6 +2,7 @@ package com.onlinegaragesale.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +20,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 22 Sep 2012
- * Edited: 22 Sep 2012
+ * Date: 07 Oct 2012
+ * Edited: 07 Oct 2012
  */
-@Entity
+@Entity 
 @Table(name = "BID")
 @XmlRootElement
 @NamedQueries(
@@ -33,9 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Bid.findByBidstatus", query = "SELECT b FROM Bid b WHERE b.bidstatus = :bidstatus"),
     @NamedQuery(name = "Bid.findByUserid", query = "SELECT b FROM Bid b WHERE b.userid = :userid")
 })
-public class Bid implements Serializable
+public class Bid implements Serializable 
 {
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -54,107 +54,60 @@ public class Bid implements Serializable
     @ManyToOne(optional = false)
     private Product prodid;
 
-    /**
-     *
-     */
     public Bid()
     {
     }
 
-    /**
-     *
-     * @param bidid
-     */
     public Bid(BigDecimal bidid)
     {
         this.bidid = bidid;
     }
 
-    /**
-     *
-     * @return bidid
-     */
     public BigDecimal getBidid()
     {
         return bidid;
     }
 
-    /**
-     *
-     * @param bidid
-     */
     public void setBidid(BigDecimal bidid)
     {
         this.bidid = bidid;
     }
 
-    /**
-     *
-     * @return bidamount
-     */
     public BigDecimal getBidamount()
     {
         return bidamount;
     }
 
-    /**
-     *
-     * @param bidamount
-     */
     public void setBidamount(BigDecimal bidamount)
     {
         this.bidamount = bidamount;
     }
 
-    /**
-     *
-     * @return bidstatus
-     */
     public Character getBidstatus()
     {
         return bidstatus;
     }
 
-    /**
-     *
-     * @param bidstatus
-     */
     public void setBidstatus(Character bidstatus)
     {
         this.bidstatus = bidstatus;
     }
 
-    /**
-     *
-     * @return userid
-     */
     public BigDecimal getUserid()
     {
         return userid;
     }
 
-    /**
-     *
-     * @param userid
-     */
     public void setUserid(BigDecimal userid)
     {
         this.userid = userid;
     }
 
-    /**
-     *
-     * @return
-     */
     public Product getProdid()
     {
         return prodid;
     }
 
-    /**
-     *
-     * @param prodid
-     */
     public void setProdid(Product prodid)
     {
         this.prodid = prodid;
@@ -189,4 +142,5 @@ public class Bid implements Serializable
     {
         return "com.onlinegaragesale.model.Bid[ bidid=" + bidid + " ]";
     }
+
 }

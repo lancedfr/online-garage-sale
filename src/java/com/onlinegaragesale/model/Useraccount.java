@@ -26,10 +26,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 22 Sep 2012
- * Edited: 22 Sep 2012
+ * Date: 07 Oct 2012
+ * Edited: 07 Oct 2012
  */
-@Entity
+@Entity 
 @Table(name = "USERACCOUNT")
 @XmlRootElement
 @NamedQueries(
@@ -53,9 +53,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Useraccount.findByAreacode", query = "SELECT u FROM Useraccount u WHERE u.areacode = :areacode"),
     @NamedQuery(name = "Useraccount.findByAccountpassword", query = "SELECT u FROM Useraccount u WHERE u.accountpassword = :accountpassword")
 })
-public class Useraccount implements Serializable
+public class Useraccount implements Serializable 
 {
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -107,350 +106,207 @@ public class Useraccount implements Serializable
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
     private List<Garage> garageList;
 
-    /**
-     *
-     */
     public Useraccount()
     {
     }
 
-    /**
-     *
-     * @param userid
-     */
     public Useraccount(BigDecimal userid)
     {
         this.userid = userid;
     }
 
-    /**
-     *
-     * @return
-     */
+    public Useraccount(BigDecimal userid, String firstname, String lastname, Date dob, String email, String country, String areacode, String accountpassword)
+    {
+        this.userid = userid;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.dob = dob;
+        this.email = email;
+        this.country = country;
+        this.areacode = areacode;
+        this.accountpassword = accountpassword;
+    }
+
     public BigDecimal getUserid()
     {
         return userid;
     }
 
-    /**
-     *
-     * @param userid
-     */
     public void setUserid(BigDecimal userid)
     {
         this.userid = userid;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getFirstname()
     {
         return firstname;
     }
 
-    /**
-     *
-     * @param firstname
-     */
     public void setFirstname(String firstname)
     {
         this.firstname = firstname;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getMiddlename()
     {
         return middlename;
     }
 
-    /**
-     *
-     * @param middlename
-     */
     public void setMiddlename(String middlename)
     {
         this.middlename = middlename;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getLastname()
     {
         return lastname;
     }
 
-    /**
-     *
-     * @param lastname
-     */
     public void setLastname(String lastname)
     {
         this.lastname = lastname;
     }
 
-    /**
-     *
-     * @return
-     */
     public Date getDob()
     {
         return dob;
     }
 
-    /**
-     *
-     * @param dob
-     */
     public void setDob(Date dob)
     {
         this.dob = dob;
     }
 
-    /**
-     *
-     * @return
-     */
     public Short getAge()
     {
         return age;
     }
 
-    /**
-     *
-     * @param age
-     */
     public void setAge(Short age)
     {
         this.age = age;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getEmail()
     {
         return email;
     }
 
-    /**
-     *
-     * @param email
-     */
     public void setEmail(String email)
     {
         this.email = email;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getHometell()
     {
         return hometell;
     }
 
-    /**
-     *
-     * @param hometell
-     */
     public void setHometell(String hometell)
     {
         this.hometell = hometell;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getWorktell()
     {
         return worktell;
     }
 
-    /**
-     *
-     * @param worktell
-     */
     public void setWorktell(String worktell)
     {
         this.worktell = worktell;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getCell()
     {
         return cell;
     }
 
-    /**
-     *
-     * @param cell
-     */
     public void setCell(String cell)
     {
         this.cell = cell;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getAddressline()
     {
         return addressline;
     }
 
-    /**
-     *
-     * @param addressline
-     */
     public void setAddressline(String addressline)
     {
         this.addressline = addressline;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getRoad()
     {
         return road;
     }
 
-    /**
-     *
-     * @param road
-     */
     public void setRoad(String road)
     {
         this.road = road;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getCity()
     {
         return city;
     }
 
-    /**
-     *
-     * @param city
-     */
     public void setCity(String city)
     {
         this.city = city;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getSuburb()
     {
         return suburb;
     }
 
-    /**
-     *
-     * @param suburb
-     */
     public void setSuburb(String suburb)
     {
         this.suburb = suburb;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getCountry()
     {
         return country;
     }
 
-    /**
-     *
-     * @param country
-     */
     public void setCountry(String country)
     {
         this.country = country;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getAreacode()
     {
         return areacode;
     }
 
-    /**
-     *
-     * @param areacode
-     */
     public void setAreacode(String areacode)
     {
         this.areacode = areacode;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getAccountpassword()
     {
         return accountpassword;
     }
 
-    /**
-     *
-     * @param accountpassword
-     */
     public void setAccountpassword(String accountpassword)
     {
         this.accountpassword = accountpassword;
     }
 
-    /**
-     *
-     * @return
-     */
     public Saleshistory getSaleshistory()
     {
         return saleshistory;
     }
 
-    /**
-     *
-     * @param saleshistory
-     */
     public void setSaleshistory(Saleshistory saleshistory)
     {
         this.saleshistory = saleshistory;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlTransient
     @JsonIgnore
     public List<Garage> getGarageList()
@@ -458,10 +314,6 @@ public class Useraccount implements Serializable
         return garageList;
     }
 
-    /**
-     *
-     * @param garageList
-     */
     public void setGarageList(List<Garage> garageList)
     {
         this.garageList = garageList;
@@ -496,4 +348,5 @@ public class Useraccount implements Serializable
     {
         return "com.onlinegaragesale.model.Useraccount[ userid=" + userid + " ]";
     }
+
 }

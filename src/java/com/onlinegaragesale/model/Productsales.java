@@ -2,6 +2,7 @@ package com.onlinegaragesale.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,10 +21,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 22 Sep 2012
- * Edited: 22 Sep 2012
+ * Date: 07 Oct 2012
+ * Edited: 07 Oct 2012
  */
-@Entity
+@Entity 
 @Table(name = "PRODUCTSALES")
 @XmlRootElement
 @NamedQueries(
@@ -32,11 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Productsales.findByProdid", query = "SELECT p FROM Productsales p WHERE p.prodid = :prodid"),
     @NamedQuery(name = "Productsales.findByProdcondition", query = "SELECT p FROM Productsales p WHERE p.prodcondition = :prodcondition"),
     @NamedQuery(name = "Productsales.findByProddesc", query = "SELECT p FROM Productsales p WHERE p.proddesc = :proddesc"),
-    @NamedQuery(name = "Productsales.findByProdprice", query = "SELECT p FROM Productsales p WHERE p.prodprice = :prodprice")
+    @NamedQuery(name = "Productsales.findByProdprice", query = "SELECT p FROM Productsales p WHERE p.prodprice = :prodprice"),
+    @NamedQuery(name = "Productsales.findByBidderid", query = "SELECT p FROM Productsales p WHERE p.bidderid = :bidderid")
 })
-public class Productsales implements Serializable
+public class Productsales implements Serializable 
 {
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -52,152 +53,96 @@ public class Productsales implements Serializable
     private Serializable prodimage;
     @Column(name = "PRODPRICE")
     private BigDecimal prodprice;
+    @Basic(optional = false)
+    @Column(name = "BIDDERID")
+    private BigInteger bidderid;
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
     @ManyToOne(optional = false)
     private Saleshistory userid;
-    @Basic(optional = false)
-    private BigDecimal bidderid;
 
-    /**
-     *
-     */
     public Productsales()
     {
     }
 
-    /**
-     *
-     * @param prodid
-     */
     public Productsales(BigDecimal prodid)
     {
         this.prodid = prodid;
     }
 
-    /**
-     *
-     * @return
-     */
+    public Productsales(BigDecimal prodid, BigInteger bidderid)
+    {
+        this.prodid = prodid;
+        this.bidderid = bidderid;
+    }
+
     public BigDecimal getProdid()
     {
         return prodid;
     }
 
-    /**
-     *
-     * @param prodid
-     */
     public void setProdid(BigDecimal prodid)
     {
         this.prodid = prodid;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getProdcondition()
     {
         return prodcondition;
     }
 
-    /**
-     *
-     * @param prodcondition
-     */
     public void setProdcondition(String prodcondition)
     {
         this.prodcondition = prodcondition;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getProddesc()
     {
         return proddesc;
     }
 
-    /**
-     *
-     * @param proddesc
-     */
     public void setProddesc(String proddesc)
     {
         this.proddesc = proddesc;
     }
 
-    /**
-     *
-     * @return
-     */
     public Serializable getProdimage()
     {
         return prodimage;
     }
 
-    /**
-     *
-     * @param prodimage
-     */
     public void setProdimage(Serializable prodimage)
     {
         this.prodimage = prodimage;
     }
 
-    /**
-     *
-     * @return
-     */
     public BigDecimal getProdprice()
     {
         return prodprice;
     }
 
-    /**
-     *
-     * @param prodprice
-     */
     public void setProdprice(BigDecimal prodprice)
     {
         this.prodprice = prodprice;
     }
 
-    /**
-     *
-     * @return
-     */
+    public BigInteger getBidderid()
+    {
+        return bidderid;
+    }
+
+    public void setBidderid(BigInteger bidderid)
+    {
+        this.bidderid = bidderid;
+    }
+
     public Saleshistory getUserid()
     {
         return userid;
     }
 
-    /**
-     *
-     * @param userid
-     */
     public void setUserid(Saleshistory userid)
     {
         this.userid = userid;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public BigDecimal getBidderid()
-    {
-        return bidderid;
-    }
-
-    /**
-     *
-     * @param bidderid
-     */
-    public void setBidderid(BigDecimal bidderid)
-    {
-        this.bidderid = bidderid;
     }
 
     @Override
@@ -229,4 +174,5 @@ public class Productsales implements Serializable
     {
         return "com.onlinegaragesale.model.Productsales[ prodid=" + prodid + " ]";
     }
+
 }

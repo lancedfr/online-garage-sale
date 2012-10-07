@@ -22,10 +22,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 22 Sep 2012
- * Edited: 22 Sep 2012
+ * Date: 07 Oct 2012
+ * Edited: 07 Oct 2012
  */
-@Entity
+@Entity 
 @Table(name = "CATEGORY")
 @XmlRootElement
 @NamedQueries(
@@ -34,9 +34,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Category.findByCategoryid", query = "SELECT c FROM Category c WHERE c.categoryid = :categoryid"),
     @NamedQuery(name = "Category.findByCategorytype", query = "SELECT c FROM Category c WHERE c.categorytype = :categorytype")
 })
-public class Category implements Serializable
+public class Category implements Serializable 
 {
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -48,62 +47,35 @@ public class Category implements Serializable
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
     private List<Product> productList;
 
-    /**
-     *
-     */
     public Category()
     {
     }
 
-    /**
-     *
-     * @param categoryid
-     */
     public Category(BigDecimal categoryid)
     {
         this.categoryid = categoryid;
     }
 
-    /**
-     *
-     * @return categoryid
-     */
     public BigDecimal getCategoryid()
     {
         return categoryid;
     }
 
-    /**
-     *
-     * @param categoryid
-     */
     public void setCategoryid(BigDecimal categoryid)
     {
         this.categoryid = categoryid;
     }
 
-    /**
-     *
-     * @return categorytype
-     */
     public String getCategorytype()
     {
         return categorytype;
     }
 
-    /**
-     *
-     * @param categorytype
-     */
     public void setCategorytype(String categorytype)
     {
         this.categorytype = categorytype;
     }
 
-    /**
-     *
-     * @return productList
-     */
     @XmlTransient
     @JsonIgnore
     public List<Product> getProductList()
@@ -111,10 +83,6 @@ public class Category implements Serializable
         return productList;
     }
 
-    /**
-     *
-     * @param productList
-     */
     public void setProductList(List<Product> productList)
     {
         this.productList = productList;
@@ -149,4 +117,5 @@ public class Category implements Serializable
     {
         return "com.onlinegaragesale.model.Category[ categoryid=" + categoryid + " ]";
     }
+
 }

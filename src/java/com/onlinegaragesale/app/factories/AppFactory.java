@@ -4,10 +4,12 @@ import com.onlinegaragesale.model.Bid;
 import com.onlinegaragesale.model.Category;
 import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.model.Product;
+import com.onlinegaragesale.model.Saleshistory;
 import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.model.Useraccount;
 import com.onlinegaragesale.services.ObjectId;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -171,5 +173,16 @@ public class AppFactory
         bid.setProdid((Product) values.get("prodId"));
         bid.setUserid(BigDecimal.valueOf(Double.valueOf(values.get("userId").toString())));
         return bid;
+    }
+
+    public static Saleshistory createSalesHistory(HashMap<String, Object> values)
+    {
+        Saleshistory saleshistory = new Saleshistory();
+        saleshistory.setProductsalesList(null);
+        saleshistory.setTotalsales(BigDecimal.ZERO);
+        saleshistory.setTotalsalescount(BigInteger.ZERO);
+        saleshistory.setUseraccount(null);
+        saleshistory.setUserid(BigDecimal.ZERO);
+        return saleshistory;
     }
 }

@@ -25,10 +25,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 22 Sep 2012
- * Edited: 22 Sep 2012
+ * Date: 07 Oct 2012
+ * Edited: 07 Oct 2012
  */
-@Entity
+@Entity 
 @Table(name = "SALESHISTORY")
 @XmlRootElement
 @NamedQueries(
@@ -38,9 +38,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Saleshistory.findByTotalsales", query = "SELECT s FROM Saleshistory s WHERE s.totalsales = :totalsales"),
     @NamedQuery(name = "Saleshistory.findByTotalsalescount", query = "SELECT s FROM Saleshistory s WHERE s.totalsalescount = :totalsalescount")
 })
-public class Saleshistory implements Serializable
+public class Saleshistory implements Serializable 
 {
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -57,80 +56,45 @@ public class Saleshistory implements Serializable
     @OneToOne(optional = false)
     private Useraccount useraccount;
 
-    /**
-     *
-     */
     public Saleshistory()
     {
     }
 
-    /**
-     *
-     * @param userid
-     */
     public Saleshistory(BigDecimal userid)
     {
         this.userid = userid;
     }
 
-    /**
-     *
-     * @return
-     */
     public BigDecimal getUserid()
     {
         return userid;
     }
 
-    /**
-     *
-     * @param userid
-     */
     public void setUserid(BigDecimal userid)
     {
         this.userid = userid;
     }
 
-    /**
-     *
-     * @return
-     */
     public BigDecimal getTotalsales()
     {
         return totalsales;
     }
 
-    /**
-     *
-     * @param totalsales
-     */
     public void setTotalsales(BigDecimal totalsales)
     {
         this.totalsales = totalsales;
     }
 
-    /**
-     *
-     * @return
-     */
     public BigInteger getTotalsalescount()
     {
         return totalsalescount;
     }
 
-    /**
-     *
-     * @param totalsalescount
-     */
     public void setTotalsalescount(BigInteger totalsalescount)
     {
         this.totalsalescount = totalsalescount;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlTransient
     @JsonIgnore
     public List<Productsales> getProductsalesList()
@@ -138,28 +102,16 @@ public class Saleshistory implements Serializable
         return productsalesList;
     }
 
-    /**
-     *
-     * @param productsalesList
-     */
     public void setProductsalesList(List<Productsales> productsalesList)
     {
         this.productsalesList = productsalesList;
     }
 
-    /**
-     *
-     * @return
-     */
     public Useraccount getUseraccount()
     {
         return useraccount;
     }
 
-    /**
-     *
-     * @param useraccount
-     */
     public void setUseraccount(Useraccount useraccount)
     {
         this.useraccount = useraccount;
@@ -194,4 +146,5 @@ public class Saleshistory implements Serializable
     {
         return "com.onlinegaragesale.model.Saleshistory[ userid=" + userid + " ]";
     }
+
 }
