@@ -2,6 +2,7 @@ package com.onlinegaragesale.app.facade;
 
 import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.services.AcceptBidService;
+import com.onlinegaragesale.services.CreateUser;
 import com.onlinegaragesale.services.GetProductsService;
 import com.onlinegaragesale.services.crud.BidCrudService;
 import com.onlinegaragesale.services.crud.CategoryCrudService;
@@ -37,6 +38,7 @@ public class Facade implements Serializable
     private ProductsalesCrudService productsalesCrudService;
     private AcceptBidService acceptBidService;
     private GetProductsService getProductsService;
+    private CreateUser createUser;
 
     /**
      *
@@ -136,5 +138,11 @@ public class Facade implements Serializable
     {
         getProductsService = (GetProductsService) ctx.getBean("getProductsService");
         return getProductsService;
+    }
+
+    public CreateUser getCreateUserService()
+    {
+        createUser = (CreateUser) ctx.getBean("createUser");
+        return createUser;
     }
 }

@@ -119,7 +119,11 @@ public class ObjectId
      */
     public static BigDecimal getCurrentSalesHistoryId()
     {
-        return getIdFromSequences("SALESHISTORY_ID_SEQ.CURRVAL");
+//        return getIdFromSequences("SALESHISTORY_ID_SEQ.CURRVAL");
+        BigDecimal idFromSequences = getIdFromSequences("USERACCOUNT_ID_SEQ.CURRVAL");
+        Calendar calendar = Calendar.getInstance();
+        int weekYear = calendar.getWeekYear();
+        return new BigDecimal(String.valueOf(weekYear) + idFromSequences.toString());
     }
 
     /**

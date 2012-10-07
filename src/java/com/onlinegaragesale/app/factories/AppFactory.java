@@ -10,6 +10,7 @@ import com.onlinegaragesale.model.Useraccount;
 import com.onlinegaragesale.services.ObjectId;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -102,9 +103,9 @@ public class AppFactory
     public static Garage createGarage(HashMap<String, Object> values)
     {
         Garage garage = new Garage(ObjectId.getNewGarageId());
-        garage.setClosedate((Date) values.get("closeDate"));
-        garage.setGaragetype(values.get("garageType").toString());
-        garage.setOpendate((Date) values.get("openDate"));
+        garage.setClosedate(new Date());
+        garage.setGaragetype("Small");
+        garage.setOpendate(new Date());
         garage.setUserid((Useraccount) values.get("userId"));
 
         return garage;
@@ -133,7 +134,7 @@ public class AppFactory
         product.setProdcondition(values.get("prodCondition").toString());
         product.setProddesc(values.get("prodDesc").toString());
         product.setProdprice(BigDecimal.valueOf(Double.valueOf(values.get("prodPrice").toString())));
-        product.setProdstatus(values.get("prodStatus").toString().charAt(0));
+        product.setProdstatus(Character.valueOf('0'));
         return product;
     }
 
@@ -172,17 +173,19 @@ public class AppFactory
         bid.setBidamount(BigDecimal.valueOf(Double.valueOf(values.get("bidAmount").toString())));
         bid.setProdid((Product) values.get("prodId"));
         bid.setUserid(BigDecimal.valueOf(Double.valueOf(values.get("userId").toString())));
+        bid.setBidstatus(Character.valueOf('2'));
         return bid;
     }
 
     public static Saleshistory createSalesHistory(HashMap<String, Object> values)
     {
         Saleshistory saleshistory = new Saleshistory();
+        Useraccount useraccount = (Useraccount) values.get("Useraccount");
         saleshistory.setProductsalesList(null);
         saleshistory.setTotalsales(BigDecimal.ZERO);
         saleshistory.setTotalsalescount(BigInteger.ZERO);
-        saleshistory.setUseraccount(null);
-        saleshistory.setUserid(BigDecimal.ZERO);
+        saleshistory.setUseraccount(useraccount);
+        saleshistory.setUserid(useraccount.getUserid());
         return saleshistory;
     }
 }

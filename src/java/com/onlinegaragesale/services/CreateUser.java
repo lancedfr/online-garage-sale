@@ -1,6 +1,6 @@
 package com.onlinegaragesale.services;
 
-import com.onlinegaragesale.model.Useraccount;
+import java.util.HashMap;
 
 /**
  * File Name: CreateUser.java
@@ -14,5 +14,5 @@ import com.onlinegaragesale.model.Useraccount;
 public interface CreateUser
 {
 
-    public void createNewUser(Useraccount useraccount);
+    public void createNewUser(HashMap<String, Object> values);
 }

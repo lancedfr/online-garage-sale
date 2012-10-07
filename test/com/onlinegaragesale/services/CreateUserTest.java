@@ -2,13 +2,12 @@ package com.onlinegaragesale.services;
 
 import com.onlinegaragesale.app.conf.GetContext;
 import com.onlinegaragesale.app.facade.Facade;
-import com.onlinegaragesale.app.factories.AppFactory;
 import com.onlinegaragesale.model.Garage;
+import com.onlinegaragesale.model.Saleshistory;
 import com.onlinegaragesale.model.Useraccount;
 import com.onlinegaragesale.services.crud.GarageCrudService;
 import com.onlinegaragesale.services.crud.SaleshistoryCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import org.junit.After;
@@ -31,9 +30,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CreateUserTest
 {
 
-    private BigDecimal userID;
-    private BigDecimal garageid;
     private static Facade facade;
+    private static CreateUser createUser;
     private static UseraccountCrudService useraccountCrudService;
     private static GarageCrudService garageCrudService;
     private static SaleshistoryCrudService saleshistoryCrudService;
@@ -47,6 +45,8 @@ public class CreateUserTest
     {
         GetContext.setApplicationContext(new ClassPathXmlApplicationContext("classpath:com/onlinegaragesale/app/conf/applicationContext-*.xml"));
         facade = new Facade();
+        createUser = facade.getCreateUserService();
+
         useraccountCrudService = facade.getUseraccountCrudService();
         garageCrudService = facade.getGarageCrudService();
         saleshistoryCrudService = facade.getSaleshistoryCrudService();
@@ -71,54 +71,34 @@ public class CreateUserTest
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void createNewUserTest()
+    public void createUserTestTest()
     {
         HashMap<String, Object> values = new HashMap<String, Object>();
         values.put("age", "22");
         values.put("dob", new Date());
-        values.put("firstName", "TestFName");
-        values.put("lastName", "TestLName");
-        values.put("middleName", "TestMName");
-        values.put("pasword", "TestPassword");
-        values.put("address", "TestAddress");
-        values.put("areacode", "TestAddressLine");
-        values.put("city", "TestCity");
-        values.put("country", "TestCountry");
-        values.put("road", "TestRoad");
-        values.put("suberb", "TestSuberb");
-        values.put("cell", "TestCell");
-        values.put("email", "TestEmail");
-        values.put("homeTell", "TestHomeTell");
-        values.put("workTell", "TestWorkTell");
+        values.put("firstName", "CreateFName");
+        values.put("lastName", "CreateLName");
+        values.put("middleName", "CreateMName");
+        values.put("pasword", "CreatePassword");
+        values.put("address", "CreateAddress");
+        values.put("areacode", "CreateAddressLine");
+        values.put("city", "CreateCity");
+        values.put("country", "CreateCountry");
+        values.put("road", "CreateRoad");
+        values.put("suberb", "CreateSuberb");
+        values.put("cell", "CreateCell");
+        values.put("email", "CreateEmail");
+        values.put("homeTell", "CreateHomeTell");
+        values.put("workTell", "CreateWorkTell");
+        createUser.createNewUser(values);
 
-        Useraccount useraccount = AppFactory.createUserAccount(values);
-
-        useraccountCrudService.persist(useraccount);
-        userID = useraccount.getUserid();
+        Useraccount useraccount = useraccountCrudService.findById(ObjectId.getCurrentUserAccountId());
         Assert.assertNotNull(useraccount);
-    }
 
-    @Test
-    public void createNewGarageTest()
-    {
-        HashMap<String, Object> values = new HashMap<String, Object>();
-        values.put("closeDate", new Date());
-        values.put("garageType", "small");
-        values.put("openDate", new Date());
-        values.put("userId", useraccountCrudService.findById(userID));
-        Garage garage = AppFactory.createGarage(values);
-
-        garageCrudService.persist(garage);
-        garageid = garage.getGarageid();
+        Garage garage = garageCrudService.findById(ObjectId.getCurrentGarageId());
         Assert.assertNotNull(garage);
-    }
 
-    @Test
-    public void createNewSalesHistoryTest()
-    {
-        HashMap<String, Object> values = new HashMap<String, Object>();
-        values.put("bidAmount", "55.99");
-
-
+        Saleshistory saleshistory = saleshistoryCrudService.findById(ObjectId.getCurrentSalesHistoryId());
+        Assert.assertNotNull(saleshistory);
     }
 }
