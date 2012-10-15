@@ -68,7 +68,7 @@ public class UseraccountCrudServiceImplTest
         values.put("firstName", "TestFName");
         values.put("lastName", "TestLName");
         values.put("middleName", "TestMName");
-        values.put("pasword", "TestPassword");
+        values.put("pasword", "user");
         values.put("address", "TestAddress");
         values.put("areacode", "TestAddressLine");
         values.put("city", "TestCity");
@@ -76,7 +76,7 @@ public class UseraccountCrudServiceImplTest
         values.put("road", "TestRoad");
         values.put("suberb", "TestSuberb");
         values.put("cell", "TestCell");
-        values.put("email", "TestEmail");
+        values.put("email", "user");
         values.put("homeTell", "TestHomeTell");
         values.put("workTell", "TestWorkTell");
 

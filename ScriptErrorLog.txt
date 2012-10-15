@@ -1,0 +1,3 @@
+Error executing: DROP TABLE USERACCOUNT CASCADE CONSTRAINTS  
+java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+

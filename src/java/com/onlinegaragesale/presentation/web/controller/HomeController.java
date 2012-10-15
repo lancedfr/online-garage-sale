@@ -47,6 +47,12 @@ public class HomeController
     {
         return "about";
     }
+
+    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
+    public String getHome(Model model)
+    {
+        return "index";
+    }
 //    @RequestMapping(value = "/add.html", method = RequestMethod.GET)
 //    public String getAdd(Model model) 
 //    {

@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,7 +30,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Date: 07 Oct 2012
  * Edited: 07 Oct 2012
  */
-@Entity 
+@Entity
 @Table(name = "USERACCOUNT")
 @XmlRootElement
 @NamedQueries(
@@ -53,8 +54,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Useraccount.findByAreacode", query = "SELECT u FROM Useraccount u WHERE u.areacode = :areacode"),
     @NamedQuery(name = "Useraccount.findByAccountpassword", query = "SELECT u FROM Useraccount u WHERE u.accountpassword = :accountpassword")
 })
-public class Useraccount implements Serializable 
+public class Useraccount implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -101,10 +103,15 @@ public class Useraccount implements Serializable
     @Basic(optional = false)
     @Column(name = "ACCOUNTPASSWORD")
     private String accountpassword;
+    @Column(name = "ENABLED")
+    private boolean enabled;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "useraccount")
     private Saleshistory saleshistory;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
     private List<Garage> garageList;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id")
+    private List<Roles> roles;
 
     public Useraccount()
     {
@@ -297,6 +304,16 @@ public class Useraccount implements Serializable
         this.accountpassword = accountpassword;
     }
 
+    public boolean isEnabled()
+    {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled)
+    {
+        this.enabled = enabled;
+    }
+
     public Saleshistory getSaleshistory()
     {
         return saleshistory;
@@ -317,6 +334,16 @@ public class Useraccount implements Serializable
     public void setGarageList(List<Garage> garageList)
     {
         this.garageList = garageList;
+    }
+
+    public List<Roles> getRoles()
+    {
+        return roles;
+    }
+
+    public void setRoles(List<Roles> roles)
+    {
+        this.roles = roles;
     }
 
     @Override
@@ -348,5 +375,4 @@ public class Useraccount implements Serializable
     {
         return "com.onlinegaragesale.model.Useraccount[ userid=" + userid + " ]";
     }
-
 }

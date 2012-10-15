@@ -26,7 +26,7 @@ public class Roles implements Serializable
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String roleName;
-    private String username;
+    private String email;
     @ManyToOne(cascade = CascadeType.ALL)
     private Useraccount user;
 
@@ -50,14 +50,14 @@ public class Roles implements Serializable
         this.roleName = roleName;
     }
 
-    public String getUsername()
+    public String getEmail()
     {
-        return username;
+        return email;
     }
 
-    public void setUsername(String username)
+    public void setEmail(String email)
     {
-        this.username = username;
+        this.email = email;
     }
 
     public Useraccount getUser()

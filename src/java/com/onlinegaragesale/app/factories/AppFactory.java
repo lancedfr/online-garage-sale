@@ -1,5 +1,6 @@
 package com.onlinegaragesale.app.factories;
 
+import com.onlinegaragesale.app.security.PasswordEncrypt;
 import com.onlinegaragesale.model.Bid;
 import com.onlinegaragesale.model.Category;
 import com.onlinegaragesale.model.Garage;
@@ -70,8 +71,9 @@ public class AppFactory
         useraccount.setFirstname(values.get("firstName").toString());
         useraccount.setLastname(values.get("lastName").toString());
         useraccount.setMiddlename(values.get("middleName").toString());
-        useraccount.setAccountpassword(values.get("pasword").toString());
-
+        useraccount.setAccountpassword(PasswordEncrypt.encrypt(values.get("pasword").toString()));
+        useraccount.setEnabled(false);
+        
         useraccount.setAddressline(values.get("address").toString());
         useraccount.setAreacode(values.get("areacode").toString());
         useraccount.setCity(values.get("city").toString());
