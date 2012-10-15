@@ -67,16 +67,16 @@ public class ProductCrudServiceImplTest
     public void testProductCrud()
     {
         HashMap<String, Object> values = new HashMap<String, Object>();
-        values.put("garageId", garageCrudService.findById(new BigDecimal(4)));
+        values.put("garageId", garageCrudService.findById(new BigDecimal(1)));
         values.put("prodCondition", "GREAT");
         values.put("prodDesc", "Green Lamp");
         values.put("prodPrice", "234.66");
         values.put("prodStatus", "Not Sold");
-        values.put("categoryId", categoryCrudService.findById(new BigDecimal(5)));
+        values.put("categoryId", categoryCrudService.findById(new BigDecimal(1)));
         Product product = AppFactory.createProduct(values);
 
         productCrudService.persist(product);
-        Product p = productCrudService.findById(new BigDecimal(6));
+        Product p = productCrudService.findById(new BigDecimal(1));
         Assert.assertNotNull(p);
     }
 }

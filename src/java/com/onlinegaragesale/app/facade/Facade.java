@@ -9,6 +9,7 @@ import com.onlinegaragesale.services.crud.CategoryCrudService;
 import com.onlinegaragesale.services.crud.GarageCrudService;
 import com.onlinegaragesale.services.crud.ProductCrudService;
 import com.onlinegaragesale.services.crud.ProductsalesCrudService;
+import com.onlinegaragesale.services.crud.RolesCrudService;
 import com.onlinegaragesale.services.crud.SaleshistoryCrudService;
 import com.onlinegaragesale.services.crud.StudentCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
@@ -34,6 +35,7 @@ public class Facade implements Serializable
     private ProductCrudService productCrudService;
     private CategoryCrudService categoryCrudService;
     private BidCrudService bidCrudService;
+    private RolesCrudService rolesCrudService;
     private SaleshistoryCrudService saleshistoryCrudService;
     private ProductsalesCrudService productsalesCrudService;
     private AcceptBidService acceptBidService;
@@ -144,5 +146,11 @@ public class Facade implements Serializable
     {
         createUser = (CreateUser) ctx.getBean("createUser");
         return createUser;
+    }
+
+    public RolesCrudService getRolesCrudService()
+    {
+        rolesCrudService =  (RolesCrudService) ctx.getBean("rolesCrudService");
+        return rolesCrudService;
     }
 }

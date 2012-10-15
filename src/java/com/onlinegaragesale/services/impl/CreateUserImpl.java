@@ -1,13 +1,18 @@
 package com.onlinegaragesale.services.impl;
 
+import com.onlinegaragesale.app.facade.Facade;
 import com.onlinegaragesale.app.factories.AppFactory;
 import com.onlinegaragesale.model.Garage;
+import com.onlinegaragesale.model.Roles;
 import com.onlinegaragesale.model.Saleshistory;
 import com.onlinegaragesale.model.Useraccount;
 import com.onlinegaragesale.services.CreateUser;
+import com.onlinegaragesale.services.ObjectId;
 import com.onlinegaragesale.services.crud.GarageCrudService;
+import com.onlinegaragesale.services.crud.RolesCrudService;
 import com.onlinegaragesale.services.crud.SaleshistoryCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +36,8 @@ public class CreateUserImpl implements CreateUser
     private GarageCrudService garageCrudService;
     @Autowired
     private SaleshistoryCrudService saleshistoryCrudService;
+    @Autowired
+    private RolesCrudService rolesCrudService;
 
     @Override
     public void createNewUser(HashMap<String, Object> values)
@@ -38,6 +45,7 @@ public class CreateUserImpl implements CreateUser
         Useraccount createdUser = createUser(values);
         createGarage(createdUser);
         createSalesHistory(createdUser);
+        createUserRole(createdUser);
     }
 
     private Useraccount createUser(HashMap<String, Object> values)
@@ -63,5 +71,17 @@ public class CreateUserImpl implements CreateUser
         Saleshistory createSalesHistory = AppFactory.createSalesHistory(values);
 
         saleshistoryCrudService.persist(createSalesHistory);
+    }
+
+    private void createUserRole(Useraccount createdUser)
+    {
+        HashMap<String, Object> values = new HashMap<String, Object>();
+        values.put("roleid", ObjectId.getNewRolesId());
+        values.put("email", createdUser.getEmail());
+        values.put("rolename", "user");
+        values.put("userid", createdUser);
+        Roles createRole = AppFactory.createRole(values);
+        
+        rolesCrudService.persist(createRole);
     }
 }

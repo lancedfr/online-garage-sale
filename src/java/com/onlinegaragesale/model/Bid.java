@@ -20,8 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 07 Oct 2012
- * Edited: 07 Oct 2012
+ * Date: 15 Oct 2012
+ * Edited: 15 Oct 2012
  */
 @Entity 
 @Table(name = "BID")

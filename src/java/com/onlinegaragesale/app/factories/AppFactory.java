@@ -5,6 +5,7 @@ import com.onlinegaragesale.model.Bid;
 import com.onlinegaragesale.model.Category;
 import com.onlinegaragesale.model.Garage;
 import com.onlinegaragesale.model.Product;
+import com.onlinegaragesale.model.Roles;
 import com.onlinegaragesale.model.Saleshistory;
 import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.model.Useraccount;
@@ -188,5 +189,14 @@ public class AppFactory
         saleshistory.setUseraccount(useraccount);
         saleshistory.setUserid(useraccount.getUserid());
         return saleshistory;
+    }
+
+    public static Roles createRole(HashMap<String, Object> values)
+    {
+        Roles role = new Roles(ObjectId.getNewRolesId());
+        role.setEmail(values.get("email").toString());
+        role.setRolename(values.get("rolename").toString());
+        role.setUserid((Useraccount) values.get("userid"));
+        return role;
     }
 }

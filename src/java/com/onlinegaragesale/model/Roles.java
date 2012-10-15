@@ -1,12 +1,17 @@
 package com.onlinegaragesale.model;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
+import java.math.BigDecimal;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * File Name: Roles.java
@@ -14,40 +19,59 @@ import javax.persistence.ManyToOne;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 07 Oct 2012
- * Edited: 07 Oct 2012
+ * Date: 15 Oct 2012
+ * Edited: 15 Oct 2012
  */
-@Entity
-public class Roles implements Serializable
+@Entity 
+@Table(name = "ROLES")
+@XmlRootElement
+@NamedQueries(
 {
-
+    @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r"),
+    @NamedQuery(name = "Roles.findByRoleid", query = "SELECT r FROM Roles r WHERE r.roleid = :roleid"),
+    @NamedQuery(name = "Roles.findByEmail", query = "SELECT r FROM Roles r WHERE r.email = :email"),
+    @NamedQuery(name = "Roles.findByRolename", query = "SELECT r FROM Roles r WHERE r.rolename = :rolename")
+})
+public class Roles implements Serializable 
+{
     private static final long serialVersionUID = 1L;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String roleName;
+    @Basic(optional = false)
+    @Column(name = "ROLEID")
+    private BigDecimal roleid;
+    @Basic(optional = false)
+    @Column(name = "EMAIL")
     private String email;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Useraccount user;
+    @Column(name = "ROLENAME")
+    private String rolename;
+    @JoinColumn(name = "USERID", referencedColumnName = "USERID")
+    @ManyToOne(optional = false)
+    private Useraccount userid;
 
-    public Long getId()
+    public Roles()
     {
-        return id;
     }
 
-    public void setId(Long id)
+    public Roles(BigDecimal roleid)
     {
-        this.id = id;
+        this.roleid = roleid;
     }
 
-    public String getRoleName()
+    public Roles(BigDecimal roleid, String email)
     {
-        return roleName;
+        this.roleid = roleid;
+        this.email = email;
     }
 
-    public void setRoleName(String roleName)
+    public BigDecimal getRoleid()
     {
-        this.roleName = roleName;
+        return roleid;
+    }
+
+    public void setRoleid(BigDecimal roleid)
+    {
+        this.roleid = roleid;
     }
 
     public String getEmail()
@@ -60,21 +84,31 @@ public class Roles implements Serializable
         this.email = email;
     }
 
-    public Useraccount getUser()
+    public String getRolename()
     {
-        return user;
+        return rolename;
     }
 
-    public void setUser(Useraccount user)
+    public void setRolename(String rolename)
     {
-        this.user = user;
+        this.rolename = rolename;
+    }
+
+    public Useraccount getUserid()
+    {
+        return userid;
+    }
+
+    public void setUserid(Useraccount userid)
+    {
+        this.userid = userid;
     }
 
     @Override
     public int hashCode()
     {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (roleid != null ? roleid.hashCode() : 0);
         return hash;
     }
 
@@ -87,7 +121,7 @@ public class Roles implements Serializable
             return false;
         }
         Roles other = (Roles) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
+        if ((this.roleid == null && other.roleid != null) || (this.roleid != null && !this.roleid.equals(other.roleid)))
         {
             return false;
         }
@@ -97,6 +131,7 @@ public class Roles implements Serializable
     @Override
     public String toString()
     {
-        return "za.ac.cput.university.model.Roles[ id=" + id + " ]";
+        return "com.onlinegaragesale.model.Roles[ roleid=" + roleid + " ]";
     }
+
 }

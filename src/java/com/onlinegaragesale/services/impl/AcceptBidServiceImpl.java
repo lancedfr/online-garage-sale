@@ -38,6 +38,7 @@ public class AcceptBidServiceImpl implements AcceptBidService
             Statement createStatement = connection.createStatement();
             createStatement.executeUpdate("UPDATE BID SET BIDSTATUS = '0' WHERE PRODID  = " + bid.getProdid().getProdid());
             createStatement.executeUpdate("UPDATE BID SET BIDSTATUS = '1' WHERE BIDID = " + bid.getBidid().toString());
+            createStatement.executeUpdate("UPDATE PRODUCT SET PRODSTATUS    = '1' WHERE PRODID = " + bid.getProdid().getProdid().toString());
         }
         catch (SQLException ex)
         {

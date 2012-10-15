@@ -115,6 +115,15 @@ public class ObjectId
 
     /**
      *
+     * @return Current Roles Id
+     */
+    public static BigDecimal getCurrentRolesId()
+    {
+        return getIdFromSequences("ROLES_ID_SEQ.CURRVAL");
+    }
+
+    /**
+     *
      * @return Current SalesHistory Id
      */
     public static BigDecimal getCurrentSalesHistoryId()
@@ -181,6 +190,15 @@ public class ObjectId
     public static BigDecimal getNewProductSalesId()
     {
         return getIdFromSequences("PRODUCTSALES_ID_SEQ.NEXTVAL");
+    }
+
+    /**
+     *
+     * @return New Roles Id
+     */
+    public static BigDecimal getNewRolesId()
+    {
+        return getIdFromSequences("ROLES_ID_SEQ.NEXTVAL");
     }
 
     /**

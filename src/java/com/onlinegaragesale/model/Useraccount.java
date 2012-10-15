@@ -2,6 +2,7 @@ package com.onlinegaragesale.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -9,7 +10,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,10 +27,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * Description:
  * Package: com.onlinegaragesale.model
  * Author: Lance
- * Date: 07 Oct 2012
- * Edited: 07 Oct 2012
+ * Date: 15 Oct 2012
+ * Edited: 15 Oct 2012
  */
-@Entity
+@Entity 
 @Table(name = "USERACCOUNT")
 @XmlRootElement
 @NamedQueries(
@@ -52,11 +52,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Useraccount.findBySuburb", query = "SELECT u FROM Useraccount u WHERE u.suburb = :suburb"),
     @NamedQuery(name = "Useraccount.findByCountry", query = "SELECT u FROM Useraccount u WHERE u.country = :country"),
     @NamedQuery(name = "Useraccount.findByAreacode", query = "SELECT u FROM Useraccount u WHERE u.areacode = :areacode"),
-    @NamedQuery(name = "Useraccount.findByAccountpassword", query = "SELECT u FROM Useraccount u WHERE u.accountpassword = :accountpassword")
+    @NamedQuery(name = "Useraccount.findByAccountpassword", query = "SELECT u FROM Useraccount u WHERE u.accountpassword = :accountpassword"),
+    @NamedQuery(name = "Useraccount.findByEnabled", query = "SELECT u FROM Useraccount u WHERE u.enabled = :enabled")
 })
-public class Useraccount implements Serializable
+public class Useraccount implements Serializable 
 {
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -103,15 +103,15 @@ public class Useraccount implements Serializable
     @Basic(optional = false)
     @Column(name = "ACCOUNTPASSWORD")
     private String accountpassword;
+    @Basic(optional = false)
     @Column(name = "ENABLED")
     private boolean enabled;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
+    private List<Roles> rolesList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "useraccount")
     private Saleshistory saleshistory;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
     private List<Garage> garageList;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
-    private List<Roles> roles;
 
     public Useraccount()
     {
@@ -120,18 +120,6 @@ public class Useraccount implements Serializable
     public Useraccount(BigDecimal userid)
     {
         this.userid = userid;
-    }
-
-    public Useraccount(BigDecimal userid, String firstname, String lastname, Date dob, String email, String country, String areacode, String accountpassword)
-    {
-        this.userid = userid;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.dob = dob;
-        this.email = email;
-        this.country = country;
-        this.areacode = areacode;
-        this.accountpassword = accountpassword;
     }
 
     public BigDecimal getUserid()
@@ -304,7 +292,7 @@ public class Useraccount implements Serializable
         this.accountpassword = accountpassword;
     }
 
-    public boolean isEnabled()
+    public boolean getEnabled()
     {
         return enabled;
     }
@@ -312,6 +300,18 @@ public class Useraccount implements Serializable
     public void setEnabled(boolean enabled)
     {
         this.enabled = enabled;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public List<Roles> getRolesList()
+    {
+        return rolesList;
+    }
+
+    public void setRolesList(List<Roles> rolesList)
+    {
+        this.rolesList = rolesList;
     }
 
     public Saleshistory getSaleshistory()
@@ -334,16 +334,6 @@ public class Useraccount implements Serializable
     public void setGarageList(List<Garage> garageList)
     {
         this.garageList = garageList;
-    }
-
-    public List<Roles> getRoles()
-    {
-        return roles;
-    }
-
-    public void setRoles(List<Roles> roles)
-    {
-        this.roles = roles;
     }
 
     @Override
@@ -375,4 +365,5 @@ public class Useraccount implements Serializable
     {
         return "com.onlinegaragesale.model.Useraccount[ userid=" + userid + " ]";
     }
+
 }
