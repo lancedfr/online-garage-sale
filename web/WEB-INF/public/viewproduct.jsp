@@ -1,6 +1,6 @@
 <%-- 
-    Document   : mygarage
-    Created on : 19 Oct 2012, 12:34:58 AM
+    Document   : viewproduct
+    Created on : 20 Oct 2012, 12:04:07 PM
     Author     : Lance
 --%>
 
@@ -23,8 +23,9 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
     </head>
-    <body>
-        <%@include file="mygaragenavbar.jsp" %>
+    <body>        
+       <%@include file="mygaragenavbar.jsp" %>
+
         <div class="main-container">
             <div class="main wrapper clearfix">
 
@@ -32,9 +33,7 @@
                     <header>
                         <div id="navcontainer">
                             <ul id="navlist" data-role="listview" data-theme="g">
-                                <c:forEach items="${userProducts}" var="product">
-                                    <li id="active"><a rel=external href="viewproduct.html?id=${product.prodid}"><c:out value="Description: ${product.proddesc}"/></a></li>
-                                </c:forEach>
+                                <li id="active"><c:out value="Description: ${product.proddesc} ${product.prodprice}"/></a></li>
                             </ul>
                         </div>
                     </header>
@@ -67,4 +66,3 @@
         </div>
     </body>
 </html>
-

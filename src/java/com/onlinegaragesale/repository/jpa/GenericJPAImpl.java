@@ -74,7 +74,6 @@ public class GenericJPAImpl<T extends Serializable> implements GenericDAO<T>
     @Override
     public List<T> findInRange(int firstResult, int maxResults)
     {
-
         return em.createQuery("SELECT a FROM " + this.clazz.getName() + " e").setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
 

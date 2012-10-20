@@ -33,6 +33,20 @@ public interface GetProductsService
 
     /**
      *
+     * @param userEmail
+     * @return A List<Product> related to the provided userId
+     */
+    public List<Product> userProducts(String userEmail);
+    
+    /**
+     *
+     * @param userEmail
+     * @return A List<Product> related to the provided userId
+     */
+    public Product userProduct(String userEmail, String pridId);
+
+    /**
+     *
      * @param useraccount
      * @return A List<Product> the provided user made bids on
      */
@@ -47,6 +61,13 @@ public interface GetProductsService
 
     /**
      *
+     * @param userEmail
+     * @return A List<Product> the provided userId made bids on
+     */
+    public List<Product> usersBids(String userEmail);
+
+    /**
+     *
      * @param useraccount
      * @return A List<Product> up for sale to the provided user
      */
@@ -58,4 +79,11 @@ public interface GetProductsService
      * @return A List<Product> up for sale to the provided userId
      */
     public List<Product> productsToBuy(BigDecimal userId);
+
+    /**
+     *
+     * @param userEmail
+     * @return A List<Product> up for sale to the provided userId
+     */
+    public List<Product> productsToBuy(String userEmail);
 }

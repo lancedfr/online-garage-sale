@@ -1,12 +1,19 @@
 package com.onlinegaragesale.presentation.web.controller;
 
 import com.onlinegaragesale.app.facade.Facade;
+import com.onlinegaragesale.model.Product;
+import com.onlinegaragesale.services.GetProductsService;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * File Name: HomeController.java
@@ -61,9 +68,16 @@ public class HomeController
     }
 
     @RequestMapping(value = "/mygarage.html", method = RequestMethod.GET)
-    public String getMyGarage(Model model)
+    public ModelAndView getMyGarage(Model model)
     {
-        return "mygarage";
+        GetProductsService productsService = facade.getGetProductsService();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        List<Product> userProducts = productsService.userProducts(email);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("userProducts", userProducts);
+        modelAndView.setViewName("mygarage");
+        return modelAndView;
     }
 //    @RequestMapping(value = "/add.html", method = RequestMethod.GET)
 //    public String getAdd(Model model) 

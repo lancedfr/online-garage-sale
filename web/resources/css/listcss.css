@@ -1,0 +1,45 @@
+/* 
+    Document   : listcss
+    Created on : 20 Oct 2012, 10:16:00 AM
+    Author     : Lance
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#navlist
+{
+    padding: 0 1px 1px;
+    margin-left: 0;
+    -webkit-box-shadow: 0 5px 10px #AAA;
+    /*font: bold 12px Verdana, sans-serif;*/
+    background: #F16529;
+    width: 100%;
+}
+
+#navlist li
+{
+    list-style: none;
+    margin: 0;
+    border-top: 1px #F16529;
+    text-align: left;
+}
+
+#navlist li a
+{
+    display: block;
+    padding: 0.25em 0.5em 0.25em 0.75em;
+    border-left: 1em solid #E44D26;
+    background: #F16529;
+    text-decoration: none;
+}
+
+#navlist li a:link { color: white; }
+#navlist li a:visited { color: #cccccc; }
+
+#navlist li a:hover
+{
+    border-color: #FE3;
+    color: #FFF;
+    background: #E44D26;
+}
+

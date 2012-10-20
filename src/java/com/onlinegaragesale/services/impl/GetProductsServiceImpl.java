@@ -37,34 +37,50 @@ public class GetProductsServiceImpl implements GetProductsService
     @Override
     public List<Product> userProducts(Useraccount useraccount)
     {
-        List<Product> products = new ArrayList<Product>();
-        List<Garage> garageList = useraccount.getGarageList();
-        for (Garage garage : garageList)
-        {
-            List<Product> productList = garage.getProductList();
-            for (Product product : productList)
-            {
-                products.add(product);
-            }
-        }
-        return products;
+        List<Product> productList = new ArrayList<Product>();
+        Garage garage = useraccount.getGarageList().get(0);
+        productList = garage.getProductList();
+        return productList;
     }
 
     @Override
     public List<Product> userProducts(BigDecimal userId)
     {
-        List<Product> products = new ArrayList<Product>();
+        List<Product> productList = new ArrayList<Product>();
         Useraccount useraccountById = useraccountCrudService.findById(userId);
-        List<Garage> garageList = useraccountById.getGarageList();
-        for (Garage garage : garageList)
+        Garage garage = useraccountById.getGarageList().get(0);
+        productList = garage.getProductList();
+        return productList;
+    }
+
+    @Override
+    public List<Product> userProducts(String userEmail)
+    {
+        List<Product> productList = new ArrayList<Product>();
+        Useraccount useraccountByEmail = useraccountCrudService.getByPropertyName("email", userEmail);
+        Garage garage = useraccountByEmail.getGarageList().get(0);
+        productList = garage.getProductList();
+        return productList;
+    }
+
+    @Override
+    public Product userProduct(String userEmail, String pridId)
+    {
+        List<Product> productList = new ArrayList<Product>();
+        Product foundProduct = new Product();
+        BigDecimal pridIdBigDecimal = new BigDecimal(pridId);
+        Useraccount useraccountByEmail = useraccountCrudService.getByPropertyName("email", userEmail);
+        Garage garage = useraccountByEmail.getGarageList().get(0);
+        productList = garage.getProductList();
+        for (Product product : productList)
         {
-            List<Product> productList = garage.getProductList();
-            for (Product product : productList)
+            if (product.getProdid().equals(pridIdBigDecimal))
             {
-                products.add(product);
+                foundProduct = product;
+                break;
             }
         }
-        return products;
+        return foundProduct;
     }
 
     @Override
@@ -89,6 +105,23 @@ public class GetProductsServiceImpl implements GetProductsService
         List<Product> products = new ArrayList<Product>();
         Useraccount useraccountById = useraccountCrudService.findById(userId);
         final BigDecimal userid = useraccountById.getUserid();
+        List<Bid> bids = bidCrudService.findAll();
+        for (Bid bid : bids)
+        {
+            if (bid.getUserid().equals(userid))
+            {
+                products.add(bid.getProdid());
+            }
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> usersBids(String userEmail)
+    {
+        List<Product> products = new ArrayList<Product>();
+        Useraccount useraccountByEmail = useraccountCrudService.getByPropertyName("email", userEmail);
+        final BigDecimal userid = useraccountByEmail.getUserid();
         List<Bid> bids = bidCrudService.findAll();
         for (Bid bid : bids)
         {
@@ -127,6 +160,27 @@ public class GetProductsServiceImpl implements GetProductsService
         List<Product> productsToBuy = new ArrayList<Product>();
         Useraccount useraccountById = useraccountCrudService.findById(userId);
         Garage userGarage = useraccountById.getGarageList().get(0);
+        List<Product> products = productCrudService.findAll();
+        for (Product product : products)
+        {
+            if (!product.getGarageid().equals(userGarage))
+            {
+                if (forSaleStatus.equals(product.getProdstatus()))
+                {
+                    productsToBuy.add(product);
+                }
+            }
+        }
+        return productsToBuy;
+    }
+
+    @Override
+    public List<Product> productsToBuy(String userEmail)
+    {
+        Character forSaleStatus = new Character('0');
+        List<Product> productsToBuy = new ArrayList<Product>();
+        Useraccount useraccountByEmail = useraccountCrudService.getByPropertyName("email", userEmail);
+        Garage userGarage = useraccountByEmail.getGarageList().get(0);
         List<Product> products = productCrudService.findAll();
         for (Product product : products)
         {

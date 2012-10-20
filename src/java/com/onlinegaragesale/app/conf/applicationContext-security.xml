@@ -22,6 +22,8 @@
         <intercept-url pattern="/addproduct.html" access="hasRole('user')" />
         <intercept-url pattern="/mygarage.html" access="hasRole('user')" />
         <intercept-url pattern="/addproductprocess.html" access="hasRole('user')" />
+        <intercept-url pattern="/viewproduct.html" access="hasRole('user')" />
+        <intercept-url pattern="/mygaragenavbar.html" access="hasRole('user')" />
         <!--<intercept-url pattern="/secure/extreme/**" access="hasRole('supervisor')" />
         <intercept-url pattern="/secure/**" access="isAuthenticated()" />
         <intercept-url pattern="/listAccounts.html" access="isAuthenticated()" />
