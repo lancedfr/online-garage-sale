@@ -29,22 +29,18 @@
         <script type="text/javascript" src="<c:url value="/resources/addproduct/js/main.js"/>"></script>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <style>
+            .btn {
+                padding: 4px 10px 4px;
+                font-weight: normal;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+            }
+        </style>
     </head>
     <body>
-
-        <div class="header-container">
-            <header class="wrapper clearfix">
-                <h1 class="title">h1.title</h1>
-                <nav>
-                    <ul>
-                        <li><a href="addproduct.html">Add a Product</a></li>
-                        <li><a href="#">nav ul li a</a></li>
-                        <li><a href="#">nav ul li a</a></li>
-                    </ul>
-                </nav>
-            </header>
-        </div>
-
+        <%@include file="mygaragenavbar.jsp" %>
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <article>
@@ -108,6 +104,7 @@
                                     </label>
                                     <f:input path="prodprice" id="field5" required="required" type="text"/>
                                 </div>
+                                <!--<button type="submit" class="btn">Submit</button>-->
                                 <div id="form-submit" class="field f_100 clearfix submit">
                                     <input type="submit" value="Submit" name="btnSubmit" path="">
                                 </div>
@@ -136,10 +133,6 @@
             </div> <!-- #main -->
         </div> <!-- #main-container -->
 
-        <div class="footer-container">
-            <footer class="wrapper">
-                <h3>footer</h3>
-            </footer>
-        </div>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

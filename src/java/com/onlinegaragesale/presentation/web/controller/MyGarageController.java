@@ -11,6 +11,7 @@ import com.onlinegaragesale.services.crud.CategoryCrudService;
 import com.onlinegaragesale.services.crud.ProductCrudService;
 import com.onlinegaragesale.services.crud.UseraccountCrudService;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,16 +62,40 @@ public class MyGarageController
     }
 
     @RequestMapping(value = "viewproduct.html", method = RequestMethod.GET)
-    public ModelAndView test(@RequestParam("id") String prodId, Model model)
+    public ModelAndView getViewProduct(@RequestParam("id") String prodId, Model model)
     {
-        GetProductsService productsService = facade.getGetProductsService();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        Product userProduct = productsService.userProduct(email, prodId);
+        ProductCrudService productCrudService = facade.getProductCrudService();
+        Product product = productCrudService.findById(new BigDecimal(prodId));
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("product", userProduct);
+        modelAndView.addObject("product", product);
         modelAndView.setViewName("viewproduct");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/browseproducts.html", method = RequestMethod.GET)
+    public ModelAndView getBrowsProducts(Model model)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        List<Product> products = new ArrayList<Product>();
+        if ("anonymousUser".equals(email))
+        {
+            ProductCrudService productCrudService = facade.getProductCrudService();
+            products = productCrudService.findAll();
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.addObject("products", products);
+            modelAndView.setViewName("browseproducts");
+            return modelAndView;
+        }
+        else
+        {
+            GetProductsService productsService = facade.getGetProductsService();
+            products = productsService.productsToBuy(email);
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.addObject("products", products);
+            modelAndView.setViewName("browseproducts");
+            return modelAndView;
+        }
     }
 //    @RequestMapping(value = "mygarage.html", method = RequestMethod.GET)
 //    public ModelAndView test(@RequestParam("id") String id, Model model)

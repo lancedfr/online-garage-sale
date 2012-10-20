@@ -5,8 +5,22 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+<script>
+    $(function() {
+        $( "#menu" ).menu({
+            select: function( event, ui ) {
+                var link = ui.item.children( "a:first" );
+                if ( link.attr( "target" ) || event.metaKey || event.shiftKey || event.ctrlKey ) {
+                    return;
+                }
+                location.href = link.attr( "href" );
+            }
+        });
+    });
+</script>
 <!DOCTYPE html>
-</style>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
@@ -18,7 +32,7 @@
             <a class="brand" href="#">Project name</a>
 
             <div class="nav-collapse collapse">
-                <ul class="nav">
+                <ul id="menu" class="nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -26,7 +40,7 @@
                         <li><a href="mygarage.html">My Garage</a></li>
                     </sec:authorize>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <a href="browseproducts.html" class="dropdown-toggle" data-toggle="dropdown">Browse Products<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>

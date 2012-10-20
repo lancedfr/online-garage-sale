@@ -51,13 +51,8 @@
                 <p><a class="btn" href="#">View details &raquo;</a></p>
             </div>
         </div>
-
         <hr>
     </div>
-    <div class="footer-container">
-        <footer class="wrapper">
-            <h3>footer</h3>
-        </footer>
-    </div>
+    <%@include file="footer.jsp" %>
 </body>
 </html>

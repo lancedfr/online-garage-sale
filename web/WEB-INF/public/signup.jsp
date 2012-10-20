@@ -22,7 +22,6 @@
         <link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/bootstrap-responsive.min.css" />" />
         <link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/main.css" />" />
         <link href="<c:url value="/resources/signup/css/style.css" />" rel="stylesheet" type="text/css"/>
-        <link href="<c:url value="/resources/signup/css/uniform.css" />" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         <script type="text/javascript" src="<c:url value="/resources/signup/js/jquery.tools.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/resources/signup/js/jquery.uniform.min.js"/>"></script>
@@ -30,45 +29,34 @@
 
         <style>
             body {
-                padding-top: 60px;
+                padding-top: 100px;
                 padding-bottom: 40px;
+            }
+            input {
+                width: 100%;
+                font: 16px/24px Helvetica Neue, "Arial", Helvetica, Verdana, sans-serif;
+                padding: 6px 0;
+                color: #999;
+                border: 1px solid #D9D9D9;
+                outline: none;
+                display: inline-block;
+                position: relative;
+                z-index: 2;
+                box-shadow: 0 0 10px #EEE inset;
+                -moz-box-shadow: 0 0 10px #eee inset;
+                -webkit-box-shadow: 0 0 10px #EEE inset;
+                -ms-box-shadow: 0 0 10px #eee inset;
+                border-radius: 3px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                -webkit-transition: .3s ease-in-out;
+                -moz-transition: .3s ease-in-out;
             }
         </style>
 
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="#">Project name</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <%@include file="mainnavbar.jsp" %>
         <div class="container">
             <div>
                 <h2>
@@ -98,7 +86,7 @@
                             Date of Birth
                         </label>
                         <f:input class="ttw-date date" id="field9" maxlength="524288" path="dob"
-                               required="" size="20" tabindex="0" title="" min=""/>
+                                 required="" size="20" tabindex="0" title="" min=""/>
                     </div>
                     <div id="field10-container" class="field f_100">
                         <label for="field10">
@@ -402,15 +390,13 @@
                         <input type="password" name="reenterpassword" id="field21" required="required">
                     </div>
                     <div id="form-submit" class="field f_100 clearfix submit">
-                        <input type="submit" value="Submit" name="btnSubmit" path="">
+                        <input value="Submit" type="submit">
                     </div>
                 </f:form>
             </div>
         </div>
         <hr>
-
-        <footer>
-            <p>&copy; Company 2012</p>
-        </footer>
+        <br>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

@@ -24,11 +24,10 @@
         <meta name="viewport" content="width=device-width">
     </head>
     <body>        
-       <%@include file="mygaragenavbar.jsp" %>
+        <%@include file="mygaragenavbar.jsp" %>
 
         <div class="main-container">
             <div class="main wrapper clearfix">
-
                 <article>
                     <header>
                         <div id="navcontainer">
@@ -56,13 +55,8 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
                 </aside>
 
-            </div> <!-- #main -->
-        </div> <!-- #main-container -->
-
-        <div class="footer-container">
-            <footer class="wrapper">
-                <h3>footer</h3>
-            </footer>
+            </div>
         </div>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : mygarage
-    Created on : 19 Oct 2012, 12:34:58 AM
+    Document   : browseproducts
+    Created on : 20 Oct 2012, 6:52:28 PM
     Author     : Lance
 --%>
 
@@ -32,8 +32,16 @@
                     <header>
                         <div id="navcontainer">
                             <ul id="navlist" data-role="listview" data-theme="g">
-                                <c:forEach items="${userProducts}" var="product">
-                                    <li id="active"><a rel=external href="viewproduct.html?id=${product.prodid}"><c:out value="Description: ${product.proddesc}"/></a></li>
+                                <c:forEach items="${products}" var="product">
+                                    <li id="active">
+                                        <a rel=external href="viewproduct.html?id=${product.prodid}">
+                                            <c:out value="Description: ${product.proddesc}"/>
+                                        </a>
+                                        <a href=placebid.html?id=${product.prodid}>
+                                            Place Bid
+                                        </a>
+                                        <br>
+                                    </li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -61,4 +69,3 @@
         <%@include file="footer.jsp" %>
     </body>
 </html>
-

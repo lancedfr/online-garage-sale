@@ -1,6 +1,6 @@
 <%-- 
-    Document   : mygarage
-    Created on : 19 Oct 2012, 12:34:58 AM
+    Document   : placebid
+    Created on : 20 Oct 2012, 7:57:57 PM
     Author     : Lance
 --%>
 
@@ -22,20 +22,31 @@
         <link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/listcss.css" />" />
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <style>
+            .btn{
+                padding:4px 10px 4px;
+                font-weight:normal;
+                -webkit-border-radius:4px;
+                -moz-border-radius:4px;
+                border-radius:4px
+            }
+        </style>
     </head>
-    <body>
+    <body>        
         <%@include file="mygaragenavbar.jsp" %>
+
         <div class="main-container">
             <div class="main wrapper clearfix">
-
                 <article>
                     <header>
                         <div id="navcontainer">
                             <ul id="navlist" data-role="listview" data-theme="g">
-                                <c:forEach items="${userProducts}" var="product">
-                                    <li id="active"><a rel=external href="viewproduct.html?id=${product.prodid}"><c:out value="Description: ${product.proddesc}"/></a></li>
-                                </c:forEach>
+                                <li id="active"><c:out value="Description: ${product.proddesc} ${product.prodprice}"/></a></li>
                             </ul>
+                            <input class="span2" type="text" name="bidamount" id="bidamount" placeholder="Bid Amount" pattern="%d"/>
+                            <a href="processplacebid.html">
+                                <button type="button" class="btn">Place Bid</button>
+                            </a>
                         </div>
                     </header>
                     <section>
@@ -56,9 +67,9 @@
                     <h3>aside</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
                 </aside>
-            </div> 
+
+            </div>
         </div>
         <%@include file="footer.jsp" %>
     </body>
 </html>
-
