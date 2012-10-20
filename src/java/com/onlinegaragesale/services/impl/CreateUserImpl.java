@@ -48,6 +48,15 @@ public class CreateUserImpl implements CreateUser
         createUserRole(createdUser);
     }
 
+    @Override
+    public void createNewUser(Useraccount createdUser)
+    {
+        useraccountCrudService.persist(createdUser);
+        createGarage(createdUser);
+        createSalesHistory(createdUser);
+        createUserRole(createdUser);
+    }
+
     private Useraccount createUser(HashMap<String, Object> values)
     {
         Useraccount useraccount = AppFactory.createUserAccount(values);
@@ -81,7 +90,7 @@ public class CreateUserImpl implements CreateUser
         values.put("rolename", "user");
         values.put("userid", createdUser);
         Roles createRole = AppFactory.createRole(values);
-        
+
         rolesCrudService.persist(createRole);
     }
 }

@@ -28,9 +28,9 @@ public class HomeController
      *
      * @return
      */
-    @RequestMapping(
+    @RequestMapping(value =
     {
-        "/"
+        "/", " * "
     })
     public String home()
     {
@@ -52,6 +52,18 @@ public class HomeController
     public String getHome(Model model)
     {
         return "index";
+    }
+
+    @RequestMapping(value = "/contact.html", method = RequestMethod.GET)
+    public String getContact(Model model)
+    {
+        return "contact";
+    }
+
+    @RequestMapping(value = "/mygarage.html", method = RequestMethod.GET)
+    public String getMyGarage(Model model)
+    {
+        return "mygarage";
     }
 //    @RequestMapping(value = "/add.html", method = RequestMethod.GET)
 //    public String getAdd(Model model) 

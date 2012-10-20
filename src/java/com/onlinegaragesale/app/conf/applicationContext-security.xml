@@ -8,19 +8,30 @@
 
     <global-method-security pre-post-annotations="enabled" />
     <http pattern="/resources/**" security="none" />
-    <http use-expressions="true" auto-config='true'>
-        <intercept-url pattern="/index.html" access="hasAnyRole('user')" />
+    <http use-expressions="true" auto-config='true' >
+        <intercept-url pattern="/index.html" access="permitAll" />
+        <intercept-url pattern="/loginfail.html" access="permitAll" />
+        <intercept-url pattern="/signup.html" access="permitAll" />
+        <intercept-url pattern="/signupprocess.html" access="permitAll" />
+        <intercept-url pattern="/404.html" access="permitAll" />
+        <intercept-url pattern="/contact.html" access="permitAll" />
         <intercept-url pattern="/login.html" access="permitAll" />
         <intercept-url pattern="/denied.html" access="permitAll" />
         <intercept-url pattern="/logoutsuccess.html" access="permitAll" />
+        <intercept-url pattern="/about.html" access="permitAll" />
+        <intercept-url pattern="/addproduct.html" access="hasRole('user')" />
+        <intercept-url pattern="/mygarage.html" access="hasRole('user')" />
+        <intercept-url pattern="/addproductprocess.html" access="hasRole('user')" />
         <!--<intercept-url pattern="/secure/extreme/**" access="hasRole('supervisor')" />
         <intercept-url pattern="/secure/**" access="isAuthenticated()" />
         <intercept-url pattern="/listAccounts.html" access="isAuthenticated()" />
         <intercept-url pattern="/post.html" access="hasAnyRole('supervisor','teller')" />-->
-        <intercept-url pattern="/**" access="denyAll" /> 
         <form-login login-page='/login.html'/>
+        <form-login default-target-url="/index.html"/>
         <access-denied-handler error-page="/denied.html" />
         <logout logout-success-url="/logoutsuccess.html"/>
+        <form-login authentication-failure-url="/loginfail.html"/>
+        <intercept-url pattern="/**" access="denyAll" /> 
     </http>
     
     <!--
@@ -58,7 +69,7 @@
             <jdbc-user-service 
                 data-source-ref="dataSource" 
                 users-by-username-query="SELECT EMAIL, ACCOUNTPASSWORD, ENABLED FROM USERACCOUNT WHERE EMAIL=?"
-                authorities-by-username-query="SELECT U.EMAIL, R.ROLENAME FROM USERACCOUNT U, ROLES R WHERE U.USERID = R.ROLE_ID AND U.EMAIL=?" />
+                authorities-by-username-query="SELECT U.EMAIL, R.ROLENAME FROM USERACCOUNT U, ROLES R WHERE U.USERID = R.USERID AND U.EMAIL=?" />
         </authentication-provider>
     </authentication-manager>
 

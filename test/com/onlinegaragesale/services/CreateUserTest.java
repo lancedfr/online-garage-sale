@@ -79,7 +79,7 @@ public class CreateUserTest
         values.put("firstName", "CreateFName");
         values.put("lastName", "CreateLName");
         values.put("middleName", "CreateMName");
-        values.put("pasword", "CreatePassword");
+        values.put("pasword", "user");
         values.put("address", "CreateAddress");
         values.put("areacode", "CreateAddressLine");
         values.put("city", "CreateCity");
@@ -87,7 +87,7 @@ public class CreateUserTest
         values.put("road", "CreateRoad");
         values.put("suberb", "CreateSuberb");
         values.put("cell", "CreateCell");
-        values.put("email", "CreateEmail");
+        values.put("email", "user");
         values.put("homeTell", "CreateHomeTell");
         values.put("workTell", "CreateWorkTell");
         createUser.createNewUser(values);

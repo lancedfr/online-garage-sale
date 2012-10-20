@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="ajax" uri="http://ajaxtags.sourceforge.net/tags/ajaxtags"%>
 <head>
     <meta charset="utf-8">
@@ -10,11 +11,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link type="image/ico" rel="icon" href="<c:url value="/favicon/favicon.ico" />" />
+    <link type="image/ico" rel="icon" href="<c:url value="/resources/favicon/favicon.ico" />" />
     <link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />" />
     <link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/bootstrap-responsive.min.css" />" />
     <link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/main.css" />" />
-    <script type="text/javascript" src="<c:url value="/resources/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"/>"> </script>
 
     <style>
         body {
@@ -38,7 +38,10 @@
                     <ul class="nav">
                         <li class="active"><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <sec:authorize access="hasRole('user')">
+                            <li><a href="mygarage.html">My Garage</a></li>
+                        </sec:authorize>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -52,14 +55,23 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form pull-right">
-                        <input class="span2" type="text" placeholder="Email">
-                        <input class="span2" type="password" placeholder="Password">
-                        <button type="submit" class="btn">Sign in</button>
-                        <a href="j_spring_security_logout">
-                            <button type="button" class="btn">Log Out</button>
-                        </a>
-                    </form>
+                    <div class="navbar-form pull-right">
+                        <sec:authorize access="isAnonymous()">
+                            <form action="j_spring_security_check" method="POST">
+                                <input class="span2" type="text" name="j_username" id="j_username" placeholder="Email" />
+                                <input class="span2" type="password" name="j_password" id="j_password" placeholder="Password" />
+                                <button type="submit" class="btn">Log in</button>
+                                <a href="signup.html">
+                                    <button type="button" class="btn">Sign up</button>
+                                </a>
+                            </form>
+                        </sec:authorize>
+                        <sec:authorize access="hasRole('user')">
+                            <a href="j_spring_security_logout">
+                                <button type="button" class="btn">Log Out</button>
+                            </a>
+                        </sec:authorize>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,20 +110,5 @@
         </footer>
 
     </div>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.1.min.js"><\/script>')</script>
-
-    <script src="js/vendor/bootstrap.min.js"></script>
-
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-
-    <script>
-        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
 </body>
 </html>

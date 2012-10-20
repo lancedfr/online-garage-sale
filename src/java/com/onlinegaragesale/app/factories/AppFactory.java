@@ -9,11 +9,15 @@ import com.onlinegaragesale.model.Roles;
 import com.onlinegaragesale.model.Saleshistory;
 import com.onlinegaragesale.model.Student;
 import com.onlinegaragesale.model.Useraccount;
+import com.onlinegaragesale.presentation.web.model.ProductBean;
+import com.onlinegaragesale.presentation.web.model.UseraccountBean;
 import com.onlinegaragesale.services.ObjectId;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -198,5 +202,50 @@ public class AppFactory
         role.setRolename(values.get("rolename").toString());
         role.setUserid((Useraccount) values.get("userid"));
         return role;
+    }
+
+    public static Useraccount createUserAccount(UseraccountBean useraccountBean)
+    {
+        Useraccount useraccount = new Useraccount(ObjectId.getNewUserAccountId());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(useraccountBean.getDob());
+        int yearOfBirth = calendar.getWeekYear();
+        calendar.setTime(new Date());
+        int currentYear = calendar.getWeekYear();
+        
+        useraccount.setAge(Short.valueOf(String.valueOf(currentYear - yearOfBirth)));
+        useraccount.setDob(useraccountBean.getDob());
+        useraccount.setFirstname(useraccountBean.getFirstname());
+        useraccount.setLastname(useraccountBean.getLastname());
+        useraccount.setMiddlename(useraccountBean.getMiddlename());
+        useraccount.setAccountpassword(PasswordEncrypt.encrypt(useraccountBean.getAccountpassword()));
+        useraccount.setEnabled(false);
+        
+        useraccount.setAddressline(useraccountBean.getAddressline());
+        useraccount.setAreacode(useraccountBean.getAreacode());
+        useraccount.setCity(useraccountBean.getCell());
+        useraccount.setCountry(useraccountBean.getCountry());
+        useraccount.setRoad(useraccountBean.getRoad());
+        useraccount.setSuburb(useraccountBean.getSuburb());
+
+        useraccount.setCell(useraccountBean.getCell());
+        useraccount.setEmail(useraccountBean.getEmail());
+        useraccount.setHometell(useraccountBean.getHometell());
+        useraccount.setWorktell(useraccountBean.getWorktell());
+        return useraccount;
+    }
+
+    public static Product createProduct(ProductBean productBean, Category category, Useraccount useraccount)
+    {
+        Product product = new Product(ObjectId.getNewProductId());
+        List<Garage> garageList = useraccount.getGarageList();
+        product.setCategoryid(category);
+        product.setGarageid(garageList.get(0));
+        product.setProdcondition(productBean.getProdcondition());
+        product.setProddesc(productBean.getProddesc());
+        product.setProdprice(productBean.getProdprice());
+        product.setProdimage(product.getProdimage());
+        product.setProdstatus(Character.valueOf('0'));
+        return product;
     }
 }
