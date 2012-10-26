@@ -1,6 +1,6 @@
 <%-- 
-    Document   : placebid
-    Created on : 20 Oct 2012, 7:57:57 PM
+    Document   : viewmybids
+    Created on : 25 Oct 2012, 11:52:57 PM
     Author     : Lance
 --%>
 
@@ -22,15 +22,6 @@
         <link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/listcss.css" />" />
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <style>
-            .btn{
-                padding:4px 10px 4px;
-                font-weight:normal;
-                -webkit-border-radius:4px;
-                -moz-border-radius:4px;
-                border-radius:4px
-            }
-        </style>
     </head>
     <body>        
         <%@include file="mygaragenavbar.jsp" %>
@@ -41,14 +32,10 @@
                     <header>
                         <div id="navcontainer">
                             <ul id="navlist" data-role="listview" data-theme="g">
-                                <li id="active"><c:out value="Description: ${product.proddesc} ${product.prodprice}"/></a></li>
+                                <c:forEach items="${products}" var="product">
+                                    <li id="active"><a rel=external href="viewproduct.html?id=${product.prodid}"><c:out value="Description: ${product.proddesc} Status: ${product.prodstatus}"/></a></li>
+                                </c:forEach>
                             </ul>
-                            <f:form action="processplacebid.html?id=${product.prodid}" method="post" novalidate="" modelAttribute="product">
-                                <f:input class="span2" type="text" path="prodprice" id="field6" placeholder="Bid Amount" required="required" pattern="\d+(\.\d{2})?"/>
-                                <div id="form-submit" class="btn">
-                                    <input value="Place Bid" type="submit">
-                                </div>
-                            </f:form>
                         </div>
                     </header>
                     <section>

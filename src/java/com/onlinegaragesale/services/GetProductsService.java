@@ -37,7 +37,7 @@ public interface GetProductsService
      * @return A List<Product> related to the provided userId
      */
     public List<Product> userProducts(String userEmail);
-    
+
     /**
      *
      * @param userEmail
@@ -86,4 +86,6 @@ public interface GetProductsService
      * @return A List<Product> up for sale to the provided userId
      */
     public List<Product> productsToBuy(String userEmail);
+
+    public List<Product> userProductsForSale(String email);
 }

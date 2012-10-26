@@ -42,9 +42,12 @@
                     <li class="dropdown">
                         <a href="browseproducts.html" class="dropdown-toggle" data-toggle="dropdown">Browse Products<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li class="nav-header">Product Actions</li>
+                            <li><a href="browseproducts.html">Browse products</a></li>
+                            <li><a href="mygarage.html">Browse my products</a></li>
+                            <li class="nav-header">Bid Actions</li>
+                            <li><a href="viewmybids.html">View my bids</a></li>
+                            <li><a href="acceptbid.html">Accept a Bid</a></li>
                             <li class="divider"></li>
                             <li class="nav-header">Nav header</li>
                             <li><a href="#">Separated link</a></li>

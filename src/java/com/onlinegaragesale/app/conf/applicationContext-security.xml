@@ -26,6 +26,11 @@
         <intercept-url pattern="/viewproduct.html" access="hasRole('user')" />
         <intercept-url pattern="/mygaragenavbar.html" access="hasRole('user')" />
         <intercept-url pattern="/placebid.html" access="hasRole('user')" />
+        <intercept-url pattern="/bidprocessed.html" access="hasRole('user')" />
+        <intercept-url pattern="/viewmybids.html" access="hasRole('user')" />
+        <intercept-url pattern="/acceptbid.html" access="hasRole('user')" />
+        <intercept-url pattern="/processplacebid.html" access="hasRole('user')" />
+        <intercept-url pattern="/processacceptbid.html" access="hasRole('user')" />
         <!--<intercept-url pattern="/secure/extreme/**" access="hasRole('supervisor')" />
         <intercept-url pattern="/secure/**" access="isAuthenticated()" />
         <intercept-url pattern="/listAccounts.html" access="isAuthenticated()" />

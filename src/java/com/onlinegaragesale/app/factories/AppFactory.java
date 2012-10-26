@@ -182,6 +182,16 @@ public class AppFactory
         bid.setBidstatus(Character.valueOf('2'));
         return bid;
     }
+    
+    public static Bid createBid(ProductBean productBean, Product product, Useraccount useraccount)
+    {
+        Bid bid = new Bid(ObjectId.getNewBidId());
+        bid.setBidamount(productBean.getProdprice());
+        bid.setProdid(product);
+        bid.setUserid(useraccount.getUserid());
+        bid.setBidstatus(Character.valueOf('2'));
+        return bid;
+    }
 
     public static Saleshistory createSalesHistory(HashMap<String, Object> values)
     {

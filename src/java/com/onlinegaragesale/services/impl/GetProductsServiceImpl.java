@@ -194,4 +194,23 @@ public class GetProductsServiceImpl implements GetProductsService
         }
         return productsToBuy;
     }
+
+    @Override
+    public List<Product> userProductsForSale(String userEmail)
+    {
+        Character forSaleStatus = new Character('0');
+        List<Product> productList = new ArrayList<Product>();
+        List<Product> userProductsForSale = new ArrayList<Product>();
+        Useraccount useraccountByEmail = useraccountCrudService.getByPropertyName("email", userEmail);
+        Garage garage = useraccountByEmail.getGarageList().get(0);
+        productList = garage.getProductList();
+        for (Product product : productList)
+        {
+            if (product.getProdstatus().equals(forSaleStatus))
+            {
+                userProductsForSale.add(product);
+            }
+        }
+        return userProductsForSale;
+    }
 }

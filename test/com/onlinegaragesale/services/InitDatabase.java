@@ -52,6 +52,7 @@ public class InitDatabase
             DatabaseConnection databaseConnsection = DatabaseConnection.getInstance();
             runScript(databaseConnsection.getConnection());
             runFuncScript(databaseConnsection.getConnection());
+            runInsertScript(databaseConnsection.getConnection());
             Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
                     + "C:\\Users\\Lance\\Documents\\NetBeansProjects\\InterProject\\online-garage-sale\\ScriptLog.txt");
             Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
@@ -92,6 +93,20 @@ public class InitDatabase
         scriptRunner.setLogWriter(new PrintWriter(scriptLogFileOutputStream));
         scriptRunner.setErrorLogWriter(new PrintWriter(scriptErrorLogFileOutputStream));
         reader = new FileReader("./src/java/com/onlinegaragesale/app/dbsql/INIT_DB_FUNC_SCRIPT.sql");
+        scriptRunner.runScript(reader);
+    }
+
+    private void runInsertScript(Connection connection) throws SQLException, IOException
+    {
+        ScriptRunner scriptRunner = new ScriptRunner(connection, false, false);
+        scriptRunner.setDelimiter(";", false);
+        Reader reader;
+
+        FileOutputStream scriptLogFileOutputStream = new FileOutputStream("ScriptLog.txt", false);
+        FileOutputStream scriptErrorLogFileOutputStream = new FileOutputStream("ScriptErrorLog.txt", false);
+        scriptRunner.setLogWriter(new PrintWriter(scriptLogFileOutputStream));
+        scriptRunner.setErrorLogWriter(new PrintWriter(scriptErrorLogFileOutputStream));
+        reader = new FileReader("./src/java/com/onlinegaragesale/app/dbsql/INIT_DB_INSERT.sql");
         scriptRunner.runScript(reader);
     }
 }
