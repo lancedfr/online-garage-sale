@@ -36,7 +36,7 @@
 
         <div class="hero-unit">
             <h1>About Us</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <p>This website will allow users to sell or buy products online in a garage sale fashion. Bidding will be incorporated into the website as a way of selling goods. Users may monitor the bids placed as well as items being sold. The system will also allow users to create a flyer to hand out to local friends and family. </p>
             <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
         </div>
 

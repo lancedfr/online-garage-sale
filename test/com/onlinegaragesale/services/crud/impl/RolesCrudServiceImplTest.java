@@ -71,10 +71,10 @@ public class RolesCrudServiceImplTest
     public void rolesCrudServiceImplTestTest()
     {
         HashMap<String, Object> values = new HashMap<String, Object>();
-        values.put("roleid", "22");
-        values.put("email", "TestEmail");
+        values.put("roleid", "1");
+        values.put("email", "user");
         values.put("rolename", "user");
-        values.put("userid", useraccountCrudService.findById(new BigDecimal(20124004)));
+        values.put("userid", useraccountCrudService.findById(new BigDecimal(20124031)));
 
         Roles role = AppFactory.createRole(values);
 

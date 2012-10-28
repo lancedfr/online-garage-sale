@@ -69,7 +69,7 @@ public class GarageCrudServiceImplTest
         values.put("closeDate", new Date());
         values.put("garageType", "small");
         values.put("openDate", new Date());
-        values.put("userId", useraccountCrudService.findById(new BigDecimal(20124004)));
+        values.put("userId", useraccountCrudService.findById(new BigDecimal(20124031)));
         Garage garage = AppFactory.createGarage(values);
 
         garageCrudService.persist(garage);

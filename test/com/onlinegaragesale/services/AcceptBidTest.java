@@ -63,11 +63,11 @@ public class AcceptBidTest
     @Test
     public void acceptBidTestTest()
     {
-        Bid bid = bidCrudService.findById(new BigDecimal("3"));
+        Bid bid = bidCrudService.findById(new BigDecimal("21"));
         acceptBidService.acceptBid(bid);
-        bid = bidCrudService.findById(new BigDecimal("6"));
+        bid = bidCrudService.findById(new BigDecimal("21"));
         acceptBidService.acceptBid(bid);
-        bid = bidCrudService.findById(new BigDecimal("9"));
+        bid = bidCrudService.findById(new BigDecimal("21"));
         acceptBidService.acceptBid(bid);
 //        Bid findById = bidCrudService.findById(new BigDecimal("5"));
 //        Character bidstatus = findById.getBidstatus();

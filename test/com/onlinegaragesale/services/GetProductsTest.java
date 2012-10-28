@@ -65,33 +65,33 @@ public class GetProductsTest
     @Test
     public void getUserProductsTest()
     {
-        List<Product> userProducts = getProductsService.userProducts(BigDecimal.valueOf(20124001));
-        Assert.assertEquals(3, userProducts.size());
+        List<Product> userProducts = getProductsService.userProducts(BigDecimal.valueOf(20124031));
+        Assert.assertEquals(1, userProducts.size());
 
-        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124001));
+        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124031));
         List<Product> userProducts2 = getProductsService.userProducts(useraccount);
-        Assert.assertEquals(3, userProducts2.size());
+        Assert.assertEquals(1, userProducts2.size());
     }
 
     @Test
     public void getUsersBidsTest()
     {
-        List<Product> usersBids = getProductsService.usersBids(BigDecimal.valueOf(20124003));
-        Assert.assertEquals(4, usersBids.size());
+        List<Product> usersBids = getProductsService.usersBids(BigDecimal.valueOf(20124031));
+        Assert.assertEquals(1, usersBids.size());
 
-        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124003));
+        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124031));
         List<Product> usersBids2 = getProductsService.usersBids(useraccount);
-        Assert.assertEquals(4, usersBids2.size());
+        Assert.assertEquals(1, usersBids2.size());
     }
 
     @Test
     public void getProductsToBuyTest()
     {
-        List<Product> productsToBuy = getProductsService.productsToBuy(BigDecimal.valueOf(20124001));
-        Assert.assertEquals(1, productsToBuy.size());
+        List<Product> productsToBuy = getProductsService.productsToBuy(BigDecimal.valueOf(20124031));
+        Assert.assertEquals(0, productsToBuy.size());
 
-        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124001));
+        Useraccount useraccount = useraccountCrudService.findById(BigDecimal.valueOf(20124031));
         List<Product> productsToBuy2 = getProductsService.productsToBuy(useraccount);
-        Assert.assertEquals(1, productsToBuy2.size());
+        Assert.assertEquals(0, productsToBuy2.size());
     }
 }
