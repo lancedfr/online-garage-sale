@@ -39,24 +39,7 @@
             <p>This website will allow users to sell or buy products online in a garage sale fashion. Bidding will be incorporated into the website as a way of selling goods. Users may monitor the bids placed as well as items being sold. The system will also allow users to create a flyer to hand out to local friends and family. </p>
             <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
         </div>
-
-        <div class="row">
-            <div class="span4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <div class="span4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <div class="span4">
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-        </div>
+        <%@include file="highlightview.jsp" %>
         <hr>
     </div>
     <%@include file="footer.jsp" %>

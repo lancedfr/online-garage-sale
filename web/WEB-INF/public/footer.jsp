@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <div class="footer-container">
     <footer class="wrapper">
-        <h3>footer</h3>
+        <h3>Online Garage Sale</h3>
+        <div style="float:right">Proudly powered by Spring MVC</div>
     </footer>
 </div>

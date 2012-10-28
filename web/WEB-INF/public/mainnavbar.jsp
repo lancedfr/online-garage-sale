@@ -29,7 +29,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Project name</a>
+            <a class="brand" href="#">Online Garage Sale</a>
 
             <div class="nav-collapse collapse">
                 <ul id="menu" class="nav">
@@ -49,9 +49,9 @@
                             <li><a href="viewmybids.html">View my bids</a></li>
                             <li><a href="acceptbid.html">Accept a Bid</a></li>
                             <li class="divider"></li>
-                            <li class="nav-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li class="nav-header">Information</li>
+                            <li><a href="#">Send feedback</a></li>
+                            <li><a href="#">Help</a></li>
                         </ul>
                     </li>
                 </ul>

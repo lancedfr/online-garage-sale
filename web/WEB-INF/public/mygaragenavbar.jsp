@@ -11,8 +11,8 @@
         <nav>
             <ul>
                 <li><a href="addproduct.html">Add a Product</a></li>
-                <li><a href="#">nav ul li a</a></li>
-                <li><a href="#">nav ul li a</a></li>
+                <li><a href="#">Edit a Product</a></li>
+                <li><a href="#">Search Products</a></li>
             </ul>
         </nav>
     </header>
